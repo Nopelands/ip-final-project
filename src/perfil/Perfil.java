@@ -5,7 +5,6 @@ public class Perfil {
     private String phrase;
     private String number;
     private PerfilRepositoryArray contacts;
-//    private GroupRepositoryArray groups;
 
 
     public String getName() {
@@ -20,4 +19,7 @@ public class Perfil {
         return phrase;
     }
 
+    public PerfilRepositoryArray getContacts() {
+        return contacts;
+    }
 }
