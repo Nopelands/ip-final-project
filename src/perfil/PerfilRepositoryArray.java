@@ -29,4 +29,31 @@ public class PerfilRepositoryArray {
             super("Number Not Found");
         }
     }
+    public void remove(String number) throws NumberNotFoundException {
+        boolean found = false;
+        int index = 0;
+        for (int i = 0; i < perfils.length && !found; i++) {
+            if (perfils[i].getNumber().equals(number)) {
+                found = true;
+                index = i;
+            }
+        }
+        if (!found) {
+            throw new NumberNotFoundException();
+        } else {
+            Perfil[] temp = new Perfil[perfils.length - 1];
+            for (int i = 0; i < perfils.length; i++) {
+                if (i < index) {
+                    temp[i] = perfils[i];
+                } else {
+                    temp[i] = perfils[i + 1];
+                }
+            }
+            perfils = temp;
+        }
+    }
+
+    public int length() {
+        return perfils.length;
+    }
 }
