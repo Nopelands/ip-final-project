@@ -5,7 +5,7 @@ public class Perfil {
     private String phrase;
     private String number;
     private PerfilRepositoryArray contacts;
-
+//    private PerfilRepositorioLista contacts;
 
     public String getName() {
         return name;
