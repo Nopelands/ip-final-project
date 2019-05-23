@@ -4,8 +4,14 @@ public class Perfil {
     private String name;
     private String phrase;
     private String number;
-    private PerfilRepositoryArray contacts;
-//    private PerfilRepositorioLista contacts;
+    private PerfilRepository contacts;
+
+    public Perfil(String name, String number, PerfilRepository perfilRepository) {
+        this.name = name;
+        this.phrase = null;
+        this.number = number;
+        this.contacts = perfilRepository;
+    }
 
     public String getName() {
         return name;
@@ -19,7 +25,7 @@ public class Perfil {
         return phrase;
     }
 
-    public PerfilRepositoryArray getContacts() {
+    public PerfilRepository getContacts() {
         return contacts;
     }
 }
