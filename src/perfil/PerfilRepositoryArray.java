@@ -1,6 +1,6 @@
 package perfil;
 
-public class PerfilRepositoryArray {
+public class PerfilRepositoryArray implements PerfilRepository{
     private Perfil[] perfils;
 
     public PerfilRepositoryArray() {
@@ -13,6 +13,10 @@ public class PerfilRepositoryArray {
             temp[temp.length - 1] = perfil;
             perfils = temp;
         }
+    }
+
+    public int length() {
+        return perfils.length;
     }
 
     public Perfil findByNumber(String number) throws NumberNotFoundException{
@@ -46,9 +50,5 @@ public class PerfilRepositoryArray {
             }
             perfils = temp;
         }
-    }
-
-    public int length() {
-        return perfils.length;
     }
 }
