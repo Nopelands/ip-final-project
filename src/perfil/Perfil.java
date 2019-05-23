@@ -28,4 +28,8 @@ public class Perfil {
     public PerfilRepository getContacts() {
         return contacts;
     }
+
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
+    }
 }
