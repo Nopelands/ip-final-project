@@ -24,11 +24,6 @@ public class PerfilRepositoryArray {
         throw new NumberNotFoundException();
     }
 
-    public class NumberNotFoundException extends Exception {
-        NumberNotFoundException() {
-            super("Number Not Found");
-        }
-    }
     public void remove(String number) throws NumberNotFoundException {
         boolean found = false;
         int index = 0;
