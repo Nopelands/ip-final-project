@@ -1,16 +1,16 @@
 package perfil;
 
-public class Perfil {
+public class Perfis {
     private String name;
     private String phrase;
     private String number;
-    private PerfilRepository contacts;
+    private RepositorioPerfis contacts;
 
-    public Perfil(String name, String number, PerfilRepository perfilRepository) {
+    public Perfis(String name, String number, RepositorioPerfis repositorioPerfis) {
         this.name = name;
         this.phrase = null;
         this.number = number;
-        this.contacts = perfilRepository;
+        this.contacts = repositorioPerfis;
     }
 
     public String getName() {
@@ -25,8 +25,12 @@ public class Perfil {
         return phrase;
     }
 
-    public PerfilRepository getContacts() {
+    public RepositorioPerfis getContacts() {
         return contacts;
+    }
+
+    public boolean equals(Perfis perfis) {
+        return this.name.equals(perfis.getName()) && this.phrase.equals(perfis.getPhrase()) && this.number.equals(perfis.getNumber()) && this.contacts.equals(perfis.getContacts());
     }
 
     public void setPhrase(String phrase) {
