@@ -30,7 +30,7 @@ public class Perfis {
     }
 
     public boolean equals(Perfis perfis) {
-        return this.name.equals(perfis.getName()) && this.phrase.equals(perfis.getPhrase()) && this.number.equals(perfis.getNumber()) && this.contacts.equals(perfis.getContacts());
+        return this.number.equals(perfis.getNumber());
     }
 
     public void setPhrase(String phrase) {
