@@ -24,16 +24,16 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         return false;
     }
 
-    public Perfis procurar(String number) throws NumberNotFoundException{
+    public Perfis procurar(String number) throws PerfilNotFoundException {
         for (Perfis perfi : perfis) {
             if (perfi.getNumber().equals(number)) {
                 return perfi;
             }
         }
-        throw new NumberNotFoundException();
+        throw new PerfilNotFoundException();
     }
 
-    public void remover(String number) throws NumberNotFoundException {
+    public void remover(String number) throws PerfilNotFoundException {
         boolean found = false;
         int index = 0;
         for (int i = 0; i < perfis.length && !found; i++) {
@@ -43,7 +43,7 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
             }
         }
         if (!found) {
-            throw new NumberNotFoundException();
+            throw new PerfilNotFoundException();
         } else {
             Perfis[] temp = new Perfis[perfis.length - 1];
             for (int i = 0; i < perfis.length; i++) {
@@ -57,14 +57,14 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         }
     }
 
-    public void atualizar(Perfis perfil) throws NumberNotFoundException{
+    public void atualizar(Perfis perfil) throws PerfilNotFoundException {
         for (int i = 0; i < perfis.length; i++) {
             if (this.existe(perfil.getNumber())) {
                 if (perfis[i].getNumber().equals(perfil.getNumber())) {
                     perfis[i] = perfil;
                 }
             } else {
-                throw new NumberNotFoundException();
+                throw new PerfilNotFoundException();
             }
         }
 

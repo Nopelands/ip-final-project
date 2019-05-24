@@ -46,7 +46,7 @@
 //                this.getNext().insert(perfil, this.index+1);
 //            }
 //        }
-//        public Perfis findByNumber(String number) throws NumberNotFoundException {
+//        public Perfis findByNumber(String number) throws PerfilNotFoundException {
 //            if (this.getPerfil() != null) {
 //                if (this.getPerfil().getNumber().equals(number)) {
 //                    return this.getPerfil();
@@ -54,11 +54,11 @@
 //                    return this.getNext().findByNumber(number);
 //                }
 //            } else {
-//                throw new NumberNotFoundException();
+//                throw new PerfilNotFoundException();
 //            }
 //        }
 //
-//        public void remover(String number) throws NumberNotFoundException {
+//        public void remover(String number) throws PerfilNotFoundException {
 //            if (this.getNext().getPerfil() == null) {
 //                if ()
 //            }
@@ -68,7 +68,7 @@
 //        listHead.inserir(perfil);
 //    }
 //
-//    public Perfis findByNumber(String number) throws NumberNotFoundException {
+//    public Perfis findByNumber(String number) throws PerfilNotFoundException {
 //        return listHead.findByNumber(number);
 //    }
 //
