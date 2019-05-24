@@ -9,6 +9,6 @@ public interface RepositorioPerfis {
 
     boolean existe(String number);
 
-    void atualizar(String number);
+    void atualizar(Perfis perfil) throws NumberNotFoundException;
 
 }

@@ -15,10 +15,6 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         }
     }
 
-    public int length() {
-        return perfis.length;
-    }
-
     public boolean existe(String number) {
         for (Perfis perfi : perfis) {
             if (perfi.getNumber().equals(number)) {
@@ -59,5 +55,18 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
             }
             perfis = temp;
         }
+    }
+
+    public void atualizar(Perfis perfil) throws NumberNotFoundException{
+        for (int i = 0; i < perfis.length; i++) {
+            if (this.existe(perfil.getNumber())) {
+                if (perfis[i].getNumber().equals(perfil.getNumber())) {
+                    perfis[i] = perfil;
+                }
+            } else {
+                throw new NumberNotFoundException();
+            }
+        }
+
     }
 }
