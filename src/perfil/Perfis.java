@@ -1,9 +1,9 @@
 package perfil;
 
 public class Perfis {
-    private String name;
+    private final String name;
     private String phrase;
-    private String number;
+    private final String number;
     private RepositorioPerfis contacts;
 
     public Perfis(String name, String number, RepositorioPerfis repositorioPerfis) {
