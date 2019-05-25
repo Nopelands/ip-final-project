@@ -1,0 +1,29 @@
+package group;
+
+
+public class Grupos {
+	private String nome;
+	private  RepositorioPerfisArray listaNomes;
+	private String descricao;
+	private RepositorioMensagensArray listaMensagens;
+	
+	public Grupos() {
+		this.nome = null;
+		this.descricao = null;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public String getNome() {
+		return this.nome;
+	}
+	public String getDescricao() {
+		return this.descricao;
+	}
+	//esboco
+
+}
