@@ -1,4 +1,4 @@
-package mdaa;
+package group;
 
 public class NegociosGrupos implements RepositorioGrupos{
 	private RepositorioGrupos repositorio;
