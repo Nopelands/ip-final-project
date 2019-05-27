@@ -1,7 +1,7 @@
 package mensagens;
 
-public class MensagemNaoEncontradaException extends Exception{
+public class MensagemNaoEncontradaException extends Exception {
     MensagemNaoEncontradaException() {
-        super("Mensagem nao encontrada");
+        super("Mensagem não encontrada");
     }
 }
