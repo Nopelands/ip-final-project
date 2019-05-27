@@ -14,13 +14,9 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
         }
     }
     public boolean existe(String mensagem) {
-        boolean encontrou =  true;
+        boolean encontrou =  false;
         for (int i = 0; i < mensagens.length && !encontrou; i++) {
-            if (mensagens[i].getMensagem().equals(mensagem)) {
-                encontrou =  true;
-            } else {
-                encontrou =  false;
-            }
+            encontrou = mensagens[i].getMensagem().equals(mensagem);
         } return encontrou;
 
     }
@@ -71,7 +67,7 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
     public void atualizar(String mensagem, String atualizado) throws MensagemNaoEncontradaException {
         boolean naoencontrou = true;
         for (int i = 0; i<mensagens.length && naoencontrou; i++){
-            if (mensagens[i].equals(mensagem)) {
+            if (mensagens[i].getMensagem().equals(mensagem)) {
                 mensagens[i].setMensagem(atualizado);
                 naoencontrou = false;
             }
