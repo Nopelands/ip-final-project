@@ -15,7 +15,11 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			if (this.grupo.getNome().equals(nome)) {
 				retorno = this.grupo;
 			} else
+				try {
 				retorno = this.proximo.procurar(nome);
+				}catch(GrupoNaoEncontradoException e) {
+					throw e;
+				}
 		} else
 			throw new GrupoNaoEncontradoException();
 
@@ -65,7 +69,11 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			if (this.grupo.getNome().equals(nome_Antigo)) {
 				this.grupo.setNome(nome_Novo);
 			} else {
+				try {
 				this.proximo.atualizarNome(nome_Antigo, nome_Novo);
+				}catch(GrupoNaoEncontradoException e) {
+					throw e;
+				}
 			}
 		} else
 			throw new GrupoNaoEncontradoException();
@@ -78,7 +86,11 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			if (this.grupo.getDescricao().equals(descricao_Antigo)) {
 				this.grupo.setDescricao(descricao_Novo);
 			} else {
+				try {
 				this.proximo.atualizarDescricao(descricao_Antigo, descricao_Novo);
+				}catch(GrupoNaoEncontradoException e) {
+					throw e;
+				}
 			}
 		} else
 			throw new GrupoNaoEncontradoException();
@@ -91,7 +103,11 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 				this.grupo.setNome(grupo.getNome());
 				this.grupo.setDescricao(grupo.getDescricao());
 			} else {
-				this.proximo.atualizarGrupo(nome, grupo);
+				try {
+				 this.proximo.atualizarGrupo(nome, grupo);
+				} catch(GrupoNaoEncontradoException e) {
+					throw e;
+				}
 			}
 		} else
 			throw new GrupoNaoEncontradoException();
