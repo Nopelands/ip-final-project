@@ -3,13 +3,16 @@ package group;
 
 public class Grupos {
 	private String nome;
-	private  RepositorioPerfisArray listaNomes;
+	private  RepositorioPerfis listaNomes;
 	private String descricao;
-	private RepositorioMensagensArray listaMensagens;
+	private RepositorioMensagens listaMensagens;
 	
-	public Grupos() {
+	public Grupos(String name, String number, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
 		this.nome = null;
 		this.descricao = null;
+		this.listaNomes = repositorioPerfis;
+		this.listaMensagens = repositorioMensagens;
+		
 	}
 	
 	public void setNome(String nome) {
@@ -24,6 +27,13 @@ public class Grupos {
 	public String getDescricao() {
 		return this.descricao;
 	}
-	//esboco
+	
+	public RepositorioPerfis getListaNomes() {
+        return listaNomes;
+    }
+	
+	public RepositorioMensagens getListaMensagens() {
+        return listaMensagens;
+    }
 
 }
