@@ -26,7 +26,7 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
             this.next.inserir(perfil, this);
         }
     }
-
+//TODO refactor remover() using existe()
     public void remover(String number) throws PerfilNotFoundException {
         if (this.previous == null) {
             if (this.perfil == null) {
