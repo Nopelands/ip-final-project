@@ -1,6 +1,5 @@
 package group;
 
-
 public class Grupos {
 	private String nome;
 	private  RepositorioPerfis listaNomes;
@@ -31,6 +30,21 @@ public class Grupos {
 	public RepositorioPerfis getListaNomes() {
         return listaNomes;
     }
+	
+	public void inserirMensagem(Mensagem mensagem) {
+		this.listaMensagens.inserir(mensagem);
+			
+	}
+	
+	public void inserirPerfil(Perfil perfil) {
+		this.listaNomes.inserir(perfil);
+			
+	}
+	
+	public void removerPerfil(String numero) {
+		this.listaNomes.remover(numero);
+			
+	}
 	
 	public RepositorioMensagens getListaMensagens() {
         return listaMensagens;
