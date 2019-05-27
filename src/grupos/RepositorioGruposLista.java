@@ -98,19 +98,19 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 
 	public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
 		if (!checarGrupo(grupo.getNome())) {
-		if (this.grupo != null) {
-			if (this.grupo.getNome().equals(nome)) {
-				this.grupo.setNome(grupo.getNome());
-				this.grupo.setDescricao(grupo.getDescricao());
-			} else {
-				try {
-				 this.proximo.atualizarGrupo(nome, grupo);
-				} catch(GrupoNaoEncontradoException e) {
-					throw e;
+			if (this.grupo != null) {
+				if (this.grupo.getNome().equals(nome)) {
+					this.grupo.setNome(grupo.getNome());
+					this.grupo.setDescricao(grupo.getDescricao());
+				} else {
+					try {
+					 this.proximo.atualizarGrupo(nome, grupo);
+					} catch(GrupoNaoEncontradoException e) {
+						throw e;
+					}
 				}
-			}
-		} else
-			throw new GrupoNaoEncontradoException();
+			} else
+				throw new GrupoNaoEncontradoException();
 		} else
 			throw new GrupoJaCadastradoException();
 	}
