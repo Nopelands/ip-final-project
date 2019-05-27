@@ -1,7 +1,8 @@
 package mensageiro;
 import perfis.*;
 import mensagens.*;
-//TODO import status.*;
+import grupos.*;
+//TODO import conversas.*;
 
 public class Mensageiro {
     private CadastroPerfis cadastroPerfis;
