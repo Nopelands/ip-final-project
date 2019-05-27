@@ -1,10 +1,10 @@
 package mensagens;
 
 public class MensagemNormal extends Mensagem {
-    public MensagemNormal(String mensagem, MensagensRepositorio mensagens){
-        super(mensagem, mensagens);
+    public MensagemNormal(String remetente, String mensagem){
+        super(remetente, mensagem);
     }
-    public void enviar(String mensagem){
-        mensagens.inserir(mensagem);
+    public void novamensagem (String mensagem){
+        this.mensagem = mensagem;
     }
 }
