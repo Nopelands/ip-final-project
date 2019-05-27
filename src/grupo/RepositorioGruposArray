@@ -37,9 +37,9 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 
 	public boolean checarGrupo(String nome) {
 		for (int i = 0; i < this.arrayGrupos.length; i++) {
-			if (this.arrayGrupos[i] != null)
-			if (this.arrayGrupos[i].getNome().equals(nome))
+			if (this.arrayGrupos[i] != null && this.arrayGrupos[i].getNome().equals(nome)){
 				return true;
+				}
 		}
 		return false;
 	}
