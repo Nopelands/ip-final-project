@@ -35,17 +35,17 @@ public class Grupos {
     }
 	
 	public void inserirMensagem(Mensagem mensagem) {
-		this.listaMensagens.inserir(mensagem);
+		this.listaMensagens.inserir;
 			
 	}
 	
 	public void inserirPerfil(Perfil perfil) {
-		this.listaNomes.inserir(perfil);
+		this.listaNomes.inserir;
 			
 	}
 	
 	public void removerPerfil(String numero) throws PerfilNotFoundException {
-		this.listaNomes.remover(numero);
+		this.listaNomes.remover;
 			
 	}
 	
