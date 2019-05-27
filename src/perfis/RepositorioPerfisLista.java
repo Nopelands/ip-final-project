@@ -3,7 +3,6 @@ package perfis;
 public class RepositorioPerfisLista implements RepositorioPerfis{
     private Perfil perfil;
     private RepositorioPerfisLista next;
-    private RepositorioPerfisLista previous;
 
     public Perfil getPerfil() {
         return perfil;
@@ -14,42 +13,24 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
             this.perfil = perfil;
             this.next = new RepositorioPerfisLista();
         } else {
-            this.next.inserir(perfil, this);
+            this.next.inserir(perfil);
         }
     }
-
-    public void inserir(Perfil perfil, RepositorioPerfisLista previous) {
-        if (this.perfil == null) {
-            this.perfil = perfil;
-            this.next = new RepositorioPerfisLista();
-        } else {
-            this.next.inserir(perfil, this);
-        }
-    }
-//TODO refactor remover() using existe()
     public void remover(String number) throws PerfilNotFoundException {
-        if (this.previous == null) {
-            if (this.perfil == null) {
-                throw new PerfilNotFoundException();
-            } else if (this.perfil.getNumber().equals(number)) {
-                if (this.next == null) {
-                    this.perfil = null;
-                } else {
+        if (this.existe(number)) {
+            if (this.perfil.getNumber().equals(number)) {
+                if (this.next.getPerfil() != null) {
                     this.perfil = this.next.getPerfil();
                     this.next = this.next.next;
+                } else {
+                    this.perfil = null;
+                    this.next = null;
                 }
             } else {
                 this.next.remover(number);
             }
         } else {
-            if (this.perfil == null) {
-                throw new PerfilNotFoundException();
-            } else if (this.perfil.getNumber().equals(number)) {
-                this.perfil = this.next.getPerfil();
-                this.next = this.next.next;
-            } else {
-                this.next.remover(number);
-            }
+            throw new PerfilNotFoundException();
         }
     }
     public Perfil procurar(String number) throws PerfilNotFoundException {
