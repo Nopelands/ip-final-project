@@ -1,39 +1,39 @@
 package perfil;
 
+public class Perfis {
+    private final String name;
+    private String phrase;
+    private final String number;
+    private RepositorioPerfis contacts;
 
-public class Grupos {
-	private String nome;
-	private  RepositorioPerfis listaNomes;
-	private String descricao;
-	private RepositorioMensagens listaMensagens;
-	
-	public Grupos(String name, String number, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
-		this.nome = null;
-		this.descricao = null;
-		this.listaNomes = repositorioPerfis;
-		this.listaMensagens = repositorioMensagens;
-		
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public String getNome() {
-		return this.nome;
-	}
-	public String getDescricao() {
-		return this.descricao;
-	}
-	
-	public RepositorioPerfis getListaNomes() {
-        return listaNomes;
-    }
-	
-	public RepositorioMensagens getListaMensagens() {
-        return listaMensagens;
+    public Perfis(String name, String number, RepositorioPerfis repositorioPerfis) {
+        this.name = name;
+        this.phrase = null;
+        this.number = number;
+        this.contacts = repositorioPerfis;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getPhrase() {
+        return phrase;
+    }
+
+    public RepositorioPerfis getContacts() {
+        return contacts;
+    }
+
+    public boolean equals(Perfis perfis) {
+        return this.number.equals(perfis.getNumber()) && this.phrase.equals(perfis.getPhrase());
+    }
+
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
+    }
 }
