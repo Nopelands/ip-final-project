@@ -3,6 +3,7 @@ package perfis;
 public class RepositorioPerfisLista implements RepositorioPerfis{
     private Perfil perfil;
     private RepositorioPerfisLista next;
+    private RepositorioPerfisLista previous;
 
     public Perfil getPerfil() {
         return perfil;
@@ -13,7 +14,16 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
             this.perfil = perfil;
             this.next = new RepositorioPerfisLista();
         } else {
-            this.next.inserir(perfil);
+            this.next.inserir(perfil, this);
+        }
+    }
+
+    public void inserir(Perfil perfil, RepositorioPerfisLista previous) {
+        if (this.perfil == null) {
+            this.perfil = perfil;
+            this.next = new RepositorioPerfisLista();
+        } else {
+            this.next.inserir(perfil, this);
         }
     }
 
