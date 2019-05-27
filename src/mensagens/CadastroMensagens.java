@@ -1,8 +1,8 @@
 package mensagens;
 
-public class CadastroMensagem {
+public class CadastroMensagens {
     private RepositorioMensagens repositorioMensagens;
-    public CadastroMensagem(RepositorioMensagens repositorioMensagens){
+    public CadastroMensagens(RepositorioMensagens repositorioMensagens){
         this.repositorioMensagens = repositorioMensagens;
     }
     public void cadastrar(Mensagem mensagem){
