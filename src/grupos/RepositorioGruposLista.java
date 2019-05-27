@@ -104,7 +104,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 				this.grupo.setDescricao(grupo.getDescricao());
 			} else {
 				try {
-				 this.proximo.atualizar(nome, grupo);
+				 this.proximo.atualizarGrupo(nome, grupo);
 				} catch(GrupoNaoEncontradoException e) {
 					throw e;
 				}
