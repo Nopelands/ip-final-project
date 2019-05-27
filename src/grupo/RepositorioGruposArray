@@ -28,7 +28,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 					for (int j = i; j < (this.arrayGrupos.length - 1); j++) {
 						this.arrayGrupos[j] = this.arrayGrupos[j + 1];
 					}
-					break;
+					
 				}
 			}
 		} else
