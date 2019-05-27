@@ -96,7 +96,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			throw new GrupoNaoEncontradoException();
 	}
 
-	public void atualizar(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
+	public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
 		if (!checarGrupo(grupo.getNome())) {
 		if (this.grupo != null) {
 			if (this.grupo.getNome().equals(nome)) {
