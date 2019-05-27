@@ -1,4 +1,4 @@
-package perfil;
+package perfis;
 
 public class PerfilNotFoundException extends Exception {
     PerfilNotFoundException() {

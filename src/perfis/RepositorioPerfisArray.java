@@ -1,4 +1,4 @@
-package perfil;
+package perfis;
 
 public class RepositorioPerfisArray implements RepositorioPerfis {
     private Perfil[] perfis;

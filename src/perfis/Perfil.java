@@ -1,4 +1,4 @@
-package perfil;
+package perfis;
 
 public class Perfil {
     private final String name;

@@ -1,4 +1,4 @@
-package perfil;
+package perfis;
 
 public interface RepositorioPerfis {
     void inserir(Perfil perfil);

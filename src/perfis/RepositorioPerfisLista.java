@@ -1,4 +1,4 @@
-package perfil;
+package perfis;
 
 public class RepositorioPerfisLista implements RepositorioPerfis{
     private Perfil perfil;
