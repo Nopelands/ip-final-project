@@ -44,7 +44,7 @@ public class Grupos {
 			
 	}
 	
-	public void removerPerfil(String numero) {
+	public void removerPerfil(String numero) throws PerfilNotFoundException {
 		this.listaNomes.remover(numero);
 			
 	}
