@@ -1,80 +1,55 @@
-//TODO everything
-//package perfil;
-//
-//public class RepositorioPerfisLista implements RepositorioPerfis {
-//    private Item listHead;
-//
-//    public RepositorioPerfisLista() {
-//        listHead = new Item();
-//    }
-//    public class Item {
-//        private Perfis perfil;
-//        private Item next;
-//        private int index;
-//
-//        public Item(int index) {
-//            this.perfil = null;
-//            this.next = null;
-//            this.index = index;
-//        }
-//        public int getIndex() {
-//            return index;
-//        }
-//
-//        public Item getNext() {
-//            return next;
-//        }
-//
-//        public Perfis getPerfil() {
-//            return perfil;
-//        }
-//
-//        public void setNext(Item next) {
-//            this.next = next;
-//        }
-//
-//        public void setPerfil(Perfis perfil) {
-//            this.perfil = perfil;
-//        }
-//
-//        public void inserir(Perfis perfil, int index) {
-//            if (this.getPerfil() == null) {
-//                this.setPerfil(perfil);
-//                this.setNext(new Item());
-//                this.index = 0;
-//            } else {
-//                this.getNext().insert(perfil, this.index+1);
-//            }
-//        }
-//        public Perfis findByNumber(String number) throws PerfilNotFoundException {
-//            if (this.getPerfil() != null) {
-//                if (this.getPerfil().getNumber().equals(number)) {
-//                    return this.getPerfil();
-//                } else {
-//                    return this.getNext().findByNumber(number);
-//                }
-//            } else {
-//                throw new PerfilNotFoundException();
-//            }
-//        }
-//
-//        public void remover(String number) throws PerfilNotFoundException {
-//            if (this.getNext().getPerfil() == null) {
-//                if ()
-//            }
-//        }
-//    }
-//    public void inserir(Perfis perfil) {
-//        listHead.inserir(perfil);
-//    }
-//
-//    public Perfis findByNumber(String number) throws PerfilNotFoundException {
-//        return listHead.findByNumber(number);
-//    }
-//
-//    public void remover(String number) {
-//        listHead.remover(number);
-//    }
-//    //TODO remove
-//    //Todo lenght
-//}
+package perfil;
+
+public class RepositorioPerfisLista implements RepositorioPerfis{
+    private Perfis perfil;
+    private RepositorioPerfisLista next;
+    private RepositorioPerfisLista previous;
+
+    public Perfis getPerfil() {
+        return perfil;
+    }
+
+    public void inserir(Perfis perfil) {
+        if (this.perfil == null) {
+            this.perfil = perfil;
+            this.next = new RepositorioPerfisLista();
+        } else {
+            this.next.inserir(perfil, this);
+        }
+    }
+
+    public void inserir(Perfis perfil, RepositorioPerfisLista previous) {
+        if (this.perfil == null) {
+            this.perfil = perfil;
+            this.next = new RepositorioPerfisLista();
+        } else {
+            this.next.inserir(perfil, this);
+        }
+    }
+
+    public void remover(String number) throws PerfilNotFoundException {
+        if (this.previous == null) {
+            if (this.perfil == null) {
+                throw new PerfilNotFoundException();
+            } else if (this.perfil.getNumber().equals(number)) {
+                if (this.next == null) {
+                    this.perfil = null;
+                } else {
+                    this.perfil = this.next.getPerfil();
+                    this.next = this.next.next;
+                }
+            } else {
+                this.next.remover(number);
+            }
+        } else {
+            if (this.perfil == null) {
+                throw new PerfilNotFoundException();
+            } else if (this.perfil.getNumber().equals(number)) {
+                this.perfil = this.next.getPerfil();
+                this.next = this.next.next;
+            } else {
+                this.next.remover(number);
+            }
+        }
+    }
+}
