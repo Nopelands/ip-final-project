@@ -1,13 +1,13 @@
 package perfil;
 
 public class RepositorioPerfisArray implements RepositorioPerfis {
-    private Perfis[] perfis;
+    private Perfil[] perfis;
 
     public RepositorioPerfisArray() {
-        perfis = new Perfis[0];
+        perfis = new Perfil[0];
     }
-    public void inserir(Perfis perfil) {
-        Perfis[] temp = new Perfis[perfis.length + 1];
+    public void inserir(Perfil perfil) {
+        Perfil[] temp = new Perfil[perfis.length + 1];
         for (int i = 0; i < perfis.length; i++) {
             temp[i] = perfis[i];
             temp[temp.length - 1] = perfil;
@@ -16,7 +16,7 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
     }
 
     public boolean existe(String number) {
-        for (Perfis perfi : perfis) {
+        for (Perfil perfi : perfis) {
             if (perfi.getNumber().equals(number)) {
                 return true;
             }
@@ -24,8 +24,8 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         return false;
     }
 
-    public Perfis procurar(String number) throws PerfilNotFoundException {
-        for (Perfis perfi : perfis) {
+    public Perfil procurar(String number) throws PerfilNotFoundException {
+        for (Perfil perfi : perfis) {
             if (perfi.getNumber().equals(number)) {
                 return perfi;
             }
@@ -45,7 +45,7 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         if (!found) {
             throw new PerfilNotFoundException();
         } else {
-            Perfis[] temp = new Perfis[perfis.length - 1];
+            Perfil[] temp = new Perfil[perfis.length - 1];
             for (int i = 0; i < perfis.length; i++) {
                 if (i < index) {
                     temp[i] = perfis[i];
@@ -57,7 +57,7 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         }
     }
 
-    public void atualizar(Perfis perfil) throws PerfilNotFoundException {
+    public void atualizar(Perfil perfil) throws PerfilNotFoundException {
         for (int i = 0; i < perfis.length; i++) {
             if (this.existe(perfil.getNumber())) {
                 if (perfis[i].getNumber().equals(perfil.getNumber())) {

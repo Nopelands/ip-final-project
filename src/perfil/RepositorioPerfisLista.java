@@ -1,15 +1,15 @@
 package perfil;
 
 public class RepositorioPerfisLista implements RepositorioPerfis{
-    private Perfis perfil;
+    private Perfil perfil;
     private RepositorioPerfisLista next;
     private RepositorioPerfisLista previous;
 
-    public Perfis getPerfil() {
+    public Perfil getPerfil() {
         return perfil;
     }
 
-    public void inserir(Perfis perfil) {
+    public void inserir(Perfil perfil) {
         if (this.perfil == null) {
             this.perfil = perfil;
             this.next = new RepositorioPerfisLista();
@@ -18,7 +18,7 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
         }
     }
 
-    public void inserir(Perfis perfil, RepositorioPerfisLista previous) {
+    public void inserir(Perfil perfil, RepositorioPerfisLista previous) {
         if (this.perfil == null) {
             this.perfil = perfil;
             this.next = new RepositorioPerfisLista();
@@ -52,7 +52,7 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
             }
         }
     }
-    public Perfis procurar(String number) throws PerfilNotFoundException {
+    public Perfil procurar(String number) throws PerfilNotFoundException {
         if (this.perfil == null) {
             throw new PerfilNotFoundException();
         } else if (this.perfil.getNumber().equals(number)) {
@@ -72,7 +72,7 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
         }
     }
 
-    public void atualizar(Perfis perfil) throws PerfilNotFoundException{
+    public void atualizar(Perfil perfil) throws PerfilNotFoundException{
         if (this.existe(perfil.getNumber())) {
             if (this.perfil.equals(perfil)) {
                 this.perfil = perfil;

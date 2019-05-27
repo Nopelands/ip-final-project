@@ -8,7 +8,7 @@ public class CadastroPerfis {
         this.repositorioPerfis = repositorioPerfis;
     }
 
-    public void cadastrar(Perfis perfil) throws PerfilJaCadastradoException{
+    public void cadastrar(Perfil perfil) throws PerfilJaCadastradoException{
         if (!repositorioPerfis.existe(perfil.getNumber())) {
             repositorioPerfis.inserir(perfil);
         } else {
@@ -16,17 +16,17 @@ public class CadastroPerfis {
         }
     }
 
-    public void remover(Perfis perfil) throws PerfilNotFoundException {
+    public void remover(Perfil perfil) throws PerfilNotFoundException {
         repositorioPerfis.remover(perfil.getNumber());
     }
-    public Perfis procurar(String number) throws PerfilNotFoundException {
+    public Perfil procurar(String number) throws PerfilNotFoundException {
         return repositorioPerfis.procurar(number);
     }
 
-    public boolean existe(Perfis perfil) {
+    public boolean existe(Perfil perfil) {
         return repositorioPerfis.existe(perfil.getNumber());
     }
-    public void atualizar(Perfis perfil) throws PerfilNotFoundException {
+    public void atualizar(Perfil perfil) throws PerfilNotFoundException {
         repositorioPerfis.atualizar(perfil);
     }
 }
