@@ -10,7 +10,7 @@ public interface RepositorioGrupos {
 	
 	public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException;
 	
-	public void atualizarDescricao(String descricao_antigo, String descricao_novo) throws GrupoNaoEncontradoException;
+	public void atualizarDescricao(String descricao_Antigo, String descricao_Novo) throws GrupoNaoEncontradoException;
 	
 	public boolean checarGrupo (String nome);
 }
