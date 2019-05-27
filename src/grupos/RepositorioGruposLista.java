@@ -1,4 +1,4 @@
-package group;
+package grupos;
 
 public class RepositorioGruposLista implements RepositorioGrupos {
 	private Grupos grupo;

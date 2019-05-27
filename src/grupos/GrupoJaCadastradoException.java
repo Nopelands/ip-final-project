@@ -1,4 +1,4 @@
-package group;
+package grupos;
 
 public class GrupoJaCadastradoException extends Exception {
     GrupoJaCadastradoException() {

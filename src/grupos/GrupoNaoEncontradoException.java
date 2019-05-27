@@ -1,4 +1,4 @@
-package group;
+package grupos;
 
 public class GrupoNaoEncontradoException extends Exception{
     GrupoNaoEncontradoException() {

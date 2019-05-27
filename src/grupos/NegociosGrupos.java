@@ -1,4 +1,4 @@
-package group;
+package grupos;
 
 public class NegociosGrupos implements RepositorioGrupos{
 	private RepositorioGrupos repositorio;

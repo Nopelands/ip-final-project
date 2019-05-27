@@ -1,8 +1,11 @@
-package group;
+package grupos;
+
+import perfis.*;
+import mensagens.*;
 
 public class Grupos {
 	private String nome;
-	private  RepositorioPerfis listaNomes;
+	private RepositorioPerfis listaNomes;
 	private String descricao;
 	private RepositorioMensagens listaMensagens;
 	
