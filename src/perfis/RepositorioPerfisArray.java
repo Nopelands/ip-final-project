@@ -8,11 +8,13 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
     }
     public void inserir(Perfil perfil) {
         Perfil[] temp = new Perfil[perfis.length + 1];
-        for (int i = 0; i < perfis.length; i++) {
-            temp[i] = perfis[i];
-            temp[temp.length - 1] = perfil;
-            perfis = temp;
+        if (perfis.length > 0) {
+            for (int i = 0; i < perfis.length; i++) {
+                temp[i] = perfis[i];
+            }
         }
+        temp[temp.length - 1] = perfil;
+        perfis = temp;
     }
 
     public boolean existe(String number) {
