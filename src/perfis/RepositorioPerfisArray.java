@@ -37,26 +37,21 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
 
     //TODO redo remover using existe()
     public void remover(String number) throws PerfilNotFoundException {
-        boolean found = false;
-        int index = 0;
-        for (int i = 0; i < perfis.length && !found; i++) {
-            if (perfis[i].getNumber().equals(number)) {
-                found = true;
-                index = i;
-            }
-        }
-        if (!found) {
-            throw new PerfilNotFoundException();
-        } else {
-            Perfil[] temp = new Perfil[perfis.length - 1];
-            for (int i = 0; i < perfis.length; i++) {
-                if (i < index) {
+        if (this.existe(number)) {
+            Perfil[] temp = new Perfil[this.perfis.length - 1];
+            boolean found = false;
+            for (int i = 0; i < this.perfis.length; i++) {
+                if (!this.perfis[i].getNumber().equals(number) && !found) {
                     temp[i] = perfis[i];
-                } else {
+                } else if (!this.perfis[i].getNumber().equals(number) && found) {
                     temp[i] = perfis[i + 1];
+                } else {
+                    found = true;
                 }
             }
             perfis = temp;
+        } else {
+            throw new PerfilNotFoundException();
         }
     }
 
