@@ -35,6 +35,7 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
         throw new PerfilNotFoundException();
     }
 
+    //TODO redo remover using existe()
     public void remover(String number) throws PerfilNotFoundException {
         boolean found = false;
         int index = 0;
