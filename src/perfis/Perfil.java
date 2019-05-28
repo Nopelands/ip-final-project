@@ -30,7 +30,7 @@ public class Perfil {
     }
 
     public boolean equals(Perfil perfil) {
-        return this.number.equals(perfil.getNumber()) && this.phrase.equals(perfil.getPhrase());
+        return this.number.equals(perfil.getNumber());
     }
 
     public void setPhrase(String phrase) {
