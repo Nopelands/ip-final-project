@@ -8,9 +8,9 @@ public class Programa {
     public static void main(String[] args) {
         //TODO main
     	CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
-		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
-		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisArray(), null);
-		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisArray(), null);
+		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisLista(), null);
+		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisLista(), null);
+		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisLista(), null);
 		
 		System.out.println("\nRepositorio em Array:");
 		
@@ -22,8 +22,8 @@ public class Programa {
             teste.procurar("Familia");
             teste.procurar("Amigos");
             teste.atualizarDescricao(test3,"Galera do Cin");
-            teste.atualizarGrupo("Pavilhao 9",test3);
-            teste.checarGrupo("Pavilhao 9");
+            teste.atualizarNome(test3,"Pavilhao 9");
+            System.out.println(teste.checarGrupo("Pavilhao 9"));
             
         } catch (Exception e) {
             e.printStackTrace();
