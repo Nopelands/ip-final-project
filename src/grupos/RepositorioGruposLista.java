@@ -66,7 +66,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 
 	public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
 		if (this.grupo != null) {
-			if (this.grupo.getDescricao().equals(grupo.getNome())) {
+			if (this.grupo.getDescricao().equals(grupo.getDescricao())) {
 				this.grupo.setDescricao(descricao_Novo);
 			} else {
 				try {
