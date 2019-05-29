@@ -1,36 +1,38 @@
 package grupos;
 
+import mensagens.Mensagem;
+
 public class RepositorioGruposArray implements RepositorioGrupos {
 	
  	Grupos[] arrayGrupos;
  	
 	public RepositorioGruposArray() {
-		this.arrayGrupos = new Grupos[200];
+		this.arrayGrupos = new Grupos[0];
 	}
 
 	public void inserir(Grupos grupo) throws GrupoJaCadastradoException{
-		boolean parar = false;
+		Grupos[] temp = new Grupos[arrayGrupos.length + 1];
 		if (!checarGrupo(grupo.getNome())) {
-			for (int i = 0; i < arrayGrupos.length && !parar; i++) {
-				if (this.arrayGrupos[i] == null) {
-					this.arrayGrupos[i] = grupo;
-					parar = true;
-				}
+			for (int i = 0; i < arrayGrupos.length; i++) {
+				temp[i] = arrayGrupos[i];
 			}
 		} else
 			throw new GrupoJaCadastradoException();
+		temp[temp.length - 1] = grupo;
+        arrayGrupos = temp;
 	}
 
 	public void remover(Grupos grupo) throws GrupoNaoEncontradoException{
 		if (checarGrupo(grupo.getNome())) {
-			for (int i = 0; i < this.arrayGrupos.length; i++) {
-				if (this.arrayGrupos[i].getNome().equals(grupo.getNome())) {
-					for (int j = i; j < (this.arrayGrupos.length - 1); j++) {
-						this.arrayGrupos[j] = null;
-					}
+			Grupos[] aux = new Grupos[arrayGrupos.length - 1];
+			for (int i = 0, j = 0; i < aux.length; i++) {
+				if (!this.arrayGrupos[j].getNome().equals(grupo.getNome())) {
+					aux[i] = this.arrayGrupos[j];
 					
 				}
+				
 			}
+		arrayGrupos = aux;
 		} else
 			throw new GrupoNaoEncontradoException();
 	}
