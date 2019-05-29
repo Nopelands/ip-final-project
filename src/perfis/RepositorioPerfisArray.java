@@ -44,7 +44,7 @@ public class RepositorioPerfisArray implements RepositorioPerfis {
                 if (!this.perfis[i].getNumber().equals(number) && !found) {
                     temp[i] = perfis[i];
                 } else if (!this.perfis[i].getNumber().equals(number) && found) {
-                    temp[i] = perfis[i + 1];
+                    temp[i - 1] = perfis[i];
                 } else {
                     found = true;
                 }

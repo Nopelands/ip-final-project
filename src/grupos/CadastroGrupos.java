@@ -1,9 +1,9 @@
 package grupos;
 
-public class NegociosGrupos implements RepositorioGrupos{
+public class CadastroGrupos implements RepositorioGrupos{
 	private RepositorioGrupos repositorio;
 
-	public NegociosGrupos(RepositorioGrupos repositorio) {
+	public CadastroGrupos(RepositorioGrupos repositorio) {
 		this.repositorio = repositorio;
 	}
 
@@ -21,10 +21,6 @@ public class NegociosGrupos implements RepositorioGrupos{
 
 	public void remover(String nome) throws GrupoNaoEncontradoException {
 		repositorio.remover(nome);
-	}
-
-	public void atualizarNome(String nome_Antigo, String nome_Novo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException {
-		repositorio.atualizarNome(nome_Antigo, nome_Novo);
 	}
 
 	public void atualizarDescricao(String descricao_Antigo, String descricao_Novo) throws GrupoNaoEncontradoException{

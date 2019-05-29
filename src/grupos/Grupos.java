@@ -9,9 +9,9 @@ public class Grupos {
 	private String descricao;
 	private RepositorioMensagens listaMensagens;
 	
-	public Grupos(String name, String number, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
-		this.nome = null;
-		this.descricao = null;
+	public Grupos(String name, String descricao, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
+		this.nome = name;
+		this.descricao = descricao;
 		this.listaNomes = repositorioPerfis;
 		this.listaMensagens = repositorioMensagens;
 		
@@ -35,17 +35,17 @@ public class Grupos {
     }
 	
 	public void inserirMensagem(Mensagem mensagem) {
-		this.listaMensagens.inserir;
+		this.listaMensagens.inserir(mensagem);
 			
 	}
 	
 	public void inserirPerfil(Perfil perfil) {
-		this.listaNomes.inserir;
+		this.listaNomes.inserir(perfil);
 			
 	}
 	
 	public void removerPerfil(String numero) throws PerfilNotFoundException {
-		this.listaNomes.remover;
+		this.listaNomes.remover(numero);
 			
 	}
 	

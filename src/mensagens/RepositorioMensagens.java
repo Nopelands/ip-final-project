@@ -1,13 +1,14 @@
 package mensagens;
 
 public interface RepositorioMensagens {
-    void inserir (Mensagem mensagem);
+    void inserir(Mensagem mensagem);
 
-    void remover (String mensagem) throws MensagemNaoEncontradaException;
+    void remover(String mensagem) throws MensagemNaoEncontradaException;
 
     boolean existe(String mensagem);
 
-    String [] procurar(String remetente) throws RemetenteNaoEncontradoException;
+    String procurar(int identificacao) throws IdentificacaoNaoEncontradaException;
 
-    void atualizar (String mensagem, String atualizado) throws MensagemNaoEncontradaException;
+    void atualizar(Mensagem mensagem, String atualizado) throws MensagemNaoEncontradaException;
 }
+
