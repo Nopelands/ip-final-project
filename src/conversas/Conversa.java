@@ -12,6 +12,13 @@ public class Conversa {
 		this.emissor = emissor;
 		this.mensagens = mensagens;
 	}
+	public boolean equals (Conversa outraConversa) {
+		if (this.emissor.equals(outraConversa.getEmissor()) && this.receptor.equals(outraConversa.getReceptor())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	public Perfil getEmissor () {
 		return this.emissor;
 	}
