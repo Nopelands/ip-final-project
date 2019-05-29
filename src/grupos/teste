@@ -14,11 +14,14 @@ public class Programa {
 		
 		System.out.println("\nRepositorio em Array:");
 		
+		// Ajeitar: 1 - método remover no Array e na Lista
+		// Ajeitar: 2 - Deixar o método Array dinamico.
+		
 		try {
             teste.inserir(test1);
             teste.inserir(test2);
             teste.inserir(test3);
-            
+            teste.remover(test1);
             teste.procurar("Familia");
             teste.procurar("Amigos");
             teste.atualizarDescricao(test3,"Galera do Cin");
