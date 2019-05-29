@@ -17,7 +17,7 @@ public class CadastroConversas {
 			conversas.inserir(novaConversa);
 		}
 	}
-	public void apagarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
-		conversas.remover(emissor, receptor);
+	public void apagarConversa (Conversa conversaApagada) throws ConversaNaoEncontradaException {
+		conversas.remover(conversaApagada);
 	}
 }
