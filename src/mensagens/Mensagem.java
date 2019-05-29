@@ -11,7 +11,7 @@ public abstract class Mensagem {
         this.mensagem = mensagem;
         this.identificacao = identificacao;
     }
-    public abstract  void novamensagem(String mensagem);
+    public abstract  void codificar();
 
     public String getMensagem() {
         return this.mensagem;

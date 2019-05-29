@@ -5,93 +5,168 @@ public class MensagemCodificada extends Mensagem {
         super (remetente, mensagem, identificacao);
     }
     private String mensagemcodificada;
-    public void novamensagem(String mensagem){
-         mensagemcodificada = "";
+    public void codificar(){
+         mensagemcodificada ="";
         for (int i = 0; i<mensagem.length();i++){
             char c = mensagem.charAt(i);
-            char d = ' ';
+            char d ;
             switch (c) {
-                case 'a':
+                case 'a' :
                     d = '@';
                     break;
-                case 'b':
+                case 'b' :
                     d = 'ß';
                     break;
-                case 'c':
+                case 'c' :
                     d = '¢';
                     break;
                 case 'd':
                     d = 'Ɖ';
                     break;
-                case 'e':
+                case 'e' :
                     d = '£';
                     break;
-                case 'f':
+                case 'f' :
                     d = 'ƒ';
                     break;
-                case 'g':
+                case 'g' :
                     d = 'ɠ';
                     break;
-                case 'h':
+                case 'h' :
                     d = 'ƕ';
                     break;
-                case 'i':
+                case 'i' :
                     d = 'ɨ';
                     break;
-                case 'j':
+                case 'j' :
                     d = 'ȷ';
                     break;
-                case 'k':
+                case 'k' :
                     d = 'Ⓚ';
                     break;
-                case 'l':
+                case 'l' :
                     d = '[';
                     break;
-                case 'm':
+                case 'm' :
                     d = 'ϻ';
                     break;
-                case 'n':
+                case 'n' :
                     d = '⋂';
                     break;
-                case 'o':
+                case 'o' :
                     d = '⟲';
                     break;
-                case 'p':
+                case 'p' :
                     d = 'ϸ';
                     break;
-                case 'r':
+                case 'r' :
                     d = 'ʁ';
                     break;
-                case 's':
+                case 's' :
                     d = '∫';
                     break;
-                case 't':
+                case 't' :
                     d = '✝';
                     break;
-                case 'u':
+                case 'u' :
                     d = '⨆';
                     break;
-                case 'v':
+                case 'v' :
                     d = '⌵';
                     break;
-                case 'w':
+                case 'w' :
                     d = 'ɯ';
                     break;
-                case 'x':
+                case 'x' :
                     d = '⨉';
                     break;
-                case 'y':
+                case 'y' :
                     d = 'Ұ';
                     break;
-                case 'z':
+                case 'z' :
+                    d = 'Ž';
+                    break;
+                case 'A' :
+                    d = '@';
+                    break;
+                case 'Β' :
+                    d = 'β';
+                    break;
+                case 'C' :
+                    d = '¢';
+                    break;
+                case 'D':
+                    d = 'Ɖ';
+                    break;
+                case 'E' :
+                    d = '£';
+                    break;
+                case 'F' :
+                    d = 'Ƒ';
+                    break;
+                case 'G' :
+                    d = 'Ɠ';
+                    break;
+                case 'H' :
+                    d = 'Ƕ';
+                    break;
+                case 'I' :
+                    d = 'Ɨ';
+                    break;
+                case 'J' :
+                    d = 'ȷ';
+                    break;
+                case 'K' :
+                    d = 'Ⓚ';
+                    break;
+                case 'L' :
+                    d = '[';
+                    break;
+                case 'M' :
+                    d = 'Ϻ';
+                    break;
+                case 'N' :
+                    d = '⋂';
+                    break;
+                case 'O' :
+                    d = '⟲';
+                    break;
+                case 'P' :
+                    d = 'Ϸ';
+                    break;
+                case 'R' :
+                    d = 'ʁ';
+                    break;
+                case 'S' :
+                    d = '∫';
+                    break;
+                case 'T' :
+                    d = '✝';
+                    break;
+                case 'U' :
+                    d = '⨆';
+                    break;
+                case 'V' :
+                    d = '⌵';
+                    break;
+                case 'W' :
+                    d = 'Ɯ';
+                    break;
+                case 'X' :
+                    d = '⨉';
+                    break;
+                case 'Y' :
+                    d = 'Ұ';
+                    break;
+                case 'Z' :
                     d = 'Ž';
                     break;
                 default:
                     d = c;
             }
             mensagemcodificada = mensagemcodificada + d;
-            this.mensagem = mensagemcodificada;
 
         }
+        this.mensagem = mensagemcodificada;
     }
 }
