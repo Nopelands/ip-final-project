@@ -9,8 +9,8 @@ public class Grupos {
 	private String descricao;
 	private RepositorioMensagens listaMensagens;
 	
-	public Grupos(String name, String descricao, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
-		this.nome = name;
+	public Grupos(String nome, String descricao, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
+		this.nome = nome;
 		this.descricao = descricao;
 		this.listaNomes = repositorioPerfis;
 		this.listaMensagens = repositorioMensagens;
