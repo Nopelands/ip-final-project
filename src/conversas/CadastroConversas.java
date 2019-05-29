@@ -11,7 +11,7 @@ public class CadastroConversas {
 		return conversas.procurar(conversaProcurada);
 	}
 	public void iniciarConversa (Conversa novaConversa) throws ConversaReiniciadaException, EspacoInsuficienteException {
-		if (conversas.existe(novaConversa.getEmissor(), novaConversa.getReceptor())) {
+		if (conversas.existe(novaConversa)) {
 			throw new ConversaReiniciadaException();
 		} else {
 			conversas.inserir(novaConversa);
