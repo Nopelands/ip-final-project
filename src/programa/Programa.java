@@ -1,6 +1,6 @@
-package teste;
+package programa;
 
-public class Teste {
+public class Programa {
     public static void main(String[] args) {
         //TODO main
     }
