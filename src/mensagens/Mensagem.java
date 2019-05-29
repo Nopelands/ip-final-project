@@ -1,22 +1,28 @@
-package mensagens;
 
+package mensagens;
+import perfis.*;
 public abstract class Mensagem {
     protected String mensagem;
-    protected String remetente;
+    protected Perfil remetente;
+    protected int identificacao;
 
-    public Mensagem(String remetente, String mensagem) {
+    public Mensagem(Perfil remetente, String mensagem, int identificacao) {
         this.remetente = remetente;
         this.mensagem = mensagem;
+        this.identificacao = identificacao;
     }
     public abstract  void novamensagem(String mensagem);
 
     public String getMensagem() {
         return this.mensagem;
     }
-    public String getRemetente() {
+    public Perfil getRemetente() {
         return remetente;
     }
     public void setMensagem(String mensagemsetar) {
         this.mensagem = mensagemsetar;
+    }
+    public int getIdentificacao() {
+        return identificacao;
     }
 }
