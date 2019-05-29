@@ -21,12 +21,12 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 			throw new GrupoJaCadastradoException();
 	}
 
-	public void remover(String nome) throws GrupoNaoEncontradoException{
-		if (checarGrupo(nome)) {
+	public void remover(Grupos grupo) throws GrupoNaoEncontradoException{
+		if (checarGrupo(grupo.getNome())) {
 			for (int i = 0; i < this.arrayGrupos.length; i++) {
-				if (this.arrayGrupos[i].getNome().equals(nome)) {
+				if (this.arrayGrupos[i].getNome().equals(grupo.getNome())) {
 					for (int j = i; j < (this.arrayGrupos.length - 1); j++) {
-						this.arrayGrupos[j] = this.arrayGrupos[j + 1];
+						this.arrayGrupos[j] = null;
 					}
 					
 				}
@@ -39,7 +39,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		for (int i = 0; i < this.arrayGrupos.length; i++) {
 			if (this.arrayGrupos[i] != null && this.arrayGrupos[i].getNome().equals(nome)){
 				return true;
-				}
+			}
 		}
 		return false;
 	}
@@ -60,10 +60,10 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
 
-	public void atualizarDescricao(String descricao_Antigo, String descricao_Novo) throws GrupoNaoEncontradoException{
-		if (checarGrupo(descricao_Antigo)) {
+	public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
+		if (checarGrupo(grupo.getNome())) {
 			for (int i = 0; i < this.arrayGrupos.length; i++) {
-				if (this.arrayGrupos[i].getDescricao().equals(descricao_Antigo)) {
+				if (this.arrayGrupos[i].getDescricao().equals(grupo.getDescricao())) {
 					this.arrayGrupos[i].setDescricao(descricao_Novo);
 					return;
 				}
@@ -71,21 +71,19 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		} else
 			throw new GrupoNaoEncontradoException();
 	}
-
-	public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
-		if (!checarGrupo(grupo.getNome())) {
-			if (checarGrupo(nome)) {
-				for (int i = 0; i < this.arrayGrupos.length; i++) {
-					if (this.arrayGrupos[i].getNome().equals(nome)) {
-						this.arrayGrupos[i].setNome(grupo.getNome());
-						this.arrayGrupos[i].setDescricao(grupo.getDescricao());
-						return;
-					}
+	
+	public void atualizarNome(Grupos grupo, String nome_Novo) throws GrupoNaoEncontradoException{
+		if (checarGrupo(grupo.getNome())) {
+			for (int i = 0; i < this.arrayGrupos.length; i++) {
+				if (this.arrayGrupos[i].getNome().equals(grupo.getNome())) {
+					this.arrayGrupos[i].setNome(nome_Novo);
+					return;
 				}
-			} else
-				throw new GrupoNaoEncontradoException();
+			}
 		} else
-			throw new GrupoJaCadastradoException();
+			throw new GrupoNaoEncontradoException();
 	}
+
+	
 
 }
