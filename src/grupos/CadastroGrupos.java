@@ -19,16 +19,16 @@ public class CadastroGrupos implements RepositorioGrupos{
 		repositorio.inserir(grupo);
 	}
 
-	public void remover(String nome) throws GrupoNaoEncontradoException {
-		repositorio.remover(nome);
+	public void remover(Grupos grupo) throws GrupoNaoEncontradoException {
+		repositorio.remover(grupo);
 	}
 
-	public void atualizarDescricao(String descricao_Antigo, String descricao_Novo) throws GrupoNaoEncontradoException{
-		repositorio.atualizarDescricao(descricao_Antigo, descricao_Novo);
+	public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
+		repositorio.atualizarDescricao(grupo, descricao_Novo);
 	}
 
-	public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
-		repositorio.atualizarGrupo(nome, grupo);
+	public void atualizarNome(Grupos grupo, String nome_Novo) throws GrupoNaoEncontradoException{
+		repositorio.atualizarNome(grupo, nome_Novo);
 	}
 
 }
