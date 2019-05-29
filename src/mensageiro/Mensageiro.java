@@ -60,20 +60,17 @@ public class Mensageiro {
 		grupos.inserir(grupo);
     }
     
-    public void remover (String nome) throws GrupoNaoEncontradoException{
-    	grupos.remover(nome);
+    public void remover (Grupos grupo) throws GrupoNaoEncontradoException{
+    	grupos.remover(grupo);
     }
     
     public Grupos procurar(String nome) throws GrupoNaoEncontradoException{
     	return grupos.procurar(nome);
     }
     
-    public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
-    	grupos.atualizarGrupo(nome, grupo);
-    }
     
-    public void atualizarDescricao(String descricao_Antigo, String descricao_Novo) throws GrupoNaoEncontradoException{
-    	grupos.atualizarDescricao(descricao_Antigo, descricao_Novo);
+    public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
+    	grupos.atualizarDescricao(grupo, descricao_Novo);
     }
     
     public boolean checarGrupo (String nome) {
