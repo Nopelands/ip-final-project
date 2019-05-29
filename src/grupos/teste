@@ -1,33 +1,34 @@
-package teste;
+package programa;
 import perfis.*;
-import mensagens.*;CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
-2
-    Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
-3
-    
-4
-    System.out.println("\nRepositorio em Array:");
+import mensagens.*;
 import grupos.*;
 import conversas.*;
-
-package programa;
-
 
 public class Programa {
     public static void main(String[] args) {
         //TODO main
-		CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
+    	CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
 		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
+		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisArray(), null);
+		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisArray(), null);
 		
 		System.out.println("\nRepositorio em Array:");
 		
+		try {
+            teste.inserir(test1);
+            teste.inserir(test2);
+            teste.inserir(test3);
+            
+            teste.procurar("Familia");
+            teste.procurar("Amigos");
+            teste.atualizarDescricao(test3,"Galera do Cin");
+            teste.atualizarGrupo("Pavilhao 9",test3);
+            teste.checarGrupo("Pavilhao 9");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 		
-		CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
-2
-    Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
-3
-    
-4
-    System.out.println("\nRepositorio em Array:");
+	
     }
 }

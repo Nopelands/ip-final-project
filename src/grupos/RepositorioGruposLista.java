@@ -52,42 +52,40 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			throw new GrupoJaCadastradoException();
 	}
 
-	public void remover(String nome) throws GrupoNaoEncontradoException{
+	public void remover(Grupos grupo) throws GrupoNaoEncontradoException{
 		if (this.grupo != null) {
-			if (this.grupo.getNome().equals(nome)) {
+			if (this.grupo.getNome().equals(grupo.getNome())) {
 				this.grupo = this.proximo.grupo;
 				this.proximo = this.proximo.proximo;
 			} else
-				this.proximo.remover(nome);
+				this.proximo.remover(grupo);
 		} else
 			throw new GrupoNaoEncontradoException();
 	}
 
-	public void atualizarNome(String nome_Antigo, String nome_Novo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
-		if (!checarGrupo(nome_Novo)) {
-		if (this.grupo != null) {
-			if (this.grupo.getNome().equals(nome_Antigo)) {
-				this.grupo.setNome(nome_Novo);
-			} else {
-				try {
-				this.proximo.atualizarNome(nome_Antigo, nome_Novo);
-				}catch(GrupoNaoEncontradoException e) {
-					throw e;
-				}
-			}
-		} else
-			throw new GrupoNaoEncontradoException();
-		} else
-			throw new GrupoJaCadastradoException();
-	}
 
-	public void atualizarDescricao(String descricao_Antigo, String descricao_Novo) throws GrupoNaoEncontradoException{
+	public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
 		if (this.grupo != null) {
-			if (this.grupo.getDescricao().equals(descricao_Antigo)) {
+			if (this.grupo.getDescricao().equals(grupo.getNome())) {
 				this.grupo.setDescricao(descricao_Novo);
 			} else {
 				try {
-				this.proximo.atualizarDescricao(descricao_Antigo, descricao_Novo);
+				this.proximo.atualizarDescricao(grupo, descricao_Novo);
+				}catch(GrupoNaoEncontradoException e) {
+					throw e;
+				}
+			}
+		} else
+			throw new GrupoNaoEncontradoException();
+	}
+	
+	public void atualizarNome(Grupos grupo, String nome_Novo) throws GrupoNaoEncontradoException{
+		if (this.grupo != null) {
+			if (this.grupo.getNome().equals(grupo.getNome())) {
+				this.grupo.setNome(nome_Novo);
+			} else {
+				try {
+				this.proximo.atualizarNome(grupo, nome_Novo);
 				}catch(GrupoNaoEncontradoException e) {
 					throw e;
 				}
@@ -96,23 +94,6 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			throw new GrupoNaoEncontradoException();
 	}
 
-	public void atualizarGrupo(String nome, Grupos grupo) throws GrupoNaoEncontradoException, GrupoJaCadastradoException{
-		if (!checarGrupo(grupo.getNome())) {
-			if (this.grupo != null) {
-				if (this.grupo.getNome().equals(nome)) {
-					this.grupo.setNome(grupo.getNome());
-					this.grupo.setDescricao(grupo.getDescricao());
-				} else {
-					try {
-					 this.proximo.atualizarGrupo(nome, grupo);
-					} catch(GrupoNaoEncontradoException e) {
-						throw e;
-					}
-				}
-			} else
-				throw new GrupoNaoEncontradoException();
-		} else
-			throw new GrupoJaCadastradoException();
-	}
+	
 
 }
