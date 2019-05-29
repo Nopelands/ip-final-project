@@ -1,0 +1,33 @@
+package teste;
+import perfis.*;
+import mensagens.*;CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
+2
+    Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
+3
+    
+4
+    System.out.println("\nRepositorio em Array:");
+import grupos.*;
+import conversas.*;
+
+package programa;
+
+
+public class Programa {
+    public static void main(String[] args) {
+        //TODO main
+		CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
+		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
+		
+		System.out.println("\nRepositorio em Array:");
+		
+		
+		CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
+2
+    Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), null);
+3
+    
+4
+    System.out.println("\nRepositorio em Array:");
+    }
+}
