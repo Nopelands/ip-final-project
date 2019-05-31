@@ -5,30 +5,34 @@ import grupos.*;
 import conversas.*;
 
 public class Programa {
-    public static void main(String[] args) {
-        //TODO main
-    	CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposLista()); 
-		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisLista(), null);
-		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisLista(), null);
-		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisLista(), null);
+    public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException {
+        //Testando a classe Grupos
+    	CadastroGrupos teste = new CadastroGrupos(new RepositorioGruposArray()); 
+		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisLista(), new RepositorioMensagensArray());
+		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisLista(), new RepositorioMensagensArray());
+		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisLista(), new RepositorioMensagensArray());
 		
-		System.out.println("\nRepositorio em Array:");
-		
-		
+		//GRUPOS ARRAY
+		System.out.println("Teste da classe Grupos\nRepositorio em Array:");
 		try {
             teste.inserir(test1);
             teste.inserir(test2);
             teste.inserir(test3);
-            
+            teste.remover(test2);
+            teste.procurar(test1.getNome()).getListaNomes().inserir(new Perfil("aaa", "1212132", new RepositorioPerfisLista()));
             teste.procurar("Familia");
             teste.procurar("Amigos");
             teste.atualizarDescricao(test3,"Galera do Cin");
             teste.atualizarNome(test3,"Pavilhao 9");
             System.out.println(teste.checarGrupo("Pavilhao 9"));
-            
-        } catch (Exception e) {
+		} catch (Exception e) {
             e.printStackTrace();
-        }
+        }  
+    
+		
+		
+		
+		
 		
 	
     }
