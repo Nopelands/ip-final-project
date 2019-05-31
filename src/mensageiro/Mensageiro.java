@@ -9,8 +9,8 @@ public class Mensageiro {
     private CadastroPerfis perfis;
     private CadastroMensagens mensagens;
     private CadastroConversas conversas;
-    //TODO private CadastroGrupos grupos;
-    
+    private CadastroGrupos grupos;
+
     /* (Desculpem por ser tão prolixo :/)
      * Antes de explanar o funcionamento do método enviarMensagemPrivado, vamos dissecar o seu parâmetro
      * possivelNovaConversa. Sendo ele do tipo Conversa, possui três atributos: dois do tipo Perfil, e um
@@ -48,8 +48,7 @@ public class Mensageiro {
     	}
     }
     //TODO private CadastroConversas cadastroConversas;
-    private CadastroGrupos grupos;
-    
+
     public Mensageiro(RepositorioGrupos repositorioGrupos) {
     	this.grupos = new CadastroGrupos(repositorioGrupos);
     }
@@ -79,6 +78,8 @@ public class Mensageiro {
     public boolean checarGrupo (String nome) {
     	return grupos.checarGrupo(nome);
     }
+
+
     //TODO cadastrar()
     //TODO criarGrupo()
     //TODO more TODOs
