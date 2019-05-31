@@ -8,7 +8,7 @@ public class Perfil {
 
     public Perfil(String name, String number, RepositorioPerfis repositorioPerfis) {
         this.name = name;
-        this.phrase = null;
+        this.phrase = "hello world";
         this.number = number;
         this.contacts = repositorioPerfis;
     }
