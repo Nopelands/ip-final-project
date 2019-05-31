@@ -54,7 +54,6 @@ public class Mensageiro {
     		conversas.iniciarConversa(possivelNovaConversa);
     	}
     }
-    //TODO private CadastroConversas cadastroConversas;
 
     public Mensageiro(RepositorioGrupos repositorioGrupos) {
     	this.grupos = new CadastroGrupos(repositorioGrupos);
