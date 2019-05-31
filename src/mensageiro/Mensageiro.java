@@ -11,6 +11,13 @@ public class Mensageiro {
     private CadastroConversas conversas;
     private CadastroGrupos grupos;
 
+    public Mensageiro(CadastroPerfis cadastroPerfis, CadastroConversas cadastroConversas, CadastroGrupos cadastroGrupos, CadastroMensagens cadastroMensagens) {
+        this.mensagens = cadastroMensagens;
+        this.perfis = cadastroPerfis;
+        this.conversas = cadastroConversas;
+        this.grupos = cadastroGrupos;
+    }
+
     /* (Desculpem por ser tão prolixo :/)
      * Antes de explanar o funcionamento do método enviarMensagemPrivado, vamos dissecar o seu parâmetro
      * possivelNovaConversa. Sendo ele do tipo Conversa, possui três atributos: dois do tipo Perfil, e um
@@ -79,9 +86,36 @@ public class Mensageiro {
     	return grupos.checarGrupo(nome);
     }
 
+    //perfil metodos
+    public void criarUser(boolean contatosTipo, String nome, String number) throws PerfilJaCadastradoException{
+        if (contatosTipo) {
+            perfis.cadastrar(new Perfil(nome, number, new RepositorioPerfisArray()));
+        } else {
+            perfis.cadastrar(new Perfil(nome, number, new RepositorioPerfisLista()));
+        }
+    }
 
-    //TODO cadastrar()
-    //TODO criarGrupo()
+    public void changeGreeting(String number, String newGreeting) throws PerfilNotFoundException{
+        Perfil perfil = perfis.procurar(number);
+        perfil.setPhrase(newGreeting);
+        perfis.atualizar(perfil);
+    }
+
+    public String getGreeting(String number) throws PerfilNotFoundException{
+        return perfis.procurar(number).getPhrase();
+    }
+
+    public String getNome(String number) throws PerfilNotFoundException {
+        return perfis.procurar(number).getName();
+    }
+
+    public void adicionarContato(String numberAdd, String numberContato) throws PerfilJaCadastradoException, PerfilNotFoundException{
+        perfis.adicionarContato(numberAdd, numberContato);
+    }
+    public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException{
+        perfis.removerContato(numberRemove, numberContato);
+    }
+
     //TODO more TODOs
     
 }
