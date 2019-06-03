@@ -1,6 +1,8 @@
 package grupos;
 
 import mensagens.Mensagem;
+import perfis.Perfil;
+import perfis.PerfilNotFoundException;
 
 public class RepositorioGruposArray implements RepositorioGrupos {
 	
@@ -61,31 +63,19 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		return null;
 	}
 
+ 
+	public void atualizar(Grupos grupo) throws GrupoNaoEncontradoException {
+        for (int i = 0; i < this.arrayGrupos.length; i++) {
+            if (this.checarGrupo(grupo.getNome())) {
+                if (arrayGrupos[i].getNome().equals(grupo.getNome())) {
+                	arrayGrupos[i] = grupo;
+                }
+            } else {
+                throw new GrupoNaoEncontradoException();
+            }
+        }
 
-	public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
-		if (checarGrupo(grupo.getNome())) {
-			for (int i = 0; i < this.arrayGrupos.length; i++) {
-				if (this.arrayGrupos[i].getDescricao().equals(grupo.getDescricao())) {
-					this.arrayGrupos[i].setDescricao(descricao_Novo);
-					return;
-				}
-			}
-		} else
-			throw new GrupoNaoEncontradoException();
-	}
-	
-	public void atualizarNome(Grupos grupo, String nome_Novo) throws GrupoNaoEncontradoException{
-		if (checarGrupo(grupo.getNome())) {
-			for (int i = 0; i < this.arrayGrupos.length; i++) {
-				if (this.arrayGrupos[i].getNome().equals(grupo.getNome())) {
-					this.arrayGrupos[i].setNome(nome_Novo);
-					return;
-				}
-			}
-		} else
-			throw new GrupoNaoEncontradoException();
-	}
-
+    }
 	
 
 }
