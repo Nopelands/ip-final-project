@@ -6,14 +6,14 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
         mensagens = new Mensagem [0];
     }
     public void inserir(Mensagem mensagem) {
-        Mensagem[] temp = new Mensagem[mensagens.length + 1];
+        Mensagem[] aux = new Mensagem[mensagens.length + 1];
         if (mensagens.length > 0) {
             for (int i = 0; i < mensagens.length; i++) {
-                temp[i] = mensagens[i];
+                aux[i] = mensagens[i];
             }
         }
-        temp[temp.length - 1] = mensagem;
-        mensagens = temp;
+        aux[aux.length - 1] = mensagem;
+        mensagens = aux;
     }
     public boolean existe(String mensagem) {
         boolean encontrou =  false;
