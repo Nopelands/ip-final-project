@@ -9,6 +9,7 @@ public class Grupos {
 	private String descricao;
 	private RepositorioMensagens listaMensagens;
 	
+	
 	public Grupos(String nome, String descricao, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
 		this.nome = nome;
 		this.descricao = descricao;
@@ -56,6 +57,10 @@ public class Grupos {
 	
 	public RepositorioMensagens getListaMensagens() {
         return listaMensagens;
+    }
+	
+	public boolean equals(Grupos grupo) {
+        return this.nome.equals(grupo.getNome());
     }
 
 }
