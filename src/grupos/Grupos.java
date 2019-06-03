@@ -39,6 +39,11 @@ public class Grupos {
 			
 	}
 	
+	public void removerMensagem(String mensagem) throws MensagemNaoEncontradaException {
+		this.listaMensagens.remover(mensagem);
+			
+	}
+	
 	public void inserirPerfil(Perfil perfil) {
 		this.listaNomes.inserir(perfil);
 			
