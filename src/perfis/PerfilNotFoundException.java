@@ -1,7 +1,7 @@
 package perfis;
 
 public class PerfilNotFoundException extends Exception {
-    PerfilNotFoundException() {
+    public PerfilNotFoundException() {
         super("Number Not Found");
     }
 }

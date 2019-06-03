@@ -26,7 +26,7 @@ public class Conversa {
 		this.emissor = this.receptor;
 		this.receptor = aux;
 	}
-	public void adicionarMensagem (Mensagem m) {
+	public void inserir (Mensagem m) {
 		this.mensagens.inserir(m);
 	}
 }

@@ -10,11 +10,16 @@ public class CadastroConversas {
 	public Conversa procurarConversa (Conversa conversaProcurada) throws ConversaNaoEncontradaException {
 		return conversas.procurar(conversaProcurada);
 	}
-	public void iniciarConversa (Conversa novaConversa) throws ConversaReiniciadaException, EspacoInsuficienteException {
+	public void atualizarConversa (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
+		conversas.atualizar(conversaAlterada);
+	}
+	public void iniciarConversa (Conversa novaConversa) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException {
 		if (conversas.existe(novaConversa)) {
 			throw new ConversaReiniciadaException();
-		} else {
+		} else if (novaConversa.getEmissor().getContacts().existe(novaConversa.getReceptor().getNumber()) && novaConversa.getReceptor().getContacts().existe(novaConversa.getEmissor().getNumber())) {
 			conversas.inserir(novaConversa);
+		} else {
+			throw new NaoSaoContatosException(novaConversa.getEmissor(), novaConversa.getReceptor());
 		}
 	}
 	public void apagarConversa (Conversa conversaApagada) throws ConversaNaoEncontradaException {

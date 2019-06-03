@@ -1,6 +1,6 @@
 package conversas;
 
-public class RepositorioConversasLista {
+public class RepositorioConversasLista implements RepositorioConversas {
 	private Conversa corpo;
 	private RepositorioConversasLista cauda;
 	public RepositorioConversasLista () {
@@ -44,6 +44,15 @@ public class RepositorioConversasLista {
 			return true;
 		} else {
 			return this.cauda.existe(possivelMembro);
+		}
+	}
+	public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
+		if (this.estaVazia()) {
+			throw new ConversaNaoEncontradaException();
+		} else if (this.corpo.equals(conversaAlterada)) {
+			this.corpo = conversaAlterada;
+		} else {
+			this.cauda.atualizar(conversaAlterada);
 		}
 	}
 }

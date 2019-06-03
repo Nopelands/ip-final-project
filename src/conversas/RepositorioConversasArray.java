@@ -7,40 +7,46 @@ public class RepositorioConversasArray implements RepositorioConversas {
 		conversas = new Conversa[tam];
 		indice = 0;
 	}
-	public boolean existe (Conversa conversaBuscada) {
-		boolean achou = false;
-		for (int i = 0; i < indice && !achou; i++) {
+	private int posicao (Conversa conversaBuscada) throws ConversaNaoEncontradaException {
+		int resposta = -1;
+		for (int i = 0; i < indice && resposta == -1; i++) {
 			if (conversas[i].equals(conversaBuscada)) {
-				achou = true;
+				resposta = i;
 			}
 		}
-		return achou;
+		if (resposta == -1) {
+			throw new ConversaNaoEncontradaException();
+		} else {
+			return resposta;
+		}
 	}
-	public void inserir (Conversa novaConversa) throws EspacoInsuficienteException {
+	public boolean existe (Conversa conversaBuscada) {
+		try {
+			this.posicao(conversaBuscada);
+			return true;
+		} catch (ConversaNaoEncontradaException e) {
+			return false;
+		}
+	}
+	public void inserir (Conversa novaConversa) throws RepositorioException {
 		if (indice >= conversas.length) {
-			throw new EspacoInsuficienteException();
+			throw new RepositorioException();
 		} else {
 			conversas[indice] = novaConversa;
 			indice = indice + 1;
 		}
 	}
 	public Conversa procurar (Conversa conversaProcurada) throws ConversaNaoEncontradaException {
-		boolean achou = false;
-		Conversa resposta = null;
-		for (int i = 0; i < indice && !achou; i++) {
-			if (conversas[i].equals(conversaProcurada)) {
-				achou = true;
-				resposta = conversas[i];
-			}
-		} if (!achou) {
-			throw new ConversaNaoEncontradaException();
-		} else {
-			return resposta;
-		}
+		int p = this.posicao(conversaProcurada);
+		return conversas[p];
 	}
 	public void remover (Conversa conversaRemovida) throws ConversaNaoEncontradaException {
-		Conversa resultadoBusca = this.procurar(conversaRemovida);
+		int p = this.posicao(conversaRemovida);
 		indice--;
-		resultadoBusca = conversas[indice];
+		conversas[p] = conversas[indice];
+	}
+	public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
+		int p = this.posicao(conversaAlterada);
+		conversas[p] = conversaAlterada;
 	}
 }
