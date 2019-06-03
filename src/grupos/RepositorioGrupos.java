@@ -8,9 +8,7 @@ public interface RepositorioGrupos {
 	
 	public Grupos procurar(String nome) throws GrupoNaoEncontradoException;
 	
-	public void atualizarNome(Grupos grupo, String nome_Novo) throws GrupoNaoEncontradoException;
-	
-	public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException;
-	
+	public void atualizar(Grupos grupo) throws GrupoNaoEncontradoException;
+			
 	public boolean checarGrupo (String nome);
 }
