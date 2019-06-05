@@ -40,7 +40,7 @@ public class Grupo {
 			
 	}
 	
-	public void removerMensagem(String mensagem) throws MensagemNaoEncontradaException {
+	public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException {
 		this.listaMensagens.remover(mensagem);
 			
 	}
