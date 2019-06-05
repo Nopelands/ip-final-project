@@ -16,7 +16,7 @@ public class CadastroConversas {
 	
 	public void iniciarConversa (Conversa novaConversa) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException {
 		if (conversas.existe(novaConversa.getEmissor(), novaConversa.getReceptor())) {
-			throw new ConversaReiniciadaException();
+			throw new ConversaReiniciadaException(novaConversa.getEmissor(), novaConversa.getReceptor());
 		} else if (novaConversa.getEmissor().getContacts().existe(novaConversa.getReceptor().getNumber()) && novaConversa.getReceptor().getContacts().existe(novaConversa.getEmissor().getNumber())) {
 			conversas.inserir(novaConversa);
 		} else {
