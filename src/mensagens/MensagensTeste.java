@@ -5,9 +5,10 @@ public class MensagensTeste {
     public static void main (String [] args) {
         CadastroMensagens teste = new CadastroMensagens(new RepositorioMensagensArray());
         CadastroPerfis testando = new CadastroPerfis(new RepositorioPerfisArray());
+        int indentificacao = 0; \\ toda vez for mandar uma mensagem, tem que colocar um identificacao++ em baixo;
         Perfil testando1 = new Perfil("s", "b", new RepositorioPerfisLista());
-        Mensagem teste1 = new MensagemCodificada(testando1, "Matheus Epitacio Barros de Lucena", 54);
-        Mensagem teste2 = new MensagemCodificada(testando1, "bom", 67);
+        Mensagem teste1 = new MensagemCodificada(testando1, "Matheus Epitacio Barros de Lucena", identificacao);
+        Mensagem teste2 = new MensagemCodificada(testando1, "bom", identificacao);
         teste1.codificar();
         System.out.print(teste1.mensagem);
         try {
