@@ -52,7 +52,7 @@ public class RepositorioConversasArray implements RepositorioConversas {
 		conversas[p] = conversas[indice];
 	}
 	public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
-		int p = this.posicao(conversaAlterada);
+		int p = this.posicao(conversaAlterada.getEmissor(), conversaAlterada.getReceptor());
 		conversas[p] = conversaAlterada;
 	}
 }
