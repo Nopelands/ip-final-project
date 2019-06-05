@@ -78,13 +78,8 @@ public class Mensageiro {
     	return grupos.checarGrupo(nome);
     }
     
-    //perfil metodos
-    public void criarUser(boolean contatosTipo, String nome, String number) throws PerfilJaCadastradoException{
-        if (contatosTipo) {
-            perfis.cadastrar(new Perfil(nome, number, new RepositorioPerfisArray()));
-        } else {
-            perfis.cadastrar(new Perfil(nome, number, new RepositorioPerfisLista()));
-        }
+    public void criarUser (Perfil novoUsuario) throws PerfilJaCadastradoException {
+    	this.perfis.cadastrar(novoUsuario);
     }
     
     public void changeGreeting(String number, String newGreeting) throws PerfilNotFoundException{
