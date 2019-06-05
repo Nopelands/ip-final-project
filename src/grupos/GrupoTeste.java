@@ -13,7 +13,9 @@ public class Programa {
 		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisLista(), new RepositorioMensagensArray());
 		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisLista(), new RepositorioMensagensArray());
 		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisLista(), new RepositorioMensagensArray());
-		Perfil perfil1 = new Perfil("aaa", "1212132", new RepositorioPerfisLista());
+		Perfil perfil1 = new Perfil("Mainha", "9876-5324", new RepositorioPerfisLista());
+		Mensagem mensagem1 = new MensagemCodificada(perfil1, "Traz o feijao", 001);
+		
 		//GRUPOS ARRAY
 		System.out.println("Teste da classe Grupos\nRepositorio em Array:");
 		try {
@@ -21,9 +23,11 @@ public class Programa {
             teste.inserir(test2);
             teste.inserir(test3);
 
-            test1.inserirPerfil(perfil1);
-            teste.atualizar(test1);
-            System.out.println(teste.checarGrupo("Pavilhao 9"));
+            test1.inserirPerfil(perfil1);            
+            test1.inserirMensagem(mensagem1);
+            System.out.println("Grupo 1 - " + test1.getNome());
+            System.out.println(perfil1.getName() + ": " + mensagem1.getMensagem());
+            
 		} catch (Exception e) {
             e.printStackTrace();
         }  		
