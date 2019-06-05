@@ -9,7 +9,7 @@ public class CadastroMensagens {
         repositorioMensagens.inserir(mensagem);
     }
     public void remover(Mensagem mensagem) throws MensagemNaoEncontradaException {
-        repositorioMensagens.remover(mensagem.getMensagem());
+        repositorioMensagens.remover(mensagem);
     }
     public String procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
         return repositorioMensagens.procurar(identificacao);
