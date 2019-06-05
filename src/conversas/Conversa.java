@@ -25,13 +25,12 @@ public class Conversa {
 	public RepositorioMensagens getMensagens () {
 		return this.mensagens;
 	}
-	// Permuta os atributos emissor e receptor
-	public void inverter () {
+	public void inserir (Mensagem novaMensagem) {
+		this.mensagens.inserir(novaMensagem);
+	}
+	public void inverter() {
 		Perfil aux = this.emissor;
 		this.emissor = this.receptor;
 		this.receptor = aux;
-	}
-	public void inserir (Mensagem novaMensagem) {
-		this.mensagens.inserir(novaMensagem);
 	}
 }

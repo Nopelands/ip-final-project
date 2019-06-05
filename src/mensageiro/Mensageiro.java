@@ -35,7 +35,7 @@ public class Mensageiro {
     	}
     	try {
     		possivelNovaConversa.inverter();
-    		Conversa ordemInversa = conversas.procurarConversa(possivelNovaConversa);
+    		Conversa ordemInversa = conversas.procurarConversa(destinatario, remetente);
     		ordemInversa.inserir(novaMensagem);
     		conversas.atualizarConversa(ordemInversa);
     	} catch (ConversaNaoEncontradaException e) {
@@ -47,13 +47,12 @@ public class Mensageiro {
     	conversas.apagarConversa(destruidor, conservador);
     }
     
-    // Matheus Dalia, fiz ai um esboco do metodo enviarMensagemGrupo. Aproveitei e adicionei a excecao RemetenteIntrusoException ao pacote grupos tb.
     public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
     	Grupo resultadoBusca = grupos.procurar(nomeGrupo);
-    	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName()) {
-    		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRementente());
+    	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName())) {
+    		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRemetente());
     	} else {
-		mensagens.cadastrar(novaMensagem);
+    		mensagens.cadastrar(novaMensagem);
     		resultadoBusca.inserirMensagem(novaMensagem);
     		grupos.atualizar(resultadoBusca);
     	}
@@ -78,7 +77,7 @@ public class Mensageiro {
     public boolean checarGrupo (String nome) {
     	return grupos.checarGrupo(nome);
     }
-
+    
     //perfil metodos
     public void criarUser(boolean contatosTipo, String nome, String number) throws PerfilJaCadastradoException{
         if (contatosTipo) {
@@ -87,7 +86,7 @@ public class Mensageiro {
             perfis.cadastrar(new Perfil(nome, number, new RepositorioPerfisLista()));
         }
     }
-
+    
     public void changeGreeting(String number, String newGreeting) throws PerfilNotFoundException{
         Perfil perfil = perfis.procurar(number);
         perfil.setPhrase(newGreeting);
