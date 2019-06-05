@@ -47,6 +47,7 @@ public class Mensageiro {
     	conversas.apagarConversa(destruidor, conservador);
     }
     
+    // Matheus Dalia, fiz ai um esboco do metodo enviarMensagemGrupo. Aproveitei e adicionei a excecao RemetenteIntrusoException ao pacote grupos tb.
     public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
     	Grupo resultadoBusca = grupos.procurar(nomeGrupo);
     	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName()) {

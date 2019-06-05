@@ -43,16 +43,14 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		return retorno;
 	}
 
-	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
-		if (!checarGrupo(grupo.getNome())) {
+	public void inserir(Grupos grupo) {
+		
 			if (this.grupo == null) {
 				this.grupo = grupo;
 				this.proximo = new RepositorioGruposLista();
 			} else {
 				this.proximo.inserir(grupo);
 			}
-		} else
-			throw new GrupoJaCadastradoException();
 	}
 
 	public void remover(Grupo grupo) throws GrupoNaoEncontradoException{

@@ -3,7 +3,7 @@ import perfis.*;
 import mensagens.*;
 
 
-public class CadastroGrupos implements RepositorioGrupos{
+public class CadastroGrupos{
 	private RepositorioGrupos repositorio;
 	
 

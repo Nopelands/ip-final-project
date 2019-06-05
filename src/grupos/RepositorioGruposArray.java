@@ -12,14 +12,11 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		this.arrayGrupos = new Grupo[0];
 	}
 
-	public void inserir(Grupo grupo) throws GrupoJaCadastradoException{
-		Grupo[] temp = new Grupo[arrayGrupos.length + 1];
-		if (!checarGrupo(grupo.getNome())) {
+	public void inserir(Grupos grupo){
+		Grupos[] temp = new Grupos[arrayGrupos.length + 1];
 			for (int i = 0; i < arrayGrupos.length; i++) {
 				temp[i] = arrayGrupos[i];
 			}
-		} else
-			throw new GrupoJaCadastradoException();
 		temp[temp.length - 1] = grupo;
         arrayGrupos = temp;
 	}
