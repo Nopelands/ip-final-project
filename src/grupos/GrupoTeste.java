@@ -1,4 +1,4 @@
-package programa;
+package grupos;
 import perfis.*;
 import mensagens.*;
 import mensageiro.*;
@@ -9,16 +9,16 @@ public class GrupoTeste {
     public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException {
         //Testando a classe Grupos
     	Mensageiro mensageiroArray = new Mensageiro(new CadastroPerfis(new RepositorioPerfisArray()), new CadastroConversas(new RepositorioConversasArray(1000)), new CadastroGrupos(new RepositorioGruposArray()), new CadastroMensagens(new RepositorioMensagensArray()));
-		Grupos test1 = new Grupos("Familia", "Galera da farofa", new RepositorioPerfisArray(), new RepositorioMensagensArray());
-		Grupos test2 = new Grupos("Amigos", "Galera do pagode", new RepositorioPerfisArray(), new RepositorioMensagensArray());
-		Grupos test3 = new Grupos("Faculdade", "UFPE", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+		Grupo test1 = new Grupo("Familia", "Galera da farofa", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+		Grupo test2 = new Grupo("Amigos", "Galera do pagode", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+		Grupo test3 = new Grupo("Faculdade", "UFPE", new RepositorioPerfisArray(), new RepositorioMensagensArray());
 		Perfil perfil1 = new Perfil("Mainha", "9876-5324", new RepositorioPerfisArray());
 		Mensagem mensagem1 = new MensagemCodificada(perfil1, "Traz o feijao", 001);
 		
 		//GRUPOS ARRAY
 		System.out.println("Teste da classe Grupos\nRepositorio em Array:");
 		    
-		    System.out.println("Inserindo grupos no repositório: ");		
+		    System.out.println("Inserindo grupos no repositorio: ");		
             mensageiroArray.inserir(test1);
             mensageiroArray.inserir(test2);
             mensageiroArray.inserir(test3);
