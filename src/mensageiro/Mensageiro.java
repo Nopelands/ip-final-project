@@ -61,13 +61,9 @@ public class Mensageiro {
     	return grupos.procurar(nome);
     }
     
-    public void atualizarNome(Grupos grupo, String nome_Novo) throws GrupoNaoEncontradoException{
-    	grupos.atualizarNome(grupo, nome_Novo);
-    }
-    
-    public void atualizarDescricao(Grupos grupo, String descricao_Novo) throws GrupoNaoEncontradoException{
-    	grupos.atualizarDescricao(grupo, descricao_Novo);
-    }
+    public void atualizar(Grupos grupo) throws GrupoNaoEncontradoException{
+		grupos.atualizar(grupo);
+	}
     
     public boolean checarGrupo (String nome) {
     	return grupos.checarGrupo(nome);
