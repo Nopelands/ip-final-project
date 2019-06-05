@@ -12,8 +12,8 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		this.arrayGrupos = new Grupo[0];
 	}
 
-	public void inserir(Grupos grupo){
-		Grupos[] temp = new Grupos[arrayGrupos.length + 1];
+	public void inserir(Grupo grupo){
+		Grupo[] temp = new Grupo[arrayGrupos.length + 1];
 			for (int i = 0; i < arrayGrupos.length; i++) {
 				temp[i] = arrayGrupos[i];
 			}
