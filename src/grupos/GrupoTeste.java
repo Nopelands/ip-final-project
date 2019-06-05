@@ -18,7 +18,7 @@ public class GrupoTeste {
 		Grupo grupoArray3 = new Grupo("Faculdade", "UFPE", new RepositorioPerfisArray(), new RepositorioMensagensArray());
 		Perfil perfilArray1 = new Perfil("Mainha", "9876-5324", new RepositorioPerfisArray());
 		Mensagem mensagemArray1 = new MensagemCodificada(perfilArray1, "Traz o feijao", 001);
-		
+		Mensagem mensagemArray2 = new MensagemCodificada(perfilArray1, "Traz a farinha", 002);
     	
     	System.out.println("Teste da classe Grupos\nRepositorio em Array:");
 		    
@@ -40,6 +40,7 @@ public class GrupoTeste {
             
             
             mensageiroArray.remover(grupoArray2);
+            grupoArray1.removerMensagem(mensagemArray2);
             
             if (!mensageiroArray.checarGrupo("Amigos")) {
     			System.out.println("O grupo "+ grupoArray2.getNome()  + " foi removido!\n");
@@ -60,7 +61,7 @@ public class GrupoTeste {
     		Grupo grupoLista2 = new Grupo("Massacration", "the best metal band of all time", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Grupo grupoLista3 = new Grupo("Universidade de Chicago", "Doomsday Clock", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Perfil perfilLista1 = new Perfil("Voinha", "7976-2312", new RepositorioPerfisArray());
-    		Mensagem mensageiroLista1 = new MensagemCodificada(perfilLista1, "Quer uma sopinha?", 001);
+    		Mensagem mensageiroLista1 = new MensagemCodificada(perfilLista1, "Quer uma sopinha?", 002);
     		
             
             
