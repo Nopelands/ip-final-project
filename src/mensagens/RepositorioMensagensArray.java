@@ -1,4 +1,4 @@
-ppackage mensagens;
+package mensagens;
 
 public class RepositorioMensagensArray implements RepositorioMensagens {
     private Mensagem [] mensagens;

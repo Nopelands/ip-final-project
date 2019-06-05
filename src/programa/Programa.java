@@ -1,16 +1,10 @@
 package programa;
 
-import conversas.CadastroConversas;
-import conversas.RepositorioConversasArray;
-import grupos.CadastroGrupos;
-import grupos.RepositorioGruposArray;
-import mensageiro.Mensageiro;
-import mensagens.CadastroMensagens;
-import mensagens.RepositorioMensagensArray;
-import perfis.CadastroPerfis;
-import perfis.PerfilJaCadastradoException;
-import perfis.PerfilNotFoundException;
-import perfis.RepositorioPerfisArray;
+import perfis.*;
+import conversas.*;
+import grupos.*;
+import mensagens.*;
+import mensageiro.*;
 
 public class Programa {
     public static void main(String[] args) {
