@@ -22,12 +22,12 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
         } return encontrou;
 
     }
-    public void remover(String mensagem) throws MensagemNaoEncontradaException{
-        if (this.existe(mensagem)) {
+    public void remover(Mensagem mensagem) throws MensagemNaoEncontradaException{
+        if (this.existe(mensagem.getMensagem())) {
             Mensagem[] aux = new Mensagem[mensagens.length - 1];
             int indice = 0;
             for (int i = 0; i < mensagens.length; i++) {
-                if (!mensagens[i].getMensagem().equals(mensagem)) {
+                if (!mensagens[i].getMensagem().equals(mensagem.getMensagem())) {
                     aux[indice] = mensagens[i];
                     indice++;
                 }
@@ -65,4 +65,5 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
         }
     }
 }
+
 
