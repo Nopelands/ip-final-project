@@ -53,6 +53,7 @@ public class Mensageiro {
     	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName()) {
     		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRementente());
     	} else {
+		mensagens.cadastrar(novaMensagem);
     		resultadoBusca.inserirMensagem(novaMensagem);
     		grupos.atualizar(resultadoBusca);
     	}
