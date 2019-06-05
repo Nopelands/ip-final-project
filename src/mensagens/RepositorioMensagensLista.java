@@ -1,8 +1,7 @@
-package mensagens;
-
 public class RepositorioMensagensLista implements RepositorioMensagens {
     private Mensagem mensagens;
     private RepositorioMensagensLista proximo;
+    private int identificacao;
 
     public RepositorioMensagensLista() {
         this.mensagens = null;
@@ -22,9 +21,9 @@ public class RepositorioMensagensLista implements RepositorioMensagens {
         }
     }
 
-    public void remover(String mensagem) throws MensagemNaoEncontradaException {
-        if (this.existe(mensagem)) {
-            if (this.mensagens.getMensagem().equals(mensagem)) {
+    public void remover(Mensagem mensagem) throws MensagemNaoEncontradaException {
+        if (this.existe(mensagem.getMensagem())) {
+            if (this.mensagens.getMensagem().equals(mensagem.getMensagem())) {
                 if (this.proximo.getMensagens() != null) {
                     this.mensagens = this.proximo.getMensagens();
                     this.proximo = this.proximo.proximo;
@@ -72,4 +71,6 @@ public class RepositorioMensagensLista implements RepositorioMensagens {
         }
 
     }
+}
+
 }
