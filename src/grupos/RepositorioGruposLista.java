@@ -43,7 +43,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		return retorno;
 	}
 
-	public void inserir(Grupos grupo) {
+	public void inserir(Grupo grupo) {
 		
 			if (this.grupo == null) {
 				this.grupo = grupo;
