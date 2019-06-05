@@ -6,7 +6,7 @@ import grupos.*;
 import conversas.*;
 
 public class GrupoTeste {
-    public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException, PerfilNotFoundException, PerfilJaCadastradoException {
+    public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException, PerfilNotFoundException, PerfilJaCadastradoException, MensagemNaoEncontradaException {
         //Testando a classe Grupos
     	Mensageiro mensageiroArray = new Mensageiro(new CadastroPerfis(new RepositorioPerfisArray()), new CadastroConversas(new RepositorioConversasArray(1000)), new CadastroGrupos(new RepositorioGruposArray()), new CadastroMensagens(new RepositorioMensagensArray()));
     	Mensageiro mensageiroLista = new Mensageiro(new CadastroPerfis(new RepositorioPerfisLista()), new CadastroConversas(new RepositorioConversasLista()), new CadastroGrupos(new RepositorioGruposLista()), new CadastroMensagens(new RepositorioMensagensLista()));
@@ -65,6 +65,8 @@ public class GrupoTeste {
     		}
             
             grupoArray1.inserirMensagem(mensagemArray1);
+            grupoArray1.inserirMensagem(mensagemArray2);
+            grupoArray1.removerMensagem(mensagemArray2);
             
             System.out.println("Grupo array1 - " + grupoArray1.getNome());
             System.out.println(perfilArray1.getName() + ": " + mensagemArray1.getMensagem());
@@ -79,7 +81,7 @@ public class GrupoTeste {
     		Grupo grupoLista2 = new Grupo("Massacration", "the best metal band of all time", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Grupo grupoLista3 = new Grupo("Universidade de Chicago", "Doomsday Clock", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Perfil perfilLista1 = new Perfil("Padre Marcelo Rossi", "7976-2312", new RepositorioPerfisArray());
-    		Mensagem mensageiroLista1 = new MensagemCodificada(perfilLista1, "Amém!", 002);
+    		Mensagem mensageiroLista1 = new MensagemCodificada(perfilLista1, "AmÃ©m!", 002);
     		
             
             
