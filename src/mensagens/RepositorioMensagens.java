@@ -3,7 +3,7 @@ package mensagens;
 public interface RepositorioMensagens {
     void inserir(Mensagem mensagem);
 
-    void remover(String mensagem) throws MensagemNaoEncontradaException;
+    void remover(Mensagem mensagem) throws MensagemNaoEncontradaException;
 
     boolean existe(String mensagem);
 
