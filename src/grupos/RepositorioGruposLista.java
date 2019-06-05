@@ -4,7 +4,7 @@ import perfis.Perfil;
 import perfis.PerfilNotFoundException;
 
 public class RepositorioGruposLista implements RepositorioGrupos {
-	private Grupos grupo;
+	private Grupo grupo;
 	private RepositorioGruposLista proximo;
 
 	public RepositorioGruposLista() {
@@ -12,8 +12,8 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		proximo = null;
 	}
 
-	public Grupos procurar(String nome) throws GrupoNaoEncontradoException{
-		Grupos retorno;
+	public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
+		Grupo retorno;
 		if (this.grupo != null) {
 			if (this.grupo.getNome().equals(nome)) {
 				retorno = this.grupo;
@@ -43,7 +43,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		return retorno;
 	}
 
-	public void inserir(Grupos grupo) throws GrupoJaCadastradoException {
+	public void inserir(Grupo grupo) throws GrupoJaCadastradoException {
 		if (!checarGrupo(grupo.getNome())) {
 			if (this.grupo == null) {
 				this.grupo = grupo;
@@ -55,7 +55,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			throw new GrupoJaCadastradoException();
 	}
 
-	public void remover(Grupos grupo) throws GrupoNaoEncontradoException{
+	public void remover(Grupo grupo) throws GrupoNaoEncontradoException{
 		if (this.grupo != null) {
 			if (this.grupo.getNome().equals(grupo.getNome())) {
 				this.grupo = this.proximo.grupo;
@@ -66,7 +66,7 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 			throw new GrupoNaoEncontradoException();
 	}
 	
-	public void atualizar(Grupos grupo) throws GrupoNaoEncontradoException{
+	public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException{
         if (this.checarGrupo(grupo.getNome())) {
             if (this.grupo.equals(grupo)) {
                 this.grupo = grupo;

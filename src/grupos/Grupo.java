@@ -3,14 +3,14 @@ package grupos;
 import perfis.*;
 import mensagens.*;
 
-public class Grupos {
+public class Grupo {
 	private String nome;
 	private RepositorioPerfis listaNomes;
 	private String descricao;
 	private RepositorioMensagens listaMensagens;
 	
 	
-	public Grupos(String nome, String descricao, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
+	public Grupo(String nome, String descricao, RepositorioPerfis repositorioPerfis, RepositorioMensagens repositorioMensagens) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.listaNomes = repositorioPerfis;
@@ -59,7 +59,7 @@ public class Grupos {
         return listaMensagens;
     }
 	
-	public boolean equals(Grupos grupo) {
+	public boolean equals(Grupo grupo) {
         return this.nome.equals(grupo.getNome());
     }
 

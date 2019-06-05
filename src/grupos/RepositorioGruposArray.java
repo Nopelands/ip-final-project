@@ -6,14 +6,14 @@ import perfis.PerfilNotFoundException;
 
 public class RepositorioGruposArray implements RepositorioGrupos {
 	
- 	Grupos[] arrayGrupos;
+ 	Grupo[] arrayGrupos;
  	
 	public RepositorioGruposArray() {
-		this.arrayGrupos = new Grupos[0];
+		this.arrayGrupos = new Grupo[0];
 	}
 
-	public void inserir(Grupos grupo) throws GrupoJaCadastradoException{
-		Grupos[] temp = new Grupos[arrayGrupos.length + 1];
+	public void inserir(Grupo grupo) throws GrupoJaCadastradoException{
+		Grupo[] temp = new Grupo[arrayGrupos.length + 1];
 		if (!checarGrupo(grupo.getNome())) {
 			for (int i = 0; i < arrayGrupos.length; i++) {
 				temp[i] = arrayGrupos[i];
@@ -24,9 +24,9 @@ public class RepositorioGruposArray implements RepositorioGrupos {
         arrayGrupos = temp;
 	}
 
-	public void remover(Grupos grupo) throws GrupoNaoEncontradoException{
+	public void remover(Grupo grupo) throws GrupoNaoEncontradoException{
 		if (checarGrupo(grupo.getNome())) {
-			Grupos[] aux = new Grupos[arrayGrupos.length - 1];
+			Grupo[] aux = new Grupo[arrayGrupos.length - 1];
 			for (int i = 0, j = 0; i < aux.length; i++) {
 				if (!this.arrayGrupos[j].getNome().equals(grupo.getNome())) {
 					aux[i] = this.arrayGrupos[j];
@@ -48,8 +48,8 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		return false;
 	}
 
-	public Grupos procurar(String nome) throws GrupoNaoEncontradoException{
-		Grupos retorno;
+	public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
+		Grupo retorno;
 		if (checarGrupo(nome)) {
 			for (int i = 0; i < this.arrayGrupos.length; i++) {
 				if (this.arrayGrupos[i].getNome().equals(nome)) {
@@ -64,7 +64,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
  
-	public void atualizar(Grupos grupo) throws GrupoNaoEncontradoException {
+	public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException {
         for (int i = 0; i < this.arrayGrupos.length; i++) {
             if (this.checarGrupo(grupo.getNome())) {
                 if (arrayGrupos[i].getNome().equals(grupo.getNome())) {

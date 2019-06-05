@@ -1,5 +1,7 @@
 package conversas;
 
+import perfis.*;
+
 public class RepositorioConversasArray implements RepositorioConversas {
 	private Conversa[] conversas;
 	private int indice;
@@ -7,10 +9,10 @@ public class RepositorioConversasArray implements RepositorioConversas {
 		conversas = new Conversa[tam];
 		indice = 0;
 	}
-	private int posicao (Conversa conversaBuscada) throws ConversaNaoEncontradaException {
+	private int posicao (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
 		int resposta = -1;
 		for (int i = 0; i < indice && resposta == -1; i++) {
-			if (conversas[i].equals(conversaBuscada)) {
+			if (conversas[i].getEmissor().equals(emissor) && conversas[i].getReceptor().equals(receptor)) {
 				resposta = i;
 			}
 		}
@@ -20,9 +22,9 @@ public class RepositorioConversasArray implements RepositorioConversas {
 			return resposta;
 		}
 	}
-	public boolean existe (Conversa conversaBuscada) {
+	public boolean existe (Perfil emissor, Perfil receptor) {
 		try {
-			this.posicao(conversaBuscada);
+			this.posicao(emissor, receptor);
 			return true;
 		} catch (ConversaNaoEncontradaException e) {
 			return false;
@@ -36,13 +38,17 @@ public class RepositorioConversasArray implements RepositorioConversas {
 			indice = indice + 1;
 		}
 	}
-	public Conversa procurar (Conversa conversaProcurada) throws ConversaNaoEncontradaException {
-		int p = this.posicao(conversaProcurada);
+	public Conversa procurar (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+		int p = this.posicao(emissor, receptor);
 		return conversas[p];
 	}
-	public void remover (Conversa conversaRemovida) throws ConversaNaoEncontradaException {
-		int p = this.posicao(conversaRemovida);
+	public void remover (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+		int p = this.posicao(emissor, receptor);
+		// O que antes era a última posição ocupada do array, agora será a próxima posição livre
 		indice--;
+		/* Entretanto, para liberar a posição no fim do array, precisamos salvar o seu valor em algum outro lugar.
+		 * Fazemos isso sobrescrevendo-o na posição 'p'. Desse modo, apagamos também a Conversa a ser removida.
+		 */
 		conversas[p] = conversas[indice];
 	}
 	public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {

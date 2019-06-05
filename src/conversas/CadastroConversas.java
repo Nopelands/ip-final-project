@@ -7,14 +7,15 @@ public class CadastroConversas {
 	public CadastroConversas (RepositorioConversas conversas) {
 		this.conversas = conversas;
 	}
-	public Conversa procurarConversa (Conversa conversaProcurada) throws ConversaNaoEncontradaException {
-		return conversas.procurar(conversaProcurada);
+	public Conversa procurarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+		return conversas.procurar(emissor, receptor);
 	}
 	public void atualizarConversa (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
 		conversas.atualizar(conversaAlterada);
 	}
+	
 	public void iniciarConversa (Conversa novaConversa) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException {
-		if (conversas.existe(novaConversa)) {
+		if (conversas.existe(novaConversa.getEmissor(), novaConversa.getReceptor())) {
 			throw new ConversaReiniciadaException();
 		} else if (novaConversa.getEmissor().getContacts().existe(novaConversa.getReceptor().getNumber()) && novaConversa.getReceptor().getContacts().existe(novaConversa.getEmissor().getNumber())) {
 			conversas.inserir(novaConversa);
@@ -22,7 +23,7 @@ public class CadastroConversas {
 			throw new NaoSaoContatosException(novaConversa.getEmissor(), novaConversa.getReceptor());
 		}
 	}
-	public void apagarConversa (Conversa conversaApagada) throws ConversaNaoEncontradaException {
-		conversas.remover(conversaApagada);
+	public void apagarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+		conversas.remover(emissor, receptor);
 	}
 }

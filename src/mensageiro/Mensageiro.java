@@ -18,15 +18,15 @@ public class Mensageiro {
         this.grupos = cadastroGrupos;
     }
     
-    public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
+    public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
     	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
     		throw new PerfilNotFoundException();
     	}
-    	RepositorioMensagensLista mensagens = new RepositorioMensagensLista();
+    	this.mensagens.cadastrar(novaMensagem);
 		mensagens.inserir(novaMensagem);
 		Conversa possivelNovaConversa = new Conversa (remetente, destinatario, mensagens);
     	try {
-    		Conversa ordemDireta = conversas.procurarConversa(possivelNovaConversa);
+    		Conversa ordemDireta = conversas.procurarConversa(remetente, destinatario);
     		ordemDireta.inserir(novaMensagem);
     		conversas.atualizarConversa(ordemDireta);
     		
@@ -42,26 +42,34 @@ public class Mensageiro {
     		conversas.iniciarConversa(possivelNovaConversa);
     	}
     }
-
-    public Mensageiro(RepositorioGrupos repositorioGrupos) {
-    	this.grupos = new CadastroGrupos(repositorioGrupos);
+    
+    public void limparConversaUnilateral (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    	conversas.apagarConversa(destruidor, conservador);
     }
     
-    //NegocioGrupos
+    public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
+    	Grupo resultadoBusca = grupos.procurar(nomeGrupo);
+    	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName()) {
+    		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRementente());
+    	} else {
+    		resultadoBusca.inserirMensagem(novaMensagem);
+    		grupos.atualizar(resultadoBusca);
+    	}
+    }
     
-    public void inserir (Grupos grupo) throws GrupoJaCadastradoException {
+    public void inserir (Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserir(grupo);
     }
     
-    public void remover (Grupos grupo) throws GrupoNaoEncontradoException{
+    public void remover (Grupo grupo) throws GrupoNaoEncontradoException{
     	grupos.remover(grupo);
     }
     
-    public Grupos procurar(String nome) throws GrupoNaoEncontradoException{
+    public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
     	return grupos.procurar(nome);
     }
     
-    public void atualizar(Grupos grupo) throws GrupoNaoEncontradoException{
+    public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException{
 		grupos.atualizar(grupo);
 	}
     
@@ -98,7 +106,4 @@ public class Mensageiro {
     public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException{
         perfis.removerContato(numberRemove, numberContato);
     }
-
-    //TODO more TODOs
-    
 }

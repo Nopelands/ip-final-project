@@ -1,5 +1,7 @@
 package conversas;
 
+import perfis.*;
+
 public class RepositorioConversasLista implements RepositorioConversas {
 	private Conversa corpo;
 	private RepositorioConversasLista cauda;
@@ -18,32 +20,32 @@ public class RepositorioConversasLista implements RepositorioConversas {
 			this.cauda.inserir(novoMembro);
 		}
 	}
-	public void remover (Conversa exMembro) throws ConversaNaoEncontradaException {
+	public void remover (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
 		if (this.estaVazia()) {
 			throw new ConversaNaoEncontradaException();
-		} else if (this.corpo.equals(exMembro)) {
+		} else if (this.corpo.getEmissor().equals(emissor) && this.corpo.getReceptor().equals(receptor)) {
 			this.corpo = this.cauda.corpo;
 			this.cauda = this.cauda.cauda;
 		} else {
-			this.cauda.remover(exMembro);	
+			this.cauda.remover(emissor, receptor);	
 		}
 	}
-	public Conversa procurar (Conversa membroProcurado) throws ConversaNaoEncontradaException {
+	public Conversa procurar (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
 		if (this.estaVazia()) {
 			throw new ConversaNaoEncontradaException();
-		} else if (this.corpo.equals(membroProcurado)) {
+		} else if (this.corpo.getEmissor().equals(emissor) && this.corpo.getReceptor().equals(receptor)) {
 			return this.corpo;
 		} else {
-			return this.cauda.procurar(membroProcurado);
+			return this.cauda.procurar(emissor, receptor);
 		}
 	}
-	public boolean existe (Conversa possivelMembro) {
+	public boolean existe (Perfil emissor, Perfil receptor) {
 		if (this.estaVazia()) {
 			return false;
-		} else if (this.corpo.equals(possivelMembro)) {
+		} else if (this.corpo.getEmissor().equals(emissor) && this.corpo.getReceptor().equals(receptor)) {
 			return true;
 		} else {
-			return this.cauda.existe(possivelMembro);
+			return this.cauda.existe(emissor, receptor);
 		}
 	}
 	public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {

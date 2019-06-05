@@ -1,6 +1,7 @@
-
 package mensagens;
+
 import perfis.*;
+
 public abstract class Mensagem {
     protected String mensagem;
     protected Perfil remetente;
