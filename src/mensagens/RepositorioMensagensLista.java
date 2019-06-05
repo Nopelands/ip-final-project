@@ -1,3 +1,5 @@
+package mensagens;
+
 public class RepositorioMensagensLista implements RepositorioMensagens {
     private Mensagem mensagens;
     private RepositorioMensagensLista proximo;
