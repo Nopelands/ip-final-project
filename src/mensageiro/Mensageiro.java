@@ -106,4 +106,30 @@ public class Mensageiro {
     public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException{
         perfis.removerContato(numberRemove, numberContato);
     }
+
+    //Mensagens
+
+    public void enviarMensagem (Mensagem mensagem) {
+        this.mensagens.cadastrar(mensagem);
+    }
+
+    public String getMensagem(Mensagem mensagem){
+        return mensagem.getMensagem();
+    }
+    public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
+        this.mensagens.remover(mensagem);
+    }
+
+    public void atualizarMensagem(Mensagem mensagem, String atualizar) throws MensagemNaoEncontradaException{
+        this.mensagens.atualizar(mensagem, atualizar);
+    }
+    public boolean existeMensagem(Mensagem mensagem){
+        return mensagens.existe(mensagem);
+    }
+    public String procurarMensagem(int identificacao) throws IdentificacaoNaoEncontradaException{
+        return mensagens.procurar(identificacao);
+    }
+
+
 }
+
