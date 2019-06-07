@@ -28,6 +28,8 @@ public class GrupoTeste {
             mensageiroArray.inserir(grupoArray2);
             mensageiroArray.inserir(grupoArray3);
             
+            //Checando se os 3 grupos foram inseridos no repositorio de grupos,
+            //caso sim, 3 mensagens serâo impressas.
             if (mensageiroArray.checarGrupo(grupoArray1.getNome())
     				&& mensageiroArray.checarGrupo(grupoArray2.getNome())
     				&& mensageiroArray.checarGrupo(grupoArray3.getNome())) {
@@ -39,37 +41,60 @@ public class GrupoTeste {
     					+ " foi inserido.\n");
     		}
             
-            
+          
             mensageiroArray.remover(grupoArray2);
             
-            
+            //Checar se o grupo removido realmente foi retirado do repositorio de grupos
+            //Caso sim, sera impresso " O grupo x foi removido".
             if (!mensageiroArray.checarGrupo(grupoArray2.getNome())) {
     			System.out.println("O grupo "+ grupoArray2.getNome()  + " foi removido!\n");
     		} else {
     			System.out.println("O grupo nao foi removido!\n");
     		}
             
-            System.out.println("Inserindo perfis no repositorio: ");
+            System.out.println("Inserindo perfis no grupo 1: ");
             grupoArray1.inserirPerfil(perfilArray1);
             grupoArray1.inserirPerfil(perfilArray2);
-                  
-    			System.out.println(		"O perfil " + perfilArray1.getName() + " foi inserido.");
-    			System.out.println("O perfil " + perfilArray2.getName()+ " foi inserido.\n");
-    			         
+            
+            //Checar se os 2 perfis foram inseridos no grupo
+            if(grupoArray1.getListaNomes().existe(perfilArray1.getNumber()) && grupoArray1.getListaNomes().existe(perfilArray2.getNumber())) {
+    			System.out.println(		"O perfil " + perfilArray1.getName() + " foi inserido no grupo.");
+    			System.out.println("O perfil " + perfilArray2.getName()+ " foi inserido no grupo.\n");
+            }
+            
             grupoArray1.removerPerfil(perfilArray2.getNumber());
             
-            if (!mensageiroArray.equals(perfilArray2.getName())) {
-    			System.out.println("O perfil "+ perfilArray2.getName()  + " foi removido!\n");
+            //Checar se o perfil foi removido do grupo
+            if (!grupoArray1.getListaNomes().existe(perfilArray2.getNumber())) {
+    			System.out.println("O perfil "+ perfilArray2.getName()  + " foi removido do grupo!\n");
     		} else {
-    			System.out.println("O perfil nao foi removido!\n");
+    			System.out.println("O perfil nao foi removido do grupo!\n");
     		}
             
             grupoArray1.inserirMensagem(mensagemArray1);
             grupoArray1.inserirMensagem(mensagemArray2);
+            
+            //Checar se as 2 mensagens foram inseridas no grupo 1
+            System.out.println("Inserindo mensagens no grupo 1: ");
+            if(grupoArray1.getListaMensagens().existe(mensagemArray1.getMensagem()) && grupoArray1.getListaMensagens().existe(mensagemArray2.getMensagem())) {
+    			System.out.println(		"A mensagem " + mensagemArray1.getMensagem() + " foi inserida no grupo.");
+    			System.out.println("A mensagem " + mensagemArray2.getMensagem()+ " foi inserida no grupo.\n");
+            }
+            
+            
             grupoArray1.removerMensagem(mensagemArray2);
             
+            //Checar se a mensagem foi removida do grupo 1
+            if (!grupoArray1.getListaMensagens().existe(mensagemArray2.getMensagem())) {
+    			System.out.println("A mensagem "+ mensagemArray2.getMensagem()  + " foi removida do grupo!\n");
+    		} else {
+    			System.out.println("A mensagem nao foi removida do grupo!\n");
+    		}
+            
+            
+            //Visualizacao do grupo
             System.out.println("Grupo array1 - " + grupoArray1.getNome());
-            System.out.println(perfilArray1.getName() + ": " + mensagemArray1.getMensagem());
+            System.out.println(mensagemArray1.getRemetente().getName() + ": " + mensagemArray1.getMensagem());
             System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM ARRAY----------------------------------------------------");
             System.out.println("");
             
@@ -81,44 +106,86 @@ public class GrupoTeste {
     		Grupo grupoLista2 = new Grupo("Massacration", "the best metal band of all time", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Grupo grupoLista3 = new Grupo("Universidade de Chicago", "Doomsday Clock", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Perfil perfilLista1 = new Perfil("Padre Marcelo Rossi", "7976-2312", new RepositorioPerfisArray());
-    		Mensagem mensageiroLista1 = new MensagemCodificada(perfilLista1, "AmÃ©m!", 002);
-    		
+    		Perfil perfilLista2 = new Perfil("Coroinha", "8790-3421", new RepositorioPerfisArray());
+    		Mensagem mensagemLista1 = new MensagemCodificada(perfilLista1, "Amem!", 003);
+    		Mensagem mensagemLista2 = new MensagemCodificada(perfilLista1, "Em nome do pai.", 004);
             
             
             
-    		System.out.println("Teste da classe Grupos\nRepositorio em Lista:");
-    		    
-    		    System.out.println("Inserindo grupos no repositorio: ");		
-                mensageiroLista.inserir(grupoLista1);
-                mensageiroLista.inserir(grupoLista2);
-                mensageiroLista.inserir(grupoLista3);
-                
-                if (mensageiroLista.checarGrupo(grupoLista1.getNome())
-        				&& mensageiroLista.checarGrupo(grupoLista2.getNome())
-        				&& mensageiroLista.checarGrupo(grupoLista3.getNome())) {
-        			System.out.println(
-        					"O grupo " + grupoLista1.getNome() + " foi inserido.");
-        			System.out.println("O grupo " +grupoLista2.getNome()
-        					+ " foi inserido.");
-        			System.out.println("O grupo " + grupoLista3.getNome()
-        					+ " foi inserido.\n");
-        		}
-                
-                
-                mensageiroLista.remover(grupoLista2);
-                
-                if (!mensageiroLista.checarGrupo(grupoLista2.getNome())) {
-        			System.out.println("O grupo "+ grupoLista2.getNome()  + " foi removido!\n");
-        		} else {
-        			System.out.println("O grupo nao foi removido!\n");
-        		}
-                
-                grupoLista1.inserirPerfil(perfilLista1);            
-                grupoLista1.inserirMensagem(mensageiroLista1);
-                System.out.println("Grupo lista1 - " + grupoLista1.getNome());
-                System.out.println(perfilLista1.getName() + ": " + mensageiroLista1.getMensagem());
-                System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM LISTA----------------------------------------------------");
-                System.out.println("");
+		    System.out.println("Inserindo grupos no repositorio: ");		
+            mensageiroLista.inserir(grupoLista1);
+            mensageiroLista.inserir(grupoLista2);
+            mensageiroLista.inserir(grupoLista3);
+            
+            //Checando se os 3 grupos foram inseridos no repositorio de grupos,
+            //caso sim, 3 mensagens serâo impressas.
+            if (mensageiroLista.checarGrupo(grupoLista1.getNome())
+    				&& mensageiroLista.checarGrupo(grupoLista2.getNome())
+    				&& mensageiroLista.checarGrupo(grupoLista3.getNome())) {
+    			System.out.println(
+    					"O grupo " + grupoLista1.getNome() + " foi inserido.");
+    			System.out.println("O grupo " +grupoLista2.getNome()
+    					+ " foi inserido.");
+    			System.out.println("O grupo " + grupoLista3.getNome()
+    					+ " foi inserido.\n");
+    		}
+            
+          
+            mensageiroLista.remover(grupoLista2);
+            
+            //Checar se o grupo removido realmente foi retirado do repositorio de grupos
+            //Caso sim, sera impresso " O grupo x foi removido".
+            if (!mensageiroLista.checarGrupo(grupoLista2.getNome())) {
+    			System.out.println("O grupo "+ grupoLista2.getNome()  + " foi removido!\n");
+    		} else {
+    			System.out.println("O grupo nao foi removido!\n");
+    		}
+            
+            System.out.println("Inserindo perfis no grupo 1: ");
+            grupoLista1.inserirPerfil(perfilLista1);
+            grupoLista1.inserirPerfil(perfilLista2);
+            
+            //Checar se os 2 perfis foram inseridos no grupo
+            if(grupoLista1.getListaNomes().existe(perfilLista1.getNumber()) && grupoLista1.getListaNomes().existe(perfilLista2.getNumber())) {
+    			System.out.println(		"O perfil " + perfilLista1.getName() + " foi inserido no grupo.");
+    			System.out.println("O perfil " + perfilLista2.getName()+ " foi inserido no grupo.\n");
+            }
+            
+            grupoLista1.removerPerfil(perfilLista2.getNumber());
+            
+            //Checar se o perfil foi removido do grupo
+            if (!grupoLista1.getListaNomes().existe(perfilLista2.getNumber())) {
+    			System.out.println("O perfil "+ perfilLista2.getName()  + " foi removido do grupo!\n");
+    		} else {
+    			System.out.println("O perfil nao foi removido do grupo!\n");
+    		}
+            
+            grupoLista1.inserirMensagem(mensagemLista1);
+            grupoLista1.inserirMensagem(mensagemLista2);
+            
+            //Checar se as 2 mensagens foram inseridas no grupo 1
+            System.out.println("Inserindo mensagens no grupo 1: ");
+            if(grupoLista1.getListaMensagens().existe(mensagemLista1.getMensagem()) && grupoLista1.getListaMensagens().existe(mensagemLista2.getMensagem())) {
+    			System.out.println(		"A mensagem " + mensagemLista1.getMensagem() + " foi inserida no grupo.");
+    			System.out.println("A mensagem " + mensagemLista2.getMensagem()+ " foi inserida no grupo.\n");
+            }
+            
+            
+            grupoLista1.removerMensagem(mensagemLista2);
+            
+            //Checar se a mensagem foi removida do grupo 1
+            if (!grupoLista1.getListaMensagens().existe(mensagemLista2.getMensagem())) {
+    			System.out.println("A mensagem "+ mensagemLista2.getMensagem()  + " foi removida do grupo!\n");
+    		} else {
+    			System.out.println("A mensagem nao foi removida do grupo!\n");
+    		}
+            
+            
+            //Visualizacao do grupo
+            System.out.println("Grupo array1 - " + grupoLista1.getNome());
+            System.out.println(mensagemLista1.getRemetente().getName() + ": " + mensagemLista1.getMensagem());
+            System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM ARRAY----------------------------------------------------");
+            System.out.println("");
              		
 	
     }
