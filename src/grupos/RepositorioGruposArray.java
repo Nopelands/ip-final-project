@@ -12,7 +12,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		this.arrayGrupos = new Grupo[0];
 	}
 
-	public void inserir(Grupo grupo){
+	public void inserirGrupo(Grupo grupo){
 		Grupo[] temp = new Grupo[arrayGrupos.length + 1];
 			for (int i = 0; i < arrayGrupos.length; i++) {
 				temp[i] = arrayGrupos[i];
@@ -21,7 +21,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
         arrayGrupos = temp;
 	}
 
-	public void remover(Grupo grupo) throws GrupoNaoEncontradoException{
+	public void removerGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
 		if (checarGrupo(grupo.getNome())) {
 			Grupo[] aux = new Grupo[arrayGrupos.length - 1];
 			for (int i = 0, j = 0; i < aux.length; i++) {
@@ -45,7 +45,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		return false;
 	}
 
-	public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
+	public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
 		Grupo retorno;
 		if (checarGrupo(nome)) {
 			for (int i = 0; i < this.arrayGrupos.length; i++) {
@@ -61,7 +61,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
  
-	public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException {
+	public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
         for (int i = 0; i < this.arrayGrupos.length; i++) {
             if (this.checarGrupo(grupo.getNome())) {
                 if (arrayGrupos[i].getNome().equals(grupo.getNome())) {

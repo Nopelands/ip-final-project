@@ -48,35 +48,39 @@ public class Mensageiro {
     }
     
     public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
-    	Grupo resultadoBusca = grupos.procurar(nomeGrupo);
+    	Grupo resultadoBusca = grupos.procurarGrupo(nomeGrupo);
     	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName())) {
     		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRemetente());
     	} else {
     		mensagens.cadastrar(novaMensagem);
     		resultadoBusca.inserirMensagem(novaMensagem);
-    		grupos.atualizar(resultadoBusca);
+    		grupos.atualizarGrupo(resultadoBusca);
     	}
     }
     
-    public void inserir (Grupo grupo) throws GrupoJaCadastradoException {
-		grupos.inserir(grupo);
+    //Grupo
+    
+    public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
+		grupos.inserirGrupo(grupo);
     }
     
-    public void remover (Grupo grupo) throws GrupoNaoEncontradoException{
-    	grupos.remover(grupo);
+    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException{
+    	grupos.removerGrupo(grupo);
     }
     
-    public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
-    	return grupos.procurar(nome);
+    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
+    	return grupos.procurarGrupo(nome);
     }
     
-    public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException{
-		grupos.atualizar(grupo);
+    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
+		grupos.atualizarGrupo(grupo);
 	}
     
     public boolean checarGrupo (String nome) {
     	return grupos.checarGrupo(nome);
     }
+    
+    //Perfil
     
     public void criarUser (Perfil novoUsuario) throws PerfilJaCadastradoException {
     	this.perfis.cadastrar(novoUsuario);
@@ -102,4 +106,30 @@ public class Mensageiro {
     public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException{
         perfis.removerContato(numberRemove, numberContato);
     }
+
+    //Mensagens
+
+    public void enviarMensagem (Mensagem mensagem) {
+        this.mensagens.cadastrar(mensagem);
+    }
+
+    public String getMensagem(Mensagem mensagem){
+        return mensagem.getMensagem();
+    }
+    public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
+        this.mensagens.remover(mensagem);
+    }
+
+    public void atualizarMensagem(Mensagem mensagem, String atualizar) throws MensagemNaoEncontradaException{
+        this.mensagens.atualizar(mensagem, atualizar);
+    }
+    public boolean existeMensagem(Mensagem mensagem){
+        return mensagens.existe(mensagem);
+    }
+    public String procurarMensagem(int identificacao) throws IdentificacaoNaoEncontradaException{
+        return mensagens.procurar(identificacao);
+    }
+
+
 }
+

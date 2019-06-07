@@ -12,14 +12,14 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		proximo = null;
 	}
 
-	public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
+	public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
 		Grupo retorno;
 		if (this.grupo != null) {
 			if (this.grupo.getNome().equals(nome)) {
 				retorno = this.grupo;
 			} else
 				try {
-				retorno = this.proximo.procurar(nome);
+				retorno = this.proximo.procurarGrupo(nome);
 				}catch(GrupoNaoEncontradoException e) {
 					throw e;
 				}
@@ -43,33 +43,33 @@ public class RepositorioGruposLista implements RepositorioGrupos {
 		return retorno;
 	}
 
-	public void inserir(Grupo grupo) {
+	public void inserirGrupo(Grupo grupo) {
 		
 			if (this.grupo == null) {
 				this.grupo = grupo;
 				this.proximo = new RepositorioGruposLista();
 			} else {
-				this.proximo.inserir(grupo);
+				this.proximo.inserirGrupo(grupo);
 			}
 	}
 
-	public void remover(Grupo grupo) throws GrupoNaoEncontradoException{
+	public void removerGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
 		if (this.grupo != null) {
 			if (this.grupo.getNome().equals(grupo.getNome())) {
 				this.grupo = this.proximo.grupo;
 				this.proximo = this.proximo.proximo;
 			} else
-				this.proximo.remover(grupo);
+				this.proximo.removerGrupo(grupo);
 		} else
 			throw new GrupoNaoEncontradoException();
 	}
 	
-	public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException{
+	public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
         if (this.checarGrupo(grupo.getNome())) {
             if (this.grupo.equals(grupo)) {
                 this.grupo = grupo;
             } else {
-                this.atualizar(grupo);
+                this.atualizarGrupo(grupo);
             }
         } else {
             throw new GrupoNaoEncontradoException();
