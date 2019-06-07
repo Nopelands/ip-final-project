@@ -24,9 +24,9 @@ public class GrupoTeste {
     	System.out.println("---------------------------------- TESTE DA CLASSE GRUPOS - REPOSITORIO EM ARRAY -------------------------------------");
 		    
 		    System.out.println("Inserindo grupos no repositorio: ");		
-            mensageiroArray.inserir(grupoArray1);
-            mensageiroArray.inserir(grupoArray2);
-            mensageiroArray.inserir(grupoArray3);
+            mensageiroArray.inserirGrupo(grupoArray1);
+            mensageiroArray.inserirGrupo(grupoArray2);
+            mensageiroArray.inserirGrupo(grupoArray3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
             //caso sim, 3 mensagens serâo impressas.
@@ -42,7 +42,7 @@ public class GrupoTeste {
     		}
             
           
-            mensageiroArray.remover(grupoArray2);
+            mensageiroArray.removerGrupo(grupoArray2);
             
             //Checar se o grupo removido realmente foi retirado do repositorio de grupos
             //Caso sim, sera impresso " O grupo x foi removido".
@@ -113,9 +113,9 @@ public class GrupoTeste {
             
             
 		    System.out.println("Inserindo grupos no repositorio: ");		
-            mensageiroLista.inserir(grupoLista1);
-            mensageiroLista.inserir(grupoLista2);
-            mensageiroLista.inserir(grupoLista3);
+            mensageiroLista.inserirGrupo(grupoLista1);
+            mensageiroLista.inserirGrupo(grupoLista2);
+            mensageiroLista.inserirGrupo(grupoLista3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
             //caso sim, 3 mensagens serâo impressas.
@@ -131,7 +131,7 @@ public class GrupoTeste {
     		}
             
           
-            mensageiroLista.remover(grupoLista2);
+            mensageiroLista.removerGrupo(grupoLista2);
             
             //Checar se o grupo removido realmente foi retirado do repositorio de grupos
             //Caso sim, sera impresso " O grupo x foi removido".
