@@ -22,11 +22,10 @@ public class Programa {
         try {
             mensageiro.adicionarContato("11037", "63194");
             mensageiro.adicionarContato("11037", "217448");
-        } catch (PerfilJaCadastradoException e) {
-            e.printStackTrace();
-        } catch (PerfilNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        
         //TODO main
 
     }
