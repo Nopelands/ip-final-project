@@ -22,14 +22,15 @@ public class GrupoTeste {
 		Mensagem mensagemArray2 = new MensagemCodificada(perfilArray1, "Traz a farinha", 002);
     	
     	System.out.println("---------------------------------- TESTE DA CLASSE GRUPOS - REPOSITORIO EM ARRAY -------------------------------------");
-		    
+		   
+    	   try {
 		    System.out.println("Inserindo grupos no repositorio: ");		
             mensageiroArray.inserirGrupo(grupoArray1);
-            mensageiroArray.inserirGrupo(grupoArray2);
+            mensageiroArray.inserirGrupo(grupoArray1);
             mensageiroArray.inserirGrupo(grupoArray3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
-            //caso sim, 3 mensagens serâo impressas.
+            //caso sim, 3 mensagens serÃ¢o impressas.
             if (mensageiroArray.checarGrupo(grupoArray1.getNome())
     				&& mensageiroArray.checarGrupo(grupoArray2.getNome())
     				&& mensageiroArray.checarGrupo(grupoArray3.getNome())) {
@@ -40,8 +41,11 @@ public class GrupoTeste {
     			System.out.println("O grupo " + grupoArray3.getNome()
     					+ " foi inserido.\n");
     		}
-            
+    	   }catch (GrupoJaCadastradoException e1) {
+   			System.out.println(e1.getMessage());
+   		   }
           
+    	   try {
             mensageiroArray.removerGrupo(grupoArray2);
             
             //Checar se o grupo removido realmente foi retirado do repositorio de grupos
@@ -51,6 +55,10 @@ public class GrupoTeste {
     		} else {
     			System.out.println("O grupo nao foi removido!\n");
     		}
+    	   }catch (GrupoNaoEncontradoException e2) {
+   			System.out.println(e2.getMessage());
+   		   }
+            
             
             System.out.println("Inserindo perfis no grupo 1: ");
             grupoArray1.inserirPerfil(perfilArray1);
@@ -61,6 +69,7 @@ public class GrupoTeste {
     			System.out.println(		"O perfil " + perfilArray1.getName() + " foi inserido no grupo.");
     			System.out.println("O perfil " + perfilArray2.getName()+ " foi inserido no grupo.\n");
             }
+            
             
             grupoArray1.removerPerfil(perfilArray2.getNumber());
             
@@ -103,7 +112,7 @@ public class GrupoTeste {
             System.out.println("---------------------------------- TESTE DA CLASSE GRUPOS - REPOSITORIO EM LISTA -------------------------------------");
             
         	Grupo grupoLista1 = new Grupo("Igreja", "Galera do ritual", new RepositorioPerfisArray(), new RepositorioMensagensArray());
-    		Grupo grupoLista2 = new Grupo("Massacration", "the best metal band of all time", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+    		Grupo grupoLista2 = new Grupo("Massacration", "metal band", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Grupo grupoLista3 = new Grupo("Universidade de Chicago", "Doomsday Clock", new RepositorioPerfisArray(), new RepositorioMensagensArray());
     		Perfil perfilLista1 = new Perfil("Padre Marcelo Rossi", "7976-2312", new RepositorioPerfisArray());
     		Perfil perfilLista2 = new Perfil("Coroinha", "8790-3421", new RepositorioPerfisArray());
@@ -118,7 +127,7 @@ public class GrupoTeste {
             mensageiroLista.inserirGrupo(grupoLista3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
-            //caso sim, 3 mensagens serâo impressas.
+            //caso sim, 3 mensagens serÃ¢o impressas.
             if (mensageiroLista.checarGrupo(grupoLista1.getNome())
     				&& mensageiroLista.checarGrupo(grupoLista2.getNome())
     				&& mensageiroLista.checarGrupo(grupoLista3.getNome())) {
