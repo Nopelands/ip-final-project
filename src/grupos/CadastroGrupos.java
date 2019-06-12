@@ -20,7 +20,11 @@ public class CadastroGrupos{
 	}
 
 	public void inserirGrupo(Grupo grupo) throws GrupoJaCadastradoException {
-		repositorio.inserirGrupo(grupo);
+		if (!repositorio.checarGrupo(grupo.getNome())) {
+            repositorio.inserirGrupo(grupo);
+		}else {
+			throw new GrupoJaCadastradoException();
+		}
 	}
 
 	public void removerGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
