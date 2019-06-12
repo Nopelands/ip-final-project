@@ -29,8 +29,18 @@ public class Programa {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mensageiro.enviarMensagemPrivado(mensageiro.);
-        
+        try {
+            mensageiro.enviarMensagemPrivado(mensageiro.getPerfis().procurar("11037"), mensageiro.getPerfis().procurar("63194"), new MensagemCodificadaReversa(mensageiro.getPerfis().procurar("11037"), "this is a message", 01), new RepositorioMensagensArray());
+        } catch (ConversaReiniciadaException e) {
+            e.printStackTrace();
+        } catch (RepositorioException e) {
+            e.printStackTrace();
+        } catch (NaoSaoContatosException e) {
+            e.printStackTrace();
+        } catch (PerfilNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //TODO main
 
     }
