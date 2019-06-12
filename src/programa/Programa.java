@@ -15,7 +15,7 @@ public class Programa {
             mensageiro.criarUser(new Perfil("ccc", "isso nem precisa ser um numero kk", new RepositorioPerfisArray()));
             mensageiro.criarUser(new Perfil("ninguem vai entender as referencias mesmo", "1.048596", new RepositorioPerfisArray()));
             mensageiro.criarUser(new Perfil("emma", "63194", new RepositorioPerfisArray()));
-            mensageiro.criarUser(new Perfil("god", "217448", new RepositorioConversasArray));
+            mensageiro.criarUser(new Perfil("god", "217448", new RepositorioConversasArray()));
         } catch (PerfilJaCadastradoException e) {
             e.printStackTrace();
         }
