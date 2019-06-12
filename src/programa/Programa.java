@@ -24,6 +24,8 @@ public class Programa {
             mensageiro.adicionarContato("63194", "11037");
             mensageiro.adicionarContato("11037", "217448");
             mensageiro.adicionarContato("217448", "11037");
+            mensageiro.adicionarContato("63194", "217448");
+            mensageiro.adicionarContato("217448", "63194");
         } catch (Exception e) {
             e.printStackTrace();
         }
