@@ -47,11 +47,10 @@ public class ConversasTeste {
 			System.out.println(e3.getMessage());
 		}
 		
-		conversa1.inverter();
-		System.out.println("Emissor: " + conversa1.getEmissor().getNumber() + ", Receptor: " + conversa1.getReceptor().getNumber());
+		Conversa conversa2 = new Conversa (conversa1.getReceptor(), conversa1.getEmissor(), rep);
 		try {
-			conversasArray.iniciarConversa(conversa1);
-			System.out.println("A conversa entre " + conversa1.getEmissor().getName() + " e " + conversa1.getReceptor().getName() + " foi iniciada com sucesso.");
+			conversasArray.iniciarConversa(conversa2);
+			System.out.println("A conversa entre " + conversa2.getEmissor().getName() + " e " + conversa2.getReceptor().getName() + " foi iniciada com sucesso.");
 		} catch (RepositorioException e1) {
 			System.out.println(e1.getMessage());
 		} catch (ConversaReiniciadaException e2) {
@@ -62,7 +61,6 @@ public class ConversasTeste {
 		
 		Mensagem m2 = new MensagemCodificada (usuario2, "Fala, Sergio!", ++contMensagens);
 		conversa1.inserir(m2);
-		
 		try {
 			conversasArray.iniciarConversa(conversa1);
 			System.out.println("A conversa entre " + conversa1.getEmissor().getName() + " e " + conversa1.getReceptor().getName() + " foi iniciada com sucesso.");
