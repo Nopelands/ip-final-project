@@ -9,20 +9,13 @@ import mensageiro.*;
 public class Programa {
     public static void main(String[] args) {
         Mensageiro mensageiro = new Mensageiro(new CadastroPerfis(new RepositorioPerfisArray()), new CadastroConversas(new RepositorioConversasArray(1000)), new CadastroGrupos(new RepositorioGruposArray()), new CadastroMensagens(new RepositorioMensagensArray()));
-        Perfil aaa = new Perfil("aaa", "177013", new RepositorioPerfisArray());
-        Perfil bbb = new Perfil("bbb", "11037", new RepositorioPerfisArray());
-        Perfil ccc = new Perfil("ccc", "isso nem precisa ser um numero kk", new RepositorioPerfisArray());
-        Perfil ddd = new Perfil("ninguem vai entender as referencias mesmo", "1.048596", new RepositorioPerfisArray());
-        Perfil emma = new Perfil("emma", "63194", new RepositorioPerfisArray());
-        Perfil god = new Perfil("god", "217448", new RepositorioPerfisArray());
-
+        Perfil aaa = new Perfil("sergio", "63194", new RepositorioPerfisArray());
+        Perfil bbb = new Perfil("ricardo", "11037", new RepositorioPerfisArray());
+        Perfil ccc = new Perfil("daniel", "217448", new RepositorioPerfisArray());
         try {
             mensageiro.criarUser(aaa);
             mensageiro.criarUser(bbb);
             mensageiro.criarUser(ccc);
-            mensageiro.criarUser(ddd);
-            mensageiro.criarUser(emma);
-            mensageiro.criarUser(god);
         } catch (PerfilJaCadastradoException e) {
             e.printStackTrace();
         }
@@ -31,11 +24,23 @@ public class Programa {
             mensageiro.adicionarContato("63194", "11037");
             mensageiro.adicionarContato("11037", "217448");
             mensageiro.adicionarContato("217448", "11037");
+            mensageiro.adicionarContato("63194", "217448");
+            mensageiro.adicionarContato("217448", "63194");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mensageiro.enviarMensagemPrivado(mensageiro.);
-        
+        try {
+            mensageiro.enviarMensagemPrivado(mensageiro.getPerfis().procurar("11037"), mensageiro.getPerfis().procurar("63194"), new MensagemCodificadaReversa(mensageiro.getPerfis().procurar("11037"), "this is a message", 01), new RepositorioMensagensArray());
+        } catch (ConversaReiniciadaException e) {
+            e.printStackTrace();
+        } catch (RepositorioException e) {
+            e.printStackTrace();
+        } catch (NaoSaoContatosException e) {
+            e.printStackTrace();
+        } catch (PerfilNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //TODO main
 
     }
