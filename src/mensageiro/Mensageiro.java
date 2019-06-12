@@ -17,7 +17,15 @@ public class Mensageiro {
         this.conversas = cadastroConversas;
         this.grupos = cadastroGrupos;
     }
-    
+
+    public CadastroMensagens getMensagens() {
+        return mensagens;
+    }
+
+    public CadastroConversas getConversas() {
+        return conversas;
+    }
+
     public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
     	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
     		throw new PerfilNotFoundException();
@@ -59,7 +67,11 @@ public class Mensageiro {
     }
     
     //Grupo
-    
+
+    public CadastroGrupos getGrupos() {
+        return grupos;
+    }
+
     public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
     }
@@ -81,7 +93,11 @@ public class Mensageiro {
     }
     
     //Perfil
-    
+
+    public CadastroPerfis getPerfis() {
+        return perfis;
+    }
+
     public void criarUser (Perfil novoUsuario) throws PerfilJaCadastradoException {
     	this.perfis.cadastrar(novoUsuario);
     }
