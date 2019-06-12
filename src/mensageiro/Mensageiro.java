@@ -31,23 +31,23 @@ public class Mensageiro {
     		throw new PerfilNotFoundException();
     	}
     	this.mensagens.cadastrar(novaMensagem);
-		mensagens.inserir(novaMensagem);
-		Conversa possivelNovaConversa = new Conversa (remetente, destinatario, mensagens);
+    	mensagens.inserir(novaMensagem);
     	try {
     		Conversa ordemDireta = conversas.procurarConversa(remetente, destinatario);
     		ordemDireta.inserir(novaMensagem);
     		conversas.atualizarConversa(ordemDireta);
     		
     	} catch (ConversaNaoEncontradaException e) {
-    		conversas.iniciarConversa(possivelNovaConversa);
+    		Conversa novaConversaDireta = new Conversa (remetente, destinatario, mensagens);
+    		conversas.iniciarConversa(novaConversaDireta);
     	}
     	try {
-    		possivelNovaConversa.inverter();
     		Conversa ordemInversa = conversas.procurarConversa(destinatario, remetente);
     		ordemInversa.inserir(novaMensagem);
     		conversas.atualizarConversa(ordemInversa);
     	} catch (ConversaNaoEncontradaException e) {
-    		conversas.iniciarConversa(possivelNovaConversa);
+    		Conversa possivelNovaConversaInversa = new Conversa (destinatario, remetente, mensagens);
+    		conversas.iniciarConversa(possivelNovaConversaInversa);
     	}
     }
     
@@ -76,15 +76,15 @@ public class Mensageiro {
 		grupos.inserirGrupo(grupo);
     }
     
-    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException{
+    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException {
     	grupos.removerGrupo(grupo);
     }
     
-    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
+    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException {
     	return grupos.procurarGrupo(nome);
     }
     
-    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
+    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
 		grupos.atualizarGrupo(grupo);
 	}
     

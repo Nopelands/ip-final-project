@@ -20,9 +20,9 @@ public class ConversasTeste {
 		}
 		try {
 			perfis.adicionarContato(usuario1.getNumber(), usuario2.getNumber());
-			System.out.println(usuario2.getName() + " foi adicionado à lista de contatos de " + usuario1.getName());
+			System.out.println(usuario2.getName() + " foi adicionado a lista de contatos de " + usuario1.getName() + ".");
 			perfis.adicionarContato(usuario2.getNumber(), usuario1.getNumber());
-			System.out.println(usuario1.getName() + " foi adicionado à lista de contatos de " + usuario2.getName());
+			System.out.println(usuario1.getName() + " foi adicionado a lista de contatos de " + usuario2.getName() + ".");
 		} catch (PerfilJaCadastradoException e1) {
 			System.out.println(e1.getMessage());
 		} catch (PerfilNotFoundException e2) {
