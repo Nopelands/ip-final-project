@@ -33,26 +33,26 @@ public class Mensageiro {
     	this.mensagens.cadastrar(novaMensagem);
     	mensagens.inserir(novaMensagem);
     	try {
-    		Conversa ordemDireta = conversas.procurarConversa(remetente, destinatario);
+    		Conversa ordemDireta = conversas.procurar(remetente, destinatario);
     		ordemDireta.inserir(novaMensagem);
-    		conversas.atualizarConversa(ordemDireta);
+    		conversas.atualizar(ordemDireta);
     		
     	} catch (ConversaNaoEncontradaException e) {
     		Conversa novaConversaDireta = new Conversa (remetente, destinatario, mensagens);
-    		conversas.iniciarConversa(novaConversaDireta);
+    		conversas.iniciar(novaConversaDireta);
     	}
     	try {
-    		Conversa ordemInversa = conversas.procurarConversa(destinatario, remetente);
+    		Conversa ordemInversa = conversas.procurar(destinatario, remetente);
     		ordemInversa.inserir(novaMensagem);
-    		conversas.atualizarConversa(ordemInversa);
+    		conversas.atualizar(ordemInversa);
     	} catch (ConversaNaoEncontradaException e) {
     		Conversa possivelNovaConversaInversa = new Conversa (destinatario, remetente, mensagens);
-    		conversas.iniciarConversa(possivelNovaConversaInversa);
+    		conversas.iniciar(possivelNovaConversaInversa);
     	}
     }
     
-    public void limparConversaUnilateral (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
-    	conversas.apagarConversa(destruidor, conservador);
+    public void apagar (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    	conversas.apagar(destruidor, conservador);
     }
     
     public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
