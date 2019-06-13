@@ -17,7 +17,9 @@ public class Mensageiro {
         this.conversas = cadastroConversas;
         this.grupos = cadastroGrupos;
     }
-
+    
+    // Conversa
+    
     public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
     	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
     		throw new PerfilNotFoundException();
@@ -43,9 +45,15 @@ public class Mensageiro {
     	}
     }
     
-    public void apagar (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    public Conversa procurarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+    	return this.conversas.procurar(emissor, receptor);
+    }
+    
+    public void apagarConversa (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
     	conversas.apagar(destruidor, conservador);
     }
+    
+    // Grupo
     
     public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
     	Grupo resultadoBusca = grupos.procurarGrupo(nomeGrupo);
@@ -57,8 +65,6 @@ public class Mensageiro {
     		grupos.atualizarGrupo(resultadoBusca);
     	}
     }
-    
-    //Grupo
 
     public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
