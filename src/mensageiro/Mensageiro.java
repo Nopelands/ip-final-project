@@ -18,14 +18,6 @@ public class Mensageiro {
         this.grupos = cadastroGrupos;
     }
 
-    public CadastroMensagens getMensagens() {
-        return mensagens;
-    }
-
-    public CadastroConversas getConversas() {
-        return conversas;
-    }
-
     public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
     	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
     		throw new PerfilNotFoundException();
@@ -68,10 +60,6 @@ public class Mensageiro {
     
     //Grupo
 
-    public CadastroGrupos getGrupos() {
-        return grupos;
-    }
-
     public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
     }
@@ -93,10 +81,6 @@ public class Mensageiro {
     }
     
     //Perfil
-
-    public CadastroPerfis getPerfis() {
-        return perfis;
-    }
 
     public void criarUser (Perfil novoUsuario) throws PerfilJaCadastradoException {
     	this.perfis.cadastrar(novoUsuario);
@@ -128,10 +112,6 @@ public class Mensageiro {
     public void enviarMensagem (Mensagem mensagem) {
         this.mensagens.cadastrar(mensagem);
     }
-
-    public String getMensagem(Mensagem mensagem){
-        return mensagem.getMensagem();
-    }
     public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
         this.mensagens.remover(mensagem);
     }
@@ -145,7 +125,5 @@ public class Mensageiro {
     public String procurarMensagem(int identificacao) throws IdentificacaoNaoEncontradaException{
         return mensagens.procurar(identificacao);
     }
-
-
 }
 
