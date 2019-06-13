@@ -26,7 +26,7 @@ public class GrupoTeste {
     	   try {
 		    System.out.println("Inserindo grupos no repositorio: ");		
             mensageiroArray.inserirGrupo(grupoArray1);
-            mensageiroArray.inserirGrupo(grupoArray1);
+            mensageiroArray.inserirGrupo(grupoArray2);
             mensageiroArray.inserirGrupo(grupoArray3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
@@ -44,7 +44,11 @@ public class GrupoTeste {
     	   }catch (GrupoJaCadastradoException e1) {
    			System.out.println(e1.getMessage());
    		   }
-          
+           
+    	   //Atualizaçao da descricao do grupo 1 (Familia)
+    	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+    	   mensageiroArray.atualizarGrupo(grupoArrayAtualizado1);
+    	   
     	   try {
             mensageiroArray.removerGrupo(grupoArray2);
             
@@ -61,15 +65,18 @@ public class GrupoTeste {
             
             
             System.out.println("Inserindo perfis no grupo 1: ");
+            try {
             grupoArray1.inserirPerfil(perfilArray1);
-            grupoArray1.inserirPerfil(perfilArray2);
+            grupoArray1.inserirPerfil(perfilArray1);
             
             //Checar se os 2 perfis foram inseridos no grupo
             if(grupoArray1.getListaNomes().existe(perfilArray1.getNumber()) && grupoArray1.getListaNomes().existe(perfilArray2.getNumber())) {
     			System.out.println(		"O perfil " + perfilArray1.getName() + " foi inserido no grupo.");
     			System.out.println("O perfil " + perfilArray2.getName()+ " foi inserido no grupo.\n");
             }
-            
+            } catch (PerfilJaCadastradoException p) {
+       			System.out.println(p.getMessage());
+    		   }
             
             grupoArray1.removerPerfil(perfilArray2.getNumber());
             
