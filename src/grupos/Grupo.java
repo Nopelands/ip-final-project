@@ -45,9 +45,14 @@ public class Grupo {
 			
 	}
 	
-	public void inserirPerfil(Perfil perfil) {
-		this.listaNomes.inserir(perfil);
-			
+	public void inserirPerfil(Perfil perfil) throws PerfilJaCadastradoException {
+		if (!listaNomes.existe(perfil.getNumber())) {
+            listaNomes.inserir(perfil);
+		}else {
+			throw new PerfilJaCadastradoException();
+		}
+		
+		
 	}
 	
 	public void removerPerfil(String numero) throws PerfilNotFoundException {
