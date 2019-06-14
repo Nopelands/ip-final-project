@@ -47,7 +47,7 @@ public class Programa {
         Mensagem mensagemArray2 = new MensagemCodificada ( perfilArray2, "respira: bo dia", 43);
         Mensagem mensagemArray3 = new MensagemCodificada  (perfilArray1, " tem prova hoje?", 712);
         Mensagem mensagemArray4 = new MensagemCodificadaReversa (perfilArray3, "mano, tem 2 provas e tu nem estudou?", 76023);
-        //Mensagem mensagemArray5 = new MensagemNormal (perfilArray3, "por que vocês estão usando mensagem codificada??", 213);
+        Mensagem mensagemArray5 = new MensagemNormal (perfilArray3, "por que vocês estão usando mensagem codificada??", 213);
         Mensagem mensagemArray6 = new MensagemCodificada (perfilArray1, "vai que o professor encontra essa mensagem e me dá 0 por não ter estudado", 000);
 
         mensagemArray6.codificar();
@@ -139,12 +139,14 @@ public class Programa {
          //Nao precisa de try catch pra Inserir Mensagens. Nao ha exception
          grupoArray1.inserirMensagem(mensagemArray1);
          grupoArray1.inserirMensagem(mensagemArray2);
+         grupoArray1.inserirMensagem(mensagemArray5);
          
          //Checar se as 2 mensagens foram inseridas no grupo 1
          System.out.println("Inserindo mensagens no grupo 1: ");
-         if(grupoArray1.getListaMensagens().existe(mensagemArray1.getMensagem()) && grupoArray1.getListaMensagens().existe(mensagemArray2.getMensagem())) {
+         if(grupoArray1.getListaMensagens().existe(mensagemArray1.getMensagem()) && grupoArray1.getListaMensagens().existe(mensagemArray2.getMensagem()) && grupoArray1.getListaMensagens().existe(mensagemArray5.getMensagem())) {
  			System.out.println(		"A mensagem " + mensagemArray1.getMensagem() + " foi inserida no grupo.");
  			System.out.println("A mensagem " + mensagemArray2.getMensagem()+ " foi inserida no grupo.\n");
+ 			System.out.println("A mensagem " + mensagemArray5.getMensagem()+ " foi inserida no grupo.\n");
          }
          
          try{
@@ -163,6 +165,7 @@ public class Programa {
          //Visualizacao do grupo
          System.out.println("Grupo array1 - " + grupoArray1.getNome());
          System.out.println(mensagemArray1.getRemetente().getName() + ": " + mensagemArray1.getMensagem());
+         System.out.println(mensagemArray5.getRemetente().getName() + ": " + mensagemArray5.getMensagem());
          System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM ARRAY----------------------------------------------------");
          System.out.println("");
 
