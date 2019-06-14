@@ -30,7 +30,7 @@ public class Programa {
             e.printStackTrace();
         }
         try {
-            mensageiro.enviarMensagemPrivado(mensageiro.getPerfis().procurar("11037"), mensageiro.getPerfis().procurar("63194"), new MensagemCodificadaReversa(mensageiro.getPerfis().procurar("11037"), "this is a message", 01), new RepositorioMensagensArray());
+            mensageiro.enviarMensagemPrivado(mensageiro.procurarPerfil("11037"), mensageiro.procurarPerfil("63194"), new MensagemCodificadaReversa(mensageiro.procurarPerfil("11037"), "this is a message", 01), new RepositorioMensagensArray());
         } catch (ConversaReiniciadaException e) {
             e.printStackTrace();
         } catch (RepositorioException e) {

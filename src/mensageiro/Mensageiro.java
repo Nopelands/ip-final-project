@@ -94,10 +94,6 @@ public class Mensageiro {
     
     //Perfil
 
-    public CadastroPerfis getPerfis() {
-        return perfis;
-    }
-
     public void criarUser (Perfil novoUsuario) throws PerfilJaCadastradoException {
     	this.perfis.cadastrar(novoUsuario);
     }
@@ -121,6 +117,10 @@ public class Mensageiro {
     }
     public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException{
         perfis.removerContato(numberRemove, numberContato);
+    }
+
+    public Perfil procurarPerfil(String number) throws PerfilNotFoundException{
+        return perfis.procurar(number);
     }
 
     //Mensagens
