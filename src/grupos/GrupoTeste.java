@@ -23,10 +23,11 @@ public class GrupoTeste {
     	
     	System.out.println("---------------------------------- TESTE DA CLASSE GRUPOS - REPOSITORIO EM ARRAY -------------------------------------");
 		   
+    	   //Try Catch pra inserir grupos no repositorioGrupos
     	   try {
 		    System.out.println("Inserindo grupos no repositorio: ");		
             mensageiroArray.inserirGrupo(grupoArray1);
-            mensageiroArray.inserirGrupo(grupoArray1);
+            mensageiroArray.inserirGrupo(grupoArray2);
             mensageiroArray.inserirGrupo(grupoArray3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
@@ -44,7 +45,12 @@ public class GrupoTeste {
     	   }catch (GrupoJaCadastradoException e1) {
    			System.out.println(e1.getMessage());
    		   }
-          
+           
+    	   //Atualizaçao da descricao do grupo 1 (Familia)
+    	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+    	   mensageiroArray.atualizarGrupo(grupoArrayAtualizado1);
+    	   
+    	  //Try Catch pra remover grupos no repositorioGrupos
     	   try {
             mensageiroArray.removerGrupo(grupoArray2);
             
@@ -61,6 +67,8 @@ public class GrupoTeste {
             
             
             System.out.println("Inserindo perfis no grupo 1: ");
+          //Try Catch pra inserir perfis no Repositorio de Perfis do grupo.
+            try {
             grupoArray1.inserirPerfil(perfilArray1);
             grupoArray1.inserirPerfil(perfilArray2);
             
@@ -69,17 +77,24 @@ public class GrupoTeste {
     			System.out.println(		"O perfil " + perfilArray1.getName() + " foi inserido no grupo.");
     			System.out.println("O perfil " + perfilArray2.getName()+ " foi inserido no grupo.\n");
             }
+            } catch (PerfilJaCadastradoException p) {
+       			System.out.println(p.getMessage());
+    		   }
             
-            
-            grupoArray1.removerPerfil(perfilArray2.getNumber());
-            
+          //Try Catch pra remover perfis no Repositorio de Perfis do grupo.
+            try {
+            grupoArray1.removerPerfil(perfilArray2.getNumber());            
             //Checar se o perfil foi removido do grupo
             if (!grupoArray1.getListaNomes().existe(perfilArray2.getNumber())) {
     			System.out.println("O perfil "+ perfilArray2.getName()  + " foi removido do grupo!\n");
     		} else {
     			System.out.println("O perfil nao foi removido do grupo!\n");
     		}
+            } catch (PerfilNotFoundException p) {
+            System.out.println(p.getMessage());
+	         }
             
+            //Nao precisa de try catch pra Inserir Mensagens. Nao ha exception
             grupoArray1.inserirMensagem(mensagemArray1);
             grupoArray1.inserirMensagem(mensagemArray2);
             
@@ -90,7 +105,7 @@ public class GrupoTeste {
     			System.out.println("A mensagem " + mensagemArray2.getMensagem()+ " foi inserida no grupo.\n");
             }
             
-            
+            try{
             grupoArray1.removerMensagem(mensagemArray2);
             
             //Checar se a mensagem foi removida do grupo 1
@@ -99,7 +114,9 @@ public class GrupoTeste {
     		} else {
     			System.out.println("A mensagem nao foi removida do grupo!\n");
     		}
-            
+            } catch (MensagemNaoEncontradaException m){
+                System.out.println(m.getMessage());
+    	    }
             
             //Visualizacao do grupo
             System.out.println("Grupo array1 - " + grupoArray1.getNome());

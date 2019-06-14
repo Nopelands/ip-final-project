@@ -12,7 +12,6 @@ public class Conversa {
 		this.emissor = emissor;
 		this.mensagens = mensagens;
 	}
-	
 	public boolean equals (Conversa outraConversa) {
 		return this.emissor.equals(outraConversa.getEmissor()) && this.receptor.equals(outraConversa.getReceptor());
 	}
@@ -27,10 +26,5 @@ public class Conversa {
 	}
 	public void inserir (Mensagem novaMensagem) {
 		this.mensagens.inserir(novaMensagem);
-	}
-	public void inverter() {
-		Perfil aux = this.emissor;
-		this.emissor = this.receptor;
-		this.receptor = aux;
 	}
 }

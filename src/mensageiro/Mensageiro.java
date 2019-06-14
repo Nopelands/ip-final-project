@@ -17,43 +17,43 @@ public class Mensageiro {
         this.conversas = cadastroConversas;
         this.grupos = cadastroGrupos;
     }
-
-    public CadastroMensagens getMensagens() {
-        return mensagens;
-    }
-
-    public CadastroConversas getConversas() {
-        return conversas;
-    }
-
+    
+    // Conversa
+    
     public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
     	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
     		throw new PerfilNotFoundException();
     	}
     	this.mensagens.cadastrar(novaMensagem);
-		mensagens.inserir(novaMensagem);
-		Conversa possivelNovaConversa = new Conversa (remetente, destinatario, mensagens);
+    	mensagens.inserir(novaMensagem);
     	try {
-    		Conversa ordemDireta = conversas.procurarConversa(remetente, destinatario);
+    		Conversa ordemDireta = conversas.procurar(remetente, destinatario);
     		ordemDireta.inserir(novaMensagem);
-    		conversas.atualizarConversa(ordemDireta);
+    		conversas.atualizar(ordemDireta);
     		
     	} catch (ConversaNaoEncontradaException e) {
-    		conversas.iniciarConversa(possivelNovaConversa);
+    		Conversa novaConversaDireta = new Conversa (remetente, destinatario, mensagens);
+    		conversas.iniciar(novaConversaDireta);
     	}
     	try {
-    		possivelNovaConversa.inverter();
-    		Conversa ordemInversa = conversas.procurarConversa(destinatario, remetente);
+    		Conversa ordemInversa = conversas.procurar(destinatario, remetente);
     		ordemInversa.inserir(novaMensagem);
-    		conversas.atualizarConversa(ordemInversa);
+    		conversas.atualizar(ordemInversa);
     	} catch (ConversaNaoEncontradaException e) {
-    		conversas.iniciarConversa(possivelNovaConversa);
+    		Conversa possivelNovaConversaInversa = new Conversa (destinatario, remetente, mensagens);
+    		conversas.iniciar(possivelNovaConversaInversa);
     	}
     }
     
-    public void limparConversaUnilateral (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
-    	conversas.apagarConversa(destruidor, conservador);
+    public Conversa procurarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+    	return this.conversas.procurar(emissor, receptor);
     }
+    
+    public void apagarConversa (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    	conversas.apagar(destruidor, conservador);
+    }
+    
+    // Grupo
     
     public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
     	Grupo resultadoBusca = grupos.procurarGrupo(nomeGrupo);
@@ -65,26 +65,20 @@ public class Mensageiro {
     		grupos.atualizarGrupo(resultadoBusca);
     	}
     }
-    
-    //Grupo
-
-    public CadastroGrupos getGrupos() {
-        return grupos;
-    }
 
     public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
     }
     
-    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException{
+    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException {
     	grupos.removerGrupo(grupo);
     }
     
-    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
+    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException {
     	return grupos.procurarGrupo(nome);
     }
     
-    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
+    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
 		grupos.atualizarGrupo(grupo);
 	}
     
@@ -128,10 +122,6 @@ public class Mensageiro {
     public void enviarMensagem (Mensagem mensagem) {
         this.mensagens.cadastrar(mensagem);
     }
-
-    public String getMensagem(Mensagem mensagem){
-        return mensagem.getMensagem();
-    }
     public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
         this.mensagens.remover(mensagem);
     }
@@ -145,7 +135,5 @@ public class Mensageiro {
     public String procurarMensagem(int identificacao) throws IdentificacaoNaoEncontradaException{
         return mensagens.procurar(identificacao);
     }
-
-
 }
 
