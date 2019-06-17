@@ -33,7 +33,7 @@ public class Mensageiro {
     		
     	} catch (ConversaNaoEncontradaException e) {
     		Conversa novaConversaDireta = new Conversa (remetente, destinatario, mensagens);
-    		conversas.iniciar(novaConversaDireta);
+    		conversas.cadastrar (novaConversaDireta);
     	}
     	try {
     		Conversa ordemInversa = conversas.procurar(destinatario, remetente);
@@ -41,7 +41,7 @@ public class Mensageiro {
     		conversas.atualizar(ordemInversa);
     	} catch (ConversaNaoEncontradaException e) {
     		Conversa possivelNovaConversaInversa = new Conversa (destinatario, remetente, mensagens);
-    		conversas.iniciar(possivelNovaConversaInversa);
+    		conversas.cadastrar (possivelNovaConversaInversa);
     	}
     }
     
@@ -49,8 +49,8 @@ public class Mensageiro {
     	return this.conversas.procurar(emissor, receptor);
     }
     
-    public void apagarConversa (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
-    	conversas.apagar(destruidor, conservador);
+    public void removerConversa (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    	conversas.remover(destruidor, conservador);
     }
     
     // Grupo
