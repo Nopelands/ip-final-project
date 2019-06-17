@@ -20,7 +20,7 @@ public class Mensageiro {
     
     // Conversa
     
-    public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
+    public void inserirMensagemConversa (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
     	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
     		throw new PerfilNotFoundException();
     	}
