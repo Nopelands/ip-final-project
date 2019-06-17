@@ -59,23 +59,23 @@ public class Mensageiro {
     	}
     }
 
-    public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
+    public void cadastrar(Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
     }
     
-    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException {
+    public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
     	grupos.removerGrupo(grupo);
     }
     
-    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException {
+    public Grupo procurar(String nome) throws GrupoNaoEncontradoException {
     	return grupos.procurarGrupo(nome);
     }
     
-    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
+    public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException {
 		grupos.atualizarGrupo(grupo);
 	}
     
-    public boolean checarGrupo (String nome) {
+    public boolean existe(String nome) {
     	return grupos.checarGrupo(nome);
     }
     
