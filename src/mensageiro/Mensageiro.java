@@ -20,24 +20,30 @@ public class Mensageiro {
     
     // Conversa
     
-     public void cadastrarConversa (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException {
-    	if (perfis.existe(novaConversa.getEmissor()) && perfis.existe(novaConversa.getReceptor())) {
-    		conversas.cadastrar(novaConversa);
+     public void cadastrar (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException, MensagemNaoEncontradaException {
+    	if (this.perfis.existe(novaConversa.getEmissor()) && this.perfis.existe(novaConversa.getReceptor())) {
+    		Mensagem[] mensagens = novaConversa.getMensagens();
+    		for (int i = 0; i < mensagens.length; i++) {
+    			if (!this.mensagens.existe(mensagens[i])) {
+    				throw new MensagemNaoEncontradaException();
+    			}
+    		}
+    		this.conversas.cadastrar(novaConversa);
     	} else {
     		throw new PerfilNotFoundException();
     	}
     }
     
-    public void atualizarConversa (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
-    	conversas.atualizar(conversaAlterada);
+    public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
+    	this.conversas.atualizar(conversaAlterada);
     }
     
-    public Conversa procurarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+    public Conversa procurar (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
     	return this.conversas.procurar(emissor, receptor);
     }
     
-    public void removerConversa (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
-    	conversas.remover(destruidor, conservador);
+    public void remover (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    	this.conversas.remover(destruidor, conservador);
     }
     
     // Grupo
@@ -106,20 +112,20 @@ public class Mensageiro {
 
     //Mensagens
 
-    public void cadastrarMensagem (Mensagem mensagem) {
+    public void cadastrar (Mensagem mensagem) {
         this.mensagens.cadastrar(mensagem);
     }
-    public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
+    public void remover (Mensagem mensagem) throws MensagemNaoEncontradaException{
         this.mensagens.remover(mensagem);
     }
 
-    public void atualizarMensagem(Mensagem mensagem, String atualizar) throws MensagemNaoEncontradaException{
+    public void atualizar (Mensagem mensagem, String atualizar) throws MensagemNaoEncontradaException{
         this.mensagens.atualizar(mensagem, atualizar);
     }
-    public boolean existeMensagem(Mensagem mensagem){
+    public boolean existe (Mensagem mensagem){
         return mensagens.existe(mensagem);
     }
-    public String procurarMensagem(int identificacao) throws IdentificacaoNaoEncontradaException{
+    public String procurar (int identificacao) throws IdentificacaoNaoEncontradaException{
         return mensagens.procurar(identificacao);
     }
 }
