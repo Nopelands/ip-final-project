@@ -51,23 +51,23 @@ public class RepositorioMensagensLista implements RepositorioMensagens {
         }
     }
 
-    public void atualizar(Mensagem mensagem, String atualizador) throws MensagemNaoEncontradaException {
+    public void atualizar(Mensagem mensagem) throws IdentificacaoNaoEncontradaException {
         if (this.existe(mensagem.getMensagem())) {
-            if (this.mensagens.getMensagem().equals(mensagem.getMensagem())) {
-                mensagens.setMensagem(atualizador);
+            if (this.mensagens.getMensagem().equals(mensagem.getIdentificacao())) {
+                this.mensagens = mensagem;
             } else {
-                this.proximo.atualizar(mensagem, atualizador);
+                this.proximo.atualizar(mensagem);
             }
         } else {
-            throw new MensagemNaoEncontradaException();
+            throw new IdentificacaoNaoEncontradaException();
         }
     }
 
-    public String procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
+    public Mensagem procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
         if (this.mensagens == null) {
             throw new IdentificacaoNaoEncontradaException();
         } else if (this.mensagens.getIdentificacao() == identificacao) {
-            return this.mensagens.getMensagem();
+            return this.mensagens;
         } else {
             return this.proximo.procurar(identificacao);
         }

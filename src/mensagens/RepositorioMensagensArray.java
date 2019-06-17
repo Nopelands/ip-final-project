@@ -37,13 +37,13 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
             throw new MensagemNaoEncontradaException();
         }
     }
-    public String procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
+    public Mensagem procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
         boolean encontrou = false;
-        String retorno = "";
+        Mensagem retorno = null;
         for (int i = 0; i<mensagens.length && !encontrou;i++){
             if (mensagens[i].getIdentificacao()==identificacao) {
                 encontrou = true;
-                retorno = mensagens[i].getMensagem();
+                retorno = mensagens[i];
             }
         }
         if (encontrou)  {
@@ -52,16 +52,16 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
             throw new IdentificacaoNaoEncontradaException();
         }
     }
-    public void atualizar(Mensagem mensagem, String atualizado) throws MensagemNaoEncontradaException {
+    public void atualizar(Mensagem mensagem) throws IdentificacaoNaoEncontradaException {
         boolean naoencontrou = true;
         for (int i = 0; i<mensagens.length && naoencontrou; i++){
-            if (mensagens[i].getMensagem().equals(mensagem.getMensagem())) {
-                mensagens[i].setMensagem(atualizado);
+            if (mensagens[i].getMensagem().equals(mensagem.getIdentificacao())) {
+                mensagens[i]=mensagem;
                 naoencontrou = false;
             }
         }
         if (naoencontrou) {
-            throw new MensagemNaoEncontradaException();
+            throw new IdentificacaoNaoEncontradaException();
         }
     }
     public Mensagem [] getIterator(){
@@ -69,6 +69,9 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
     }
 
 }
+
+
+
 
 
 
