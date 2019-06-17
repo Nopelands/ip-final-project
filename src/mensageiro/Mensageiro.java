@@ -119,14 +119,15 @@ public class Mensageiro {
         this.mensagens.remover(mensagem);
     }
 
-    public void atualizar (Mensagem mensagem, String atualizar) throws MensagemNaoEncontradaException{
-        this.mensagens.atualizar(mensagem, atualizar);
+    public void atualizar (Mensagem mensagem) throws IdentificacaoNaoEncontradaException{
+        this.mensagens.atualizar(mensagem);
     }
     public boolean existe (Mensagem mensagem){
         return mensagens.existe(mensagem);
     }
-    public String procurar (int identificacao) throws IdentificacaoNaoEncontradaException{
+    public Mensagem procurar (int identificacao) throws IdentificacaoNaoEncontradaException{
         return mensagens.procurar(identificacao);
     }
 }
+
 
