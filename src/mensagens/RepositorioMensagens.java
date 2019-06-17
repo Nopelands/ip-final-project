@@ -11,4 +11,3 @@ public interface RepositorioMensagens {
 
     void atualizar(Mensagem mensagem, String atualizado) throws MensagemNaoEncontradaException;
 }
-

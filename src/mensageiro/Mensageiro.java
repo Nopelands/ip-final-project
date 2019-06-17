@@ -19,6 +19,7 @@ public class Mensageiro {
     }
     
     // Conversa
+    
      public void cadastrarConversa (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException {
     	if (perfis.existe(novaConversa.getEmissor()) && perfis.existe(novaConversa.getReceptor())) {
     		conversas.cadastrar(novaConversa);
