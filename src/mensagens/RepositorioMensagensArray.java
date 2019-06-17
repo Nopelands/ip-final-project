@@ -64,6 +64,11 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
             throw new MensagemNaoEncontradaException();
         }
     }
+    public Mensagem [] getIterator(){
+        return mensagens;
+    }
+
 }
+
 
 
