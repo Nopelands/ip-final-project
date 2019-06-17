@@ -11,14 +11,14 @@ public class CadastroMensagens {
     public void remover(Mensagem mensagem) throws MensagemNaoEncontradaException {
         repositorioMensagens.remover(mensagem);
     }
-    public String procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
+    public Mensagem procurar(int identificacao) throws IdentificacaoNaoEncontradaException {
         return repositorioMensagens.procurar(identificacao);
     }
 
     public boolean existe(Mensagem mensagem) {
         return repositorioMensagens.existe(mensagem.getMensagem());
     }
-    public void atualizar(Mensagem mensagem, String atualizado) throws MensagemNaoEncontradaException {
-        repositorioMensagens.atualizar(mensagem, atualizado);
+    public void atualizar(Mensagem mensagem) throws IdentificacaoNaoEncontradaException {
+        repositorioMensagens.atualizar(mensagem);
     }
 }
