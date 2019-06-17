@@ -1,4 +1,5 @@
 package mensageiro;
+package mensageiro;
 
 import perfis.*;
 import mensagens.*;
@@ -11,19 +12,19 @@ public class Mensageiro {
     private CadastroConversas conversas;
     private CadastroGrupos grupos;
 
-    public Mensageiro(CadastroPerfis cadastroPerfis, CadastroConversas cadastroConversas, CadastroGrupos cadastroGrupos, CadastroMensagens cadastroMensagens) {
-        this.mensagens = cadastroMensagens;
-        this.perfis = cadastroPerfis;
-        this.conversas = cadastroConversas;
-        this.grupos = cadastroGrupos;
+    public Mensageiro(RepositorioPerfis repositorioPerfis, RepositorioConversas repositorioConversas, RepositorioGrupos repositorioGrupos, RepositorioMensagens repositorioMensagens) {
+        this.mensagens = new CadastroMensagens(repositorioMensagens);
+        this.perfis = new CadastroPerfis(repositorioPerfis);
+        this.conversas = new CadastroConversas(repositorioConversas);
+        this.grupos = new CadastroGrupos(repositorioGrupos);
     }
     
     // Conversa
     
-    /* O método cadastrar(Conversa) da classe fachada define, como regra de negócio, que
-     * a conversa recebida como parâmetro só poderá ser cadastrada se:
-     * 1. Os perfis envolvidos já tiverem ambos sido cadastrados;
-     * 2. Todas as mensagens inseridas já tiverem sido cadastradas.
+    /* O metodo cadastrar(Conversa) da classe fachada define, como regra de negocio, que
+     * a conversa recebida como parametro so podera ser cadastrada se:
+     * 1. Os perfis envolvidos ja tiverem ambos sido cadastrados;
+     * 2. Todas as mensagens inseridas ja tiverem sido cadastradas.
      * */
      public void cadastrar (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException, MensagemNaoEncontradaException {
     	if (this.perfis.existe(novaConversa.getEmissor()) && this.perfis.existe(novaConversa.getReceptor())) {
