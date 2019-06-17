@@ -10,5 +10,7 @@ public interface RepositorioMensagens {
     String procurar(int identificacao) throws IdentificacaoNaoEncontradaException;
 
     void atualizar(Mensagem mensagem, String atualizado) throws MensagemNaoEncontradaException;
+
+    Mensagem [] getIterator();
 }
 
