@@ -20,15 +20,25 @@ public class Mensageiro {
     
     // Conversa
     
+    /* O método cadastrar(Conversa) da classe fachada define, como regra de negócio, que
+     * a conversa recebida como parâmetro só poderá ser cadastrada se:
+     * 1. Os perfis envolvidos já tiverem ambos sido cadastrados;
+     * 2. Todas as mensagens inseridas já tiverem sido cadastradas.
+     * */
      public void cadastrar (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException, MensagemNaoEncontradaException {
     	if (this.perfis.existe(novaConversa.getEmissor()) && this.perfis.existe(novaConversa.getReceptor())) {
     		Mensagem[] mensagens = novaConversa.getMensagens();
-    		for (int i = 0; i < mensagens.length; i++) {
+    		boolean existeUmaMensagemNaoCadastrada = false;
+    		for (int i = 0; i < mensagens.length && !existeUmaMensagemNaoCadastrada; i++) {
     			if (!this.mensagens.existe(mensagens[i])) {
-    				throw new MensagemNaoEncontradaException();
+    				existeUmaMensagemNaoCadastrada = true;
     			}
     		}
-    		this.conversas.cadastrar(novaConversa);
+    		if (!existeUmaMensagemNaoCadastrada) {
+    			this.conversas.cadastrar(novaConversa);
+    		} else {
+    			throw new MensagemNaoEncontradaException();
+    		}
     	} else {
     		throw new PerfilNotFoundException();
     	}
@@ -47,7 +57,7 @@ public class Mensageiro {
     }
     
     // Grupo
-
+    
     public void cadastrar(Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
     }
