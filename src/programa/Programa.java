@@ -75,11 +75,11 @@ public class Programa {
         System.out.println("Mensagens Removidas");
 
         //try catch para atualizar mensagens
-
+        Mensagem mensagemArrayTeste = new MensagemCodificada(perfilArray1, "teste", 712);
         try {
-            System.out.println("Atualizando mensagemArray3 com o texto: teste");
-            mensageiroArray.atualizar(mensagemArray3, "teste");
-        } catch (MensagemNaoEncontradaException exc2){
+            System.out.println("Atualizando mensagemArray3");
+            mensageiroArray.atualizar(mensagemArrayTeste);
+        } catch (IdentificacaoNaoEncontradaException exc2){
             System.out.println(exc2.getMessage());
         }
         System.out.println("Mensagem Atualizada");
@@ -87,9 +87,9 @@ public class Programa {
         //try catch para procurar identificação
         try {
             System.out.println("Procurando mensagem com identificação: 712");
-            String s = mensageiroArray.procurar(712);
+            Mensagem mensagemEncontrada = mensageiroArray.procurar(712);
             System.out.println("A mensagem com identificação igual a 712 é:");
-            System.out.println(s);
+            System.out.println(mensagemEncontrada.getMensagem());
         } catch (IdentificacaoNaoEncontradaException exc3){
             System.out.println(exc3.getMessage());
         }
@@ -214,4 +214,5 @@ public class Programa {
 
     }
 }
+
 
