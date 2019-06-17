@@ -7,7 +7,7 @@ public interface RepositorioMensagens {
 
     boolean existe(String mensagem);
 
-    String procurar(int identificacao) throws IdentificacaoNaoEncontradaException;
+    Mensagem procurar(int identificacao) throws IdentificacaoNaoEncontradaException;
 
-    void atualizar(Mensagem mensagem, String atualizado) throws MensagemNaoEncontradaException;
+    void atualizar(Mensagem atualizar) throws IdentificacaoNaoEncontradaException;
 }
