@@ -21,7 +21,7 @@ public class Conversa {
 	public Perfil getReceptor () {
 		return this.receptor;
 	}
-	public Mensagens[] getMensagens () {
+	public Mensagem[] getMensagens () {
 		return this.mensagens.getIterator();
 	}
 	public void inserir (Mensagem novaMensagem) {

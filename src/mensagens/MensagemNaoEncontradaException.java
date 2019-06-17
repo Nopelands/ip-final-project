@@ -1,7 +1,7 @@
 package mensagens;
 
 public class MensagemNaoEncontradaException extends Exception {
-    MensagemNaoEncontradaException() {
+    public MensagemNaoEncontradaException() {
         super("Mensagem não encontrada");
     }
 }
