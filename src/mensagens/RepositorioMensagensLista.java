@@ -53,7 +53,7 @@ public class RepositorioMensagensLista implements RepositorioMensagens {
 
     public void atualizar(Mensagem mensagem) throws IdentificacaoNaoEncontradaException {
         if (this.existe(mensagem.getMensagem())) {
-            if (this.mensagens.getMensagem().equals(mensagem.getIdentificacao())) {
+            if (this.mensagens.getIdentificacao()==(mensagem.getIdentificacao())) {
                 this.mensagens = mensagem;
             } else {
                 this.proximo.atualizar(mensagem);
@@ -74,5 +74,3 @@ public class RepositorioMensagensLista implements RepositorioMensagens {
 
     }
 }
-
-
