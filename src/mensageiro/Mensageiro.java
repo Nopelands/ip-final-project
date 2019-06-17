@@ -47,17 +47,6 @@ public class Mensageiro {
     }
     
     // Grupo
-    
-    public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
-    	Grupo resultadoBusca = grupos.procurarGrupo(nomeGrupo);
-    	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName())) {
-    		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRemetente());
-    	} else {
-    		mensagens.cadastrar(novaMensagem);
-    		resultadoBusca.inserirMensagem(novaMensagem);
-    		grupos.atualizarGrupo(resultadoBusca);
-    	}
-    }
 
     public void cadastrar(Grupo grupo) throws GrupoJaCadastradoException {
 		grupos.inserirGrupo(grupo);
