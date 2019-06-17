@@ -55,7 +55,7 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
     public void atualizar(Mensagem mensagem) throws IdentificacaoNaoEncontradaException {
         boolean naoencontrou = true;
         for (int i = 0; i<mensagens.length && naoencontrou; i++){
-            if (mensagens[i].getMensagem().equals(mensagem.getIdentificacao())) {
+            if (mensagens[i].getIdentificacao() == mensagem.getIdentificacao()) {
                 mensagens[i]=mensagem;
                 naoencontrou = false;
             }
@@ -69,9 +69,3 @@ public class RepositorioMensagensArray implements RepositorioMensagens {
     }
 
 }
-
-
-
-
-
-
