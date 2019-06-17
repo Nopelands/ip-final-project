@@ -63,15 +63,15 @@ public class Programa {
  	   //Try Catch pra inserir grupos no repositorioGrupos
  	   try {
 		    System.out.println("Inserindo grupos no repositorio: ");		
-         mensageiroArray.inserirGrupo(grupoArray1);
-         mensageiroArray.inserirGrupo(grupoArray2);
-         mensageiroArray.inserirGrupo(grupoArray3);
+         mensageiroArray.cadastrar(grupoArray1);
+         mensageiroArray.cadastrar(grupoArray2);
+         mensageiroArray.cadastrar(grupoArray3);
          
          //Checando se os 3 grupos foram inseridos no repositorio de grupos,
          //caso sim, 3 mensagens serÃ¢o impressas.
-         if (mensageiroArray.checarGrupo(grupoArray1.getNome())
- 				&& mensageiroArray.checarGrupo(grupoArray2.getNome())
- 				&& mensageiroArray.checarGrupo(grupoArray3.getNome())) {
+         if (mensageiroArray.existe(grupoArray1.getNome())
+ 				&& mensageiroArray.existe(grupoArray2.getNome())
+ 				&& mensageiroArray.existe(grupoArray3.getNome())) {
  			System.out.println(
  					"O grupo " + grupoArray1.getNome() + " foi inserido.");
  			System.out.println("O grupo " +grupoArray2.getNome()
@@ -85,19 +85,19 @@ public class Programa {
         
  	   //Atualizaçao da descricao do grupo 1 (Familia)
  	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
- 	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurarGrupo("Familia").getDescricao());
+ 	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   
- 	   mensageiroArray.atualizarGrupo(grupoArrayAtualizado1);
- 	   System.out.println("Descricao nova do Grupo 1(Familia): " + mensageiroArray.procurarGrupo("Familia").getDescricao());
+ 	   mensageiroArray.atualizar(grupoArrayAtualizado1);
+ 	   System.out.println("Descricao nova do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   System.out.println("");
  	  
  	  //Try Catch pra remover grupos no repositorioGrupos
  	   try {
-         mensageiroArray.removerGrupo(grupoArray2);
+         mensageiroArray.remover(grupoArray2);
          
          //Checar se o grupo removido realmente foi retirado do repositorio de grupos
          //Caso sim, sera impresso " O grupo x foi removido".
-         if (!mensageiroArray.checarGrupo(grupoArray2.getNome())) {
+         if (!mensageiroArray.existe(grupoArray2.getNome())) {
  			System.out.println("O grupo "+ grupoArray2.getNome()  + " foi removido!\n");
  		} else {
  			System.out.println("O grupo nao foi removido!\n");
