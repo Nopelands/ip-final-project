@@ -37,11 +37,11 @@ public class Programa {
             e.printStackTrace();
         }       
         
-        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY----------------------------------------------------");
+        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY--------------------------------------------------");
         System.out.println("");
         
         //Teste MENSAGENS Array
-        
+
         Mensagem mensagemArray1 = new MensagemCodificada ( perfilArray1, "bom dia", 123);
         Mensagem mensagemArray2 = new MensagemCodificada ( perfilArray2, "respira: bo dia", 43);
         Mensagem mensagemArray3 = new MensagemCodificada  (perfilArray1, " tem prova hoje?", 712);
@@ -49,11 +49,53 @@ public class Programa {
         Mensagem mensagemArray5 = new MensagemNormal (perfilArray3, "por que vocês estão usando mensagem codificada??", 213);
         Mensagem mensagemArray6 = new MensagemCodificada (perfilArray1, "vai que o professor encontra essa mensagem e me dá 0 por não ter estudado", 000);
 
+        System.out.println("---------------------------------- TESTE DA CLASSE MENSAGENS - REPOSITORIO EM ARRAY -----------------------------------");
         mensagemArray6.codificar();
         mensagemArray1.codificar();
         mensagemArray2.codificar();
         mensagemArray4.codificar();
-        
+
+        System.out.println("Inserindo mensagens no repositorio...");
+        mensageiroArray.cadastrar(mensagemArray1);
+        mensageiroArray.cadastrar(mensagemArray2);
+        mensageiroArray.cadastrar(mensagemArray3);
+        mensageiroArray.cadastrar(mensagemArray4);
+        mensageiroArray.cadastrar(mensagemArray5);
+        mensageiroArray.cadastrar(mensagemArray6);
+        System.out.println("Mensagens cadastradas");
+
+        //try catch para remover mensagens
+        try {
+            System.out.println("Removendo mensagens...");
+            mensageiroArray.remover(mensagemArray1);
+            mensageiroArray.remover(mensagemArray2);
+        } catch (MensagemNaoEncontradaException exc1){
+            System.out.println(exc1.getMessage());
+        }
+        System.out.println("Mensagens Removidas");
+
+        //try catch para atualizar mensagens
+
+        try {
+            System.out.println("Atualizando mensagemArray3 com o texto: teste");
+            mensageiroArray.atualizar(mensagemArray3, "teste");
+        } catch (MensagemNaoEncontradaException exc2){
+            System.out.println(exc2.getMessage());
+        }
+        System.out.println("Mensagem Atualizada");
+
+        //try catch para procurar identificação
+        try {
+            System.out.println("Procurando mensagem com identificação: 712");
+            String s = mensageiroArray.procurar(712);
+            System.out.println("A mensagem com identificação igual a 712 é:");
+            System.out.println(s);
+        } catch (IdentificacaoNaoEncontradaException exc3){
+            System.out.println(exc3.getMessage());
+        }
+        System.out.println("-----------------------------------FIM DO TESTE DE MENSAGENS EM ARRAY--------------------------------------------------");
+        System.out.println("");
+
         //Teste GRUPO Array
         Grupo grupoArray1 = new Grupo("Familia", "Galera da farofa", new RepositorioPerfisArray(), new RepositorioMensagensArray());
 		Grupo grupoArray2 = new Grupo("Amigos", "Galera do pagode", new RepositorioPerfisArray(), new RepositorioMensagensArray());
@@ -172,3 +214,4 @@ public class Programa {
 
     }
 }
+
