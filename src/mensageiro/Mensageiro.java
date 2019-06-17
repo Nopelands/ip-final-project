@@ -106,7 +106,7 @@ public class Mensageiro {
 
     //Mensagens
 
-    public void enviarMensagem (Mensagem mensagem) {
+    public void cadastrarMensagem (Mensagem mensagem) {
         this.mensagens.cadastrar(mensagem);
     }
     public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
