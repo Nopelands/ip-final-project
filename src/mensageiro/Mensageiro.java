@@ -1,5 +1,4 @@
 package mensageiro;
-package mensageiro;
 
 import perfis.*;
 import mensagens.*;
