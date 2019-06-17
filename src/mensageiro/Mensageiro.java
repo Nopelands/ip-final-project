@@ -19,30 +19,16 @@ public class Mensageiro {
     }
     
     // Conversa
-    
-    public void inserirMensagemConversa (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
-    	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
+     public void cadastrarConversa (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException {
+    	if (perfis.existe(novaConversa.getEmissor()) && perfis.existe(novaConversa.getReceptor())) {
+    		conversas.cadastrar(novaConversa);
+    	} else {
     		throw new PerfilNotFoundException();
     	}
-    	this.mensagens.cadastrar(novaMensagem);
-    	mensagens.inserir(novaMensagem);
-    	try {
-    		Conversa ordemDireta = conversas.procurar(remetente, destinatario);
-    		ordemDireta.inserir(novaMensagem);
-    		conversas.atualizar(ordemDireta);
-    		
-    	} catch (ConversaNaoEncontradaException e) {
-    		Conversa novaConversaDireta = new Conversa (remetente, destinatario, mensagens);
-    		conversas.cadastrar (novaConversaDireta);
-    	}
-    	try {
-    		Conversa ordemInversa = conversas.procurar(destinatario, remetente);
-    		ordemInversa.inserir(novaMensagem);
-    		conversas.atualizar(ordemInversa);
-    	} catch (ConversaNaoEncontradaException e) {
-    		Conversa possivelNovaConversaInversa = new Conversa (destinatario, remetente, mensagens);
-    		conversas.cadastrar (possivelNovaConversaInversa);
-    	}
+    }
+    
+    public void atualizarConversa (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
+    	conversas.atualizar(conversaAlterada);
     }
     
     public Conversa procurarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
