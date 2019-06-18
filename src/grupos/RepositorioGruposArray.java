@@ -12,7 +12,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		this.arrayGrupos = new Grupo[0];
 	}
 
-	public void inserirGrupo(Grupo grupo){
+	public void cadastrar(Grupo grupo){
 		Grupo[] temp = new Grupo[arrayGrupos.length + 1];
 			for (int i = 0; i < arrayGrupos.length; i++) {
 				temp[i] = arrayGrupos[i];
@@ -21,8 +21,8 @@ public class RepositorioGruposArray implements RepositorioGrupos {
         arrayGrupos = temp;
 	}
 
-	public void removerGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
-		if (checarGrupo(grupo.getNome())) {
+	public void remover(Grupo grupo) throws GrupoNaoEncontradoException{
+		if (existe(grupo.getNome())) {
 			Grupo[] aux = new Grupo[arrayGrupos.length - 1];
 			for (int i = 0, j = 0; i < aux.length; i++) {
 				if (!this.arrayGrupos[j].getNome().equals(grupo.getNome())) {
@@ -36,7 +36,7 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 			throw new GrupoNaoEncontradoException();
 	}
 
-	public boolean checarGrupo(String nome) {
+	public boolean existe(String nome) {
 		for (int i = 0; i < this.arrayGrupos.length; i++) {
 			if (this.arrayGrupos[i] != null && this.arrayGrupos[i].getNome().equals(nome)){
 				return true;
@@ -45,9 +45,9 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 		return false;
 	}
 
-	public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
+	public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
 		Grupo retorno;
-		if (checarGrupo(nome)) {
+		if (existe(nome)) {
 			for (int i = 0; i < this.arrayGrupos.length; i++) {
 				if (this.arrayGrupos[i].getNome().equals(nome)) {
 					retorno = this.arrayGrupos[i];
@@ -61,9 +61,9 @@ public class RepositorioGruposArray implements RepositorioGrupos {
 	}
 
  
-	public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
+	public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException {
         for (int i = 0; i < this.arrayGrupos.length; i++) {
-            if (this.checarGrupo(grupo.getNome())) {
+            if (this.existe(grupo.getNome())) {
                 if (arrayGrupos[i].getNome().equals(grupo.getNome())) {
                 	arrayGrupos[i] = grupo;
                 }
