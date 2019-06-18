@@ -7,8 +7,8 @@ import conversas.*;
 public class GrupoTeste {
     public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException, PerfilNotFoundException, PerfilJaCadastradoException, MensagemNaoEncontradaException {
         //Testando a classe Grupos
-    	Mensageiro mensageiroArray = new Mensageiro(new CadastroPerfis(new RepositorioPerfisArray()), new CadastroConversas(new RepositorioConversasArray(1000)), new CadastroGrupos(new RepositorioGruposArray()), new CadastroMensagens(new RepositorioMensagensArray()));
-    	Mensageiro mensageiroLista = new Mensageiro(new CadastroPerfis(new RepositorioPerfisLista()), new CadastroConversas(new RepositorioConversasLista()), new CadastroGrupos(new RepositorioGruposLista()), new CadastroMensagens(new RepositorioMensagensLista()));
+    	Mensageiro mensageiroArray = new Mensageiro(new RepositorioPerfisArray(), new RepositorioConversasArray(1000), new RepositorioGruposArray(), new RepositorioMensagensArray());
+    	Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
 		
 		//GRUPOS ARRAY
 		
