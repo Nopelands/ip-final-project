@@ -58,7 +58,7 @@ public class RepositorioPerfisLista implements RepositorioPerfis{
             if (this.perfil.equals(perfil)) {
                 this.perfil = perfil;
             } else {
-                this.atualizar(perfil);
+                this.next.atualizar(perfil);
             }
         } else {
             throw new PerfilNotFoundException();
