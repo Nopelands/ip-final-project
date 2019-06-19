@@ -8,8 +8,8 @@ import mensageiro.*;
 
 public class Programa {
     public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException, PerfilJaCadastradoException, PerfilNotFoundException{
-    	Mensageiro mensageiroArray = new Mensageiro(new CadastroPerfis(new RepositorioPerfisArray()), new CadastroConversas(new RepositorioConversasArray(1000)), new CadastroGrupos(new RepositorioGruposArray()), new CadastroMensagens(new RepositorioMensagensArray()));
-    	Mensageiro mensageiroLista = new Mensageiro(new CadastroPerfis(new RepositorioPerfisLista()), new CadastroConversas(new RepositorioConversasLista()), new CadastroGrupos(new RepositorioGruposLista()), new CadastroMensagens(new RepositorioMensagensLista()));
+    	Mensageiro mensageiroArray = new Mensageiro(new RepositorioPerfisArray(), new RepositorioConversasArray(1000), new RepositorioGruposArray(), new RepositorioMensagensArray());
+    	Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
        
     	//Testes em Array
     	//Teste PERFIL em Array
@@ -37,11 +37,11 @@ public class Programa {
             e.printStackTrace();
         }       
         
-        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY----------------------------------------------------");
+        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY--------------------------------------------------");
         System.out.println("");
         
         //Teste MENSAGENS Array
-        
+
         Mensagem mensagemArray1 = new MensagemCodificada ( perfilArray1, "bom dia", 123);
         Mensagem mensagemArray2 = new MensagemCodificada ( perfilArray2, "respira: bo dia", 43);
         Mensagem mensagemArray3 = new MensagemCodificada  (perfilArray1, " tem prova hoje?", 712);
@@ -49,11 +49,54 @@ public class Programa {
         Mensagem mensagemArray5 = new MensagemNormal (perfilArray3, "por que voc√™s est√£o usando mensagem codificada??", 213);
         Mensagem mensagemArray6 = new MensagemCodificada (perfilArray1, "vai que o professor encontra essa mensagem e me d√° 0 por n√£o ter estudado", 000);
 
+        System.out.println("---------------------------------- TESTE DA CLASSE MENSAGENS - REPOSITORIO EM ARRAY -----------------------------------");
+        
         mensagemArray6.codificar();
         mensagemArray1.codificar();
         mensagemArray2.codificar();
         mensagemArray4.codificar();
-        
+		
+        System.out.println("Inserindo mensagens no repositorio...");
+        mensageiroArray.cadastrar(mensagemArray1);
+        mensageiroArray.cadastrar(mensagemArray2);
+        mensageiroArray.cadastrar(mensagemArray3);
+        mensageiroArray.cadastrar(mensagemArray4);
+        mensageiroArray.cadastrar(mensagemArray5);
+        mensageiroArray.cadastrar(mensagemArray6);
+        System.out.println("Mensagens cadastradas");
+
+        //try catch para remover mensagens
+        try {
+            System.out.println("Removendo mensagens...");
+            mensageiroArray.remover(mensagemArray1);
+            mensageiroArray.remover(mensagemArray2);
+        } catch (MensagemNaoEncontradaException exc1){
+            System.out.println(exc1.getMessage());
+        }
+        System.out.println("Mensagens Removidas");
+
+        //try catch para atualizar mensagens
+        Mensagem mensagemArrayTeste = new MensagemCodificada(perfilArray1, "teste", 712);
+        try {
+            System.out.println("Atualizando mensagemArray3");
+            mensageiroArray.atualizar(mensagemArrayTeste);
+        } catch (IdentificacaoNaoEncontradaException exc2){
+            System.out.println(exc2.getMessage());
+        }
+        System.out.println("Mensagem Atualizada");
+
+        //try catch para procurar identifica√ß√£o
+        try {
+            System.out.println("Procurando mensagem com identifica√ß√£o: 712");
+            Mensagem mensagemEncontrada = mensageiroArray.procurar(712);
+            System.out.println("A mensagem com identifica√ß√£o igual a 712 √©:");
+            System.out.println(mensagemEncontrada.getMensagem());
+        } catch (IdentificacaoNaoEncontradaException exc3){
+            System.out.println(exc3.getMessage());
+        }
+        System.out.println("-----------------------------------FIM DO TESTE DE MENSAGENS EM ARRAY--------------------------------------------------");
+        System.out.println("");
+
         //Teste GRUPO Array
         Grupo grupoArray1 = new Grupo("Familia", "Galera da farofa", new RepositorioPerfisArray(), new RepositorioMensagensArray());
 		Grupo grupoArray2 = new Grupo("Amigos", "Galera do pagode", new RepositorioPerfisArray(), new RepositorioMensagensArray());
@@ -63,15 +106,15 @@ public class Programa {
  	   //Try Catch pra inserir grupos no repositorioGrupos
  	   try {
 		    System.out.println("Inserindo grupos no repositorio: ");		
-         mensageiroArray.inserirGrupo(grupoArray1);
-         mensageiroArray.inserirGrupo(grupoArray2);
-         mensageiroArray.inserirGrupo(grupoArray3);
+         mensageiroArray.cadastrar(grupoArray1);
+         mensageiroArray.cadastrar(grupoArray2);
+         mensageiroArray.cadastrar(grupoArray3);
          
          //Checando se os 3 grupos foram inseridos no repositorio de grupos,
          //caso sim, 3 mensagens ser√É¬¢o impressas.
-         if (mensageiroArray.checarGrupo(grupoArray1.getNome())
- 				&& mensageiroArray.checarGrupo(grupoArray2.getNome())
- 				&& mensageiroArray.checarGrupo(grupoArray3.getNome())) {
+         if (mensageiroArray.existe(grupoArray1.getNome())
+ 				&& mensageiroArray.existe(grupoArray2.getNome())
+ 				&& mensageiroArray.existe(grupoArray3.getNome())) {
  			System.out.println(
  					"O grupo " + grupoArray1.getNome() + " foi inserido.");
  			System.out.println("O grupo " +grupoArray2.getNome()
@@ -85,19 +128,19 @@ public class Programa {
         
  	   //Atualiza√ßao da descricao do grupo 1 (Familia)
  	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
- 	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurarGrupo("Familia").getDescricao());
+ 	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   
- 	   mensageiroArray.atualizarGrupo(grupoArrayAtualizado1);
- 	   System.out.println("Descricao nova do Grupo 1(Familia): " + mensageiroArray.procurarGrupo("Familia").getDescricao());
+ 	   mensageiroArray.atualizar(grupoArrayAtualizado1);
+ 	   System.out.println("Descricao nova do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   System.out.println("");
  	  
  	  //Try Catch pra remover grupos no repositorioGrupos
  	   try {
-         mensageiroArray.removerGrupo(grupoArray2);
+         mensageiroArray.remover(grupoArray2);
          
          //Checar se o grupo removido realmente foi retirado do repositorio de grupos
          //Caso sim, sera impresso " O grupo x foi removido".
-         if (!mensageiroArray.checarGrupo(grupoArray2.getNome())) {
+         if (!mensageiroArray.existe(grupoArray2.getNome())) {
  			System.out.println("O grupo "+ grupoArray2.getNome()  + " foi removido!\n");
  		} else {
  			System.out.println("O grupo nao foi removido!\n");
@@ -167,8 +210,77 @@ public class Programa {
          System.out.println(mensagemArray5.getRemetente().getName() + ": " + mensagemArray5.getMensagem());
          System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM ARRAY----------------------------------------------------");
          System.out.println("");
-
-        //TODO main
-
+         
+         System.out.println("---------------------------------- TESTE DA CLASSE CONVERSAS - REPOSITORIO EM ARRAY -------------------------------------");
+         
+         Conversa conversaArray1 = new Conversa (perfilArray1, perfilArray2, new RepositorioMensagensArray());
+         Conversa conversaArray2 = new Conversa (perfilArray2, perfilArray3, new RepositorioMensagensArray());
+         
+         // Cadastrando as conversas no sistema
+         try {
+        	 mensageiroArray.cadastrar(conversaArray1);
+        	 System.out.println("A conversa entre os perfis " + conversaArray1.getEmissor().getName() + " e " + conversaArray1.getReceptor().getName() + " foi cadastrada com sucesso.");
+        	 mensageiroArray.cadastrar(conversaArray2);
+        	 System.out.println("A conversa entre os perfis " + conversaArray2.getEmissor().getName() + " e " + conversaArray2.getReceptor().getName() + " foi cadastrada com sucesso.");
+         } catch (RepositorioException e1) {
+        	 System.out.println(e1.getMessage());
+         } catch (ConversaReiniciadaException e2) {
+        	 System.out.println(e2.getMessage());
+         } catch (NaoSaoContatosException e3) {
+        	 System.out.println(e3.getMessage());
+         } catch (PerfilNotFoundException e4) {
+        	 System.out.println(e4.getMessage());
+         } catch (MensagemNaoEncontradaException e5) {
+        	 System.out.println(e5.getMessage());
+         }
+         
+         // Alimentando a conversa com mensagens
+         Conversa resultadoBusca = conversaArray2;
+         try {
+        	 resultadoBusca = mensageiroArray.procurar(perfilArray2, perfilArray1);
+        	 System.out.println("A conversa entre " + perfilArray2.getName() + " e " + perfilArray1.getName() + " foi encontrada com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 // A conversa n„o ser· encontrada pelo sistema porque a operaÁ„o de cadastro n„o È comutativa.
+        	 // A conversa que cadastramos tinha 'sergio' como emissor e 'ricardo' como receptor, e n„o o contr·rio.
+        	 System.out.println(e.getMessage());
+         }
+         
+         try {
+        	 resultadoBusca = mensageiroArray.procurar(perfilArray1, perfilArray2);
+        	 System.out.println("A conversa entre " + perfilArray1.getName() + " e " + perfilArray2.getName() + " foi encontrada com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 System.out.println(e.getMessage());
+         }
+         
+         resultadoBusca.inserir(mensagemArray1);
+         resultadoBusca.inserir(mensagemArray2);
+         resultadoBusca.inserir(mensagemArray3);
+         
+         try {
+        	 mensageiroArray.atualizar(resultadoBusca);
+        	 System.out.println("A conversa entre os perfis " + resultadoBusca.getEmissor().getName() + " e " + resultadoBusca.getReceptor().getName() + " foi atualizada com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 System.out.println(e.getMessage());
+         }
+         
+         // Removendo uma conversa
+         try {
+        	 mensageiroArray.remover(perfilArray1, perfilArray3);
+        	 System.out.println("A conversa entre os perfis " + perfilArray1.getName() + " e " + perfilArray3.getName() + " foi removida com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 // A conversa n„o poder· ser removida porque n„o est· previamente cadastrada no sistema
+        	 System.out.println(e.getMessage());
+         }
+         
+         try {
+        	 mensageiroArray.remover(perfilArray2, perfilArray3);
+        	 System.out.println("A conversa entre os perfis " + perfilArray2.getName() + " e " + perfilArray3.getName() + " foi removida com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 System.out.println(e.getMessage());
+         }
+         
+         System.out.println("-----------------------------------FIM DO TESTE DE CONVERSAS EM ARRAY----------------------------------------------------");
     }
 }
+
+

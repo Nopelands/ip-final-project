@@ -11,79 +11,71 @@ public class Mensageiro {
     private CadastroConversas conversas;
     private CadastroGrupos grupos;
 
-    public Mensageiro(CadastroPerfis cadastroPerfis, CadastroConversas cadastroConversas, CadastroGrupos cadastroGrupos, CadastroMensagens cadastroMensagens) {
-        this.mensagens = cadastroMensagens;
-        this.perfis = cadastroPerfis;
-        this.conversas = cadastroConversas;
-        this.grupos = cadastroGrupos;
+    public Mensageiro(RepositorioPerfis repositorioPerfis, RepositorioConversas repositorioConversas, RepositorioGrupos repositorioGrupos, RepositorioMensagens repositorioMensagens) {
+        this.mensagens = new CadastroMensagens(repositorioMensagens);
+        this.perfis = new CadastroPerfis(repositorioPerfis);
+        this.conversas = new CadastroConversas(repositorioConversas);
+        this.grupos = new CadastroGrupos(repositorioGrupos);
     }
     
     // Conversa
     
-    public void enviarMensagemPrivado (Perfil remetente, Perfil destinatario, Mensagem novaMensagem, RepositorioMensagens mensagens) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException, PerfilNotFoundException {
-    	if (!perfis.existe(remetente) || !perfis.existe(destinatario)) {
+    /* O metodo cadastrar(Conversa) da classe fachada define, como regra de negocio, que
+     * a conversa recebida como parametro so podera ser cadastrada se:
+     * 1. Os perfis envolvidos ja tiverem ambos sido cadastrados;
+     * 2. Todas as mensagens inseridas ja tiverem sido cadastradas.
+     * */
+     public void cadastrar (Conversa novaConversa) throws RepositorioException, ConversaReiniciadaException, NaoSaoContatosException, PerfilNotFoundException, MensagemNaoEncontradaException {
+    	if (this.perfis.existe(novaConversa.getEmissor()) && this.perfis.existe(novaConversa.getReceptor())) {
+    		Mensagem[] mensagens = novaConversa.getMensagens();
+    		boolean existeUmaMensagemNaoCadastrada = false;
+    		for (int i = 0; i < mensagens.length && !existeUmaMensagemNaoCadastrada; i++) {
+    			if (!this.mensagens.existe(mensagens[i])) {
+    				existeUmaMensagemNaoCadastrada = true;
+    			}
+    		}
+    		if (!existeUmaMensagemNaoCadastrada) {
+    			this.conversas.cadastrar(novaConversa);
+    		} else {
+    			throw new MensagemNaoEncontradaException();
+    		}
+    	} else {
     		throw new PerfilNotFoundException();
-    	}
-    	this.mensagens.cadastrar(novaMensagem);
-    	mensagens.inserir(novaMensagem);
-    	try {
-    		Conversa ordemDireta = conversas.procurar(remetente, destinatario);
-    		ordemDireta.inserir(novaMensagem);
-    		conversas.atualizar(ordemDireta);
-    		
-    	} catch (ConversaNaoEncontradaException e) {
-    		Conversa novaConversaDireta = new Conversa (remetente, destinatario, mensagens);
-    		conversas.cadastrar (novaConversaDireta);
-    	}
-    	try {
-    		Conversa ordemInversa = conversas.procurar(destinatario, remetente);
-    		ordemInversa.inserir(novaMensagem);
-    		conversas.atualizar(ordemInversa);
-    	} catch (ConversaNaoEncontradaException e) {
-    		Conversa possivelNovaConversaInversa = new Conversa (destinatario, remetente, mensagens);
-    		conversas.cadastrar (possivelNovaConversaInversa);
     	}
     }
     
-    public Conversa procurarConversa (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
+    public void atualizar (Conversa conversaAlterada) throws ConversaNaoEncontradaException {
+    	this.conversas.atualizar(conversaAlterada);
+    }
+    
+    public Conversa procurar (Perfil emissor, Perfil receptor) throws ConversaNaoEncontradaException {
     	return this.conversas.procurar(emissor, receptor);
     }
     
-    public void removerConversa (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
-    	conversas.remover(destruidor, conservador);
+    public void remover (Perfil destruidor, Perfil conservador) throws ConversaNaoEncontradaException {
+    	this.conversas.remover(destruidor, conservador);
     }
     
     // Grupo
     
-    public void enviarMensagemGrupo (String nomeGrupo, Mensagem novaMensagem) throws GrupoNaoEncontradoException, RemetenteIntrusoException {
-    	Grupo resultadoBusca = grupos.procurarGrupo(nomeGrupo);
-    	if (!resultadoBusca.getListaNomes().existe(novaMensagem.getRemetente().getName())) {
-    		throw new RemetenteIntrusoException(resultadoBusca, novaMensagem.getRemetente());
-    	} else {
-    		mensagens.cadastrar(novaMensagem);
-    		resultadoBusca.inserirMensagem(novaMensagem);
-    		grupos.atualizarGrupo(resultadoBusca);
-    	}
-    }
-
-    public void inserirGrupo (Grupo grupo) throws GrupoJaCadastradoException {
-		grupos.inserirGrupo(grupo);
+    public void cadastrar(Grupo grupo) throws GrupoJaCadastradoException {
+		grupos.cadastrar(grupo);
     }
     
-    public void removerGrupo (Grupo grupo) throws GrupoNaoEncontradoException {
-    	grupos.removerGrupo(grupo);
+    public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
+    	grupos.remover(grupo);
     }
     
-    public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException {
-    	return grupos.procurarGrupo(nome);
+    public Grupo procurar(String nome) throws GrupoNaoEncontradoException {
+    	return grupos.procurar(nome);
     }
     
-    public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
-		grupos.atualizarGrupo(grupo);
+    public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException {
+		grupos.atualizar(grupo);
 	}
     
-    public boolean checarGrupo (String nome) {
-    	return grupos.checarGrupo(nome);
+    public boolean existe(String nome) {
+    	return grupos.existe(nome);
     }
     
     //Perfil
@@ -92,21 +84,22 @@ public class Mensageiro {
 
     //Mensagens
 
-    public void cadastrarMensagem (Mensagem mensagem) {
+    public void cadastrar (Mensagem mensagem) {
         this.mensagens.cadastrar(mensagem);
     }
-    public void removerMensagem(Mensagem mensagem) throws MensagemNaoEncontradaException{
+    public void remover (Mensagem mensagem) throws MensagemNaoEncontradaException{
         this.mensagens.remover(mensagem);
     }
 
-    public void atualizarMensagem(Mensagem mensagem, String atualizar) throws MensagemNaoEncontradaException{
-        this.mensagens.atualizar(mensagem, atualizar);
+    public void atualizar (Mensagem mensagem) throws IdentificacaoNaoEncontradaException{
+        this.mensagens.atualizar(mensagem);
     }
-    public boolean existeMensagem(Mensagem mensagem){
+    public boolean existe (Mensagem mensagem){
         return mensagens.existe(mensagem);
     }
-    public String procurarMensagem(int identificacao) throws IdentificacaoNaoEncontradaException{
+    public Mensagem procurar (int identificacao) throws IdentificacaoNaoEncontradaException{
         return mensagens.procurar(identificacao);
     }
 }
+
 

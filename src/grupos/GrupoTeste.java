@@ -2,14 +2,13 @@ package grupos;
 import perfis.*;
 import mensagens.*;
 import mensageiro.*;
-import grupos.*;
 import conversas.*;
 
 public class GrupoTeste {
     public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException, PerfilNotFoundException, PerfilJaCadastradoException, MensagemNaoEncontradaException {
         //Testando a classe Grupos
-    	Mensageiro mensageiroArray = new Mensageiro(new CadastroPerfis(new RepositorioPerfisArray()), new CadastroConversas(new RepositorioConversasArray(1000)), new CadastroGrupos(new RepositorioGruposArray()), new CadastroMensagens(new RepositorioMensagensArray()));
-    	Mensageiro mensageiroLista = new Mensageiro(new CadastroPerfis(new RepositorioPerfisLista()), new CadastroConversas(new RepositorioConversasLista()), new CadastroGrupos(new RepositorioGruposLista()), new CadastroMensagens(new RepositorioMensagensLista()));
+    	Mensageiro mensageiroArray = new Mensageiro(new RepositorioPerfisArray(), new RepositorioConversasArray(1000), new RepositorioGruposArray(), new RepositorioMensagensArray());
+    	Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
 		
 		//GRUPOS ARRAY
 		
@@ -26,15 +25,15 @@ public class GrupoTeste {
     	   //Try Catch pra inserir grupos no repositorioGrupos
     	   try {
 		    System.out.println("Inserindo grupos no repositorio: ");		
-            mensageiroArray.inserirGrupo(grupoArray1);
-            mensageiroArray.inserirGrupo(grupoArray2);
-            mensageiroArray.inserirGrupo(grupoArray3);
+            mensageiroArray.cadastrar(grupoArray1);
+            mensageiroArray.cadastrar(grupoArray2);
+            mensageiroArray.cadastrar(grupoArray3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
             //caso sim, 3 mensagens serÃ¢o impressas.
-            if (mensageiroArray.checarGrupo(grupoArray1.getNome())
-    				&& mensageiroArray.checarGrupo(grupoArray2.getNome())
-    				&& mensageiroArray.checarGrupo(grupoArray3.getNome())) {
+            if (mensageiroArray.existe(grupoArray1.getNome())
+    				&& mensageiroArray.existe(grupoArray2.getNome())
+    				&& mensageiroArray.existe(grupoArray3.getNome())) {
     			System.out.println(
     					"O grupo " + grupoArray1.getNome() + " foi inserido.");
     			System.out.println("O grupo " +grupoArray2.getNome()
@@ -48,15 +47,15 @@ public class GrupoTeste {
            
     	   //Atualizaçao da descricao do grupo 1 (Familia)
     	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
-    	   mensageiroArray.atualizarGrupo(grupoArrayAtualizado1);
+    	   mensageiroArray.atualizar(grupoArrayAtualizado1);
     	   
     	  //Try Catch pra remover grupos no repositorioGrupos
     	   try {
-            mensageiroArray.removerGrupo(grupoArray2);
+            mensageiroArray.remover(grupoArray2);
             
             //Checar se o grupo removido realmente foi retirado do repositorio de grupos
             //Caso sim, sera impresso " O grupo x foi removido".
-            if (!mensageiroArray.checarGrupo(grupoArray2.getNome())) {
+            if (!mensageiroArray.existe(grupoArray2.getNome())) {
     			System.out.println("O grupo "+ grupoArray2.getNome()  + " foi removido!\n");
     		} else {
     			System.out.println("O grupo nao foi removido!\n");
@@ -139,15 +138,15 @@ public class GrupoTeste {
             
             
 		    System.out.println("Inserindo grupos no repositorio: ");		
-            mensageiroLista.inserirGrupo(grupoLista1);
-            mensageiroLista.inserirGrupo(grupoLista2);
-            mensageiroLista.inserirGrupo(grupoLista3);
+            mensageiroLista.cadastrar(grupoLista1);
+            mensageiroLista.cadastrar(grupoLista2);
+            mensageiroLista.cadastrar(grupoLista3);
             
             //Checando se os 3 grupos foram inseridos no repositorio de grupos,
             //caso sim, 3 mensagens serÃ¢o impressas.
-            if (mensageiroLista.checarGrupo(grupoLista1.getNome())
-    				&& mensageiroLista.checarGrupo(grupoLista2.getNome())
-    				&& mensageiroLista.checarGrupo(grupoLista3.getNome())) {
+            if (mensageiroLista.existe(grupoLista1.getNome())
+    				&& mensageiroLista.existe(grupoLista2.getNome())
+    				&& mensageiroLista.existe(grupoLista3.getNome())) {
     			System.out.println(
     					"O grupo " + grupoLista1.getNome() + " foi inserido.");
     			System.out.println("O grupo " +grupoLista2.getNome()
@@ -157,11 +156,11 @@ public class GrupoTeste {
     		}
             
           
-            mensageiroLista.removerGrupo(grupoLista2);
+            mensageiroLista.remover(grupoLista2);
             
             //Checar se o grupo removido realmente foi retirado do repositorio de grupos
             //Caso sim, sera impresso " O grupo x foi removido".
-            if (!mensageiroLista.checarGrupo(grupoLista2.getNome())) {
+            if (!mensageiroLista.existe(grupoLista2.getNome())) {
     			System.out.println("O grupo "+ grupoLista2.getNome()  + " foi removido!\n");
     		} else {
     			System.out.println("O grupo nao foi removido!\n");

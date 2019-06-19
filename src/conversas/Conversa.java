@@ -4,10 +4,10 @@ import mensagens.*;
 import perfis.*;
 
 public class Conversa {
-	private RepositorioMensagens mensagens;
+	private RepositorioMensagensArray mensagens;
 	private Perfil emissor;
 	private Perfil receptor;
-	public Conversa (Perfil emissor, Perfil receptor, RepositorioMensagens mensagens) {
+	public Conversa (Perfil emissor, Perfil receptor, RepositorioMensagensArray mensagens) {
 		this.receptor = receptor;
 		this.emissor = emissor;
 		this.mensagens = mensagens;
@@ -21,8 +21,8 @@ public class Conversa {
 	public Perfil getReceptor () {
 		return this.receptor;
 	}
-	public RepositorioMensagens getMensagens () {
-		return this.mensagens;
+	public Mensagem[] getMensagens () {
+		return this.mensagens.getIterator();
 	}
 	public void inserir (Mensagem novaMensagem) {
 		this.mensagens.inserir(novaMensagem);

@@ -11,28 +11,28 @@ public class CadastroGrupos{
 		this.repositorio = repositorio;
 	}
 
-	public Grupo procurarGrupo(String nome) throws GrupoNaoEncontradoException{
-		return repositorio.procurarGrupo(nome);
+	public Grupo procurar(String nome) throws GrupoNaoEncontradoException{
+		return repositorio.procurar(nome);
 	}
 
-	public boolean checarGrupo(String nome) {
-		return repositorio.checarGrupo(nome);
+	public boolean existe(String nome) {
+		return repositorio.existe(nome);
 	}
 
-	public void inserirGrupo(Grupo grupo) throws GrupoJaCadastradoException {
-		if (!repositorio.checarGrupo(grupo.getNome())) {
-            repositorio.inserirGrupo(grupo);
+	public void cadastrar(Grupo grupo) throws GrupoJaCadastradoException {
+		if (!repositorio.existe(grupo.getNome())) {
+            repositorio.cadastrar(grupo);
 		}else {
 			throw new GrupoJaCadastradoException();
 		}
 	}
 
-	public void removerGrupo(Grupo grupo) throws GrupoNaoEncontradoException {
-		repositorio.removerGrupo(grupo);
+	public void remover(Grupo grupo) throws GrupoNaoEncontradoException {
+		repositorio.remover(grupo);
 	}
 	
-	public void atualizarGrupo(Grupo grupo) throws GrupoNaoEncontradoException{
-		repositorio.atualizarGrupo(grupo);
+	public void atualizar(Grupo grupo) throws GrupoNaoEncontradoException{
+		repositorio.atualizar(grupo);
 	}
 
 
