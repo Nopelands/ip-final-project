@@ -20,19 +20,19 @@ public class Programa {
         Perfil perfilArray2 = new Perfil("ricardo", "11037", new RepositorioPerfisArray());
         Perfil perfilArray3 = new Perfil("daniel", "217448", new RepositorioPerfisArray());
         try {
-            mensageiroArray.criarUser(perfilArray1);
-            mensageiroArray.criarUser(perfilArray2);
-            mensageiroArray.criarUser(perfilArray3);
+            mensageiroArray.cadastrarPerfil(perfilArray1);
+            mensageiroArray.cadastrarPerfil(perfilArray2);
+            mensageiroArray.cadastrarPerfil(perfilArray3);
         } catch (PerfilJaCadastradoException e) {
             e.printStackTrace();
         }
         try {
-            mensageiroArray.adicionarContato("11037", "63194");
-            mensageiroArray.adicionarContato("63194", "11037");
-            mensageiroArray.adicionarContato("11037", "217448");
-            mensageiroArray.adicionarContato("217448", "11037");
-            mensageiroArray.adicionarContato("63194", "217448");
-            mensageiroArray.adicionarContato("217448", "63194");
+            adicionarContato("11037", "63194", mensageiroArray);
+            adicionarContato("63194", "11037", mensageiroArray);
+            adicionarContato("11037", "217448", mensageiroArray);
+            adicionarContato("217448", "11037", mensageiroArray);
+            adicionarContato("63194", "217448", mensageiroArray);
+            adicionarContato("217448", "63194", mensageiroArray);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,7 +126,6 @@ public class Programa {
 		   }
         
  	   //Atualizaçao da descricao do grupo 1 (Familia)
-        //TODO handle exception gruponaoencontrado
  	   
  	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
  	   try {
@@ -289,6 +288,15 @@ public class Programa {
          }
          
          System.out.println("-----------------------------------FIM DO TESTE DE CONVERSAS EM ARRAY----------------------------------------------------");
+    }
+    public static void adicionarContato(String numberAdd, String numberContato, Mensageiro mensageiro) throws PerfilNotFoundException, PerfilJaCadastradoException{
+        Perfil perfil = mensageiro.procurarPerfil(numberAdd);
+        if (perfil.getContacts().existe(numberContato)) {
+            throw new PerfilJaCadastradoException();
+        } else {
+            perfil.getContacts().inserir(mensageiro.procurarPerfil(numberContato));
+        }
+        mensageiro.atualizarPerfil(perfil);
     }
 }
 
