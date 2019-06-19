@@ -127,12 +127,21 @@ public class Programa {
         
  	   //Atualizaçao da descricao do grupo 1 (Familia)
         //TODO handle exception gruponaoencontrado
- 	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
- 	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   
+ 	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
+ 	   try {
+ 	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
+ 	   }catch (GrupoNaoEncontradoException e1) {
+			System.out.println(e1.getMessage());
+	   }
+ 	   
+ 	  try {
  	   mensageiroArray.atualizar(grupoArrayAtualizado1);
  	   System.out.println("Descricao nova do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   System.out.println("");
+ 	  }catch (GrupoNaoEncontradoException e1) {
+			System.out.println(e1.getMessage());
+	   }
  	  
  	  //Try Catch pra remover grupos no repositorioGrupos
  	   try {
