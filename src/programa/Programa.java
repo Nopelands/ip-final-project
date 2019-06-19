@@ -20,25 +20,28 @@ public class Programa {
         Perfil perfilArray3 = new Perfil("daniel", "217448", new RepositorioPerfisArray());
         try {
             mensageiroArray.cadastrar(perfilArray1);
+            System.out.println("Usuario " + perfilArray1.getName() + " cadastrado com sucesso.");
             mensageiroArray.cadastrar(perfilArray2);
+            System.out.println("Usuario " + perfilArray2.getName() + " cadastrado com sucesso.");
             mensageiroArray.cadastrar(perfilArray3);
+            System.out.println("Usuario " + perfilArray3.getName() + " cadastrado com sucesso.");
         } catch (PerfilJaCadastradoException e) {
             e.printStackTrace();
         }
         try {
-            adicionarContato("11037", "63194", mensageiroArray);
-            adicionarContato("63194", "11037", mensageiroArray);
-            adicionarContato("11037", "217448", mensageiroArray);
-            adicionarContato("217448", "11037", mensageiroArray);
-            adicionarContato("63194", "217448", mensageiroArray);
-            adicionarContato("217448", "63194", mensageiroArray);
+            System.out.println(adicionarContato("11037", "63194", mensageiroArray));
+            System.out.println(adicionarContato("63194", "11037", mensageiroArray));
+            System.out.println(adicionarContato("11037", "217448", mensageiroArray));
+            System.out.println(adicionarContato("217448", "11037", mensageiroArray));
+            System.out.println(adicionarContato("63194", "217448", mensageiroArray));
+            System.out.println(adicionarContato("217448", "63194", mensageiroArray));
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + " e " + mensageiroArray.procurarPerfil("11037").getPhrase());
             mensageiroArray.procurarPerfil("11037").setPhrase("teste");
-            System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + "foi mudada para " + mensageiroArray.procurarPerfil("11037").getPhrase());
+            System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + " foi mudada para " + mensageiroArray.procurarPerfil("11037").getPhrase());
         } catch (PerfilNotFoundException e) {
             e.printStackTrace();
         }
@@ -582,13 +585,14 @@ public class Programa {
         System.out.println("-----------------------------------FIM DO TESTE DE CONVERSAS EM LISTA----------------------------------------------------");
 
     }
-    public static void adicionarContato(String numberAdd, String numberContato, Mensageiro mensageiro) throws PerfilNotFoundException, PerfilJaCadastradoException{
+    public static String adicionarContato(String numberAdd, String numberContato, Mensageiro mensageiro) throws PerfilNotFoundException, PerfilJaCadastradoException{
         Perfil perfil = mensageiro.procurarPerfil(numberAdd);
         if (perfil.getContacts().existe(numberContato)) {
             throw new PerfilJaCadastradoException();
         } else {
             perfil.getContacts().inserir(mensageiro.procurarPerfil(numberContato));
+            mensageiro.atualizar(perfil);
+            return mensageiro.procurarPerfil(numberAdd).getName() + " agora é contato de " + mensageiro.procurarPerfil(numberContato).getName() + ".";
         }
-        mensageiro.atualizarPerfil(perfil);
     }
 }
