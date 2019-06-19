@@ -46,8 +46,8 @@ public class Programa {
         Mensagem mensagemArray2 = new MensagemCodificada ( perfilArray2, "respira: bo dia", 43);
         Mensagem mensagemArray3 = new MensagemCodificada  (perfilArray1, " tem prova hoje?", 712);
         Mensagem mensagemArray4 = new MensagemCodificadaReversa (perfilArray3, "mano, tem 2 provas e tu nem estudou?", 76023);
-        Mensagem mensagemArray5 = new MensagemNormal (perfilArray3, "por que voc√™s est√£o usando mensagem codificada??", 213);
-        Mensagem mensagemArray6 = new MensagemCodificada (perfilArray1, "vai que o professor encontra essa mensagem e me d√° 0 por n√£o ter estudado", 000);
+        Mensagem mensagemArray5 = new MensagemNormal (perfilArray3, "por que voces est√£o usando mensagem codificada??", 213);
+        Mensagem mensagemArray6 = new MensagemCodificada (perfilArray1, "vai que o professor encontra essa mensagem e me da 0 por nao ter estudado", 000);
 
         System.out.println("---------------------------------- TESTE DA CLASSE MENSAGENS - REPOSITORIO EM ARRAY -----------------------------------");
         
@@ -87,9 +87,9 @@ public class Programa {
 
         //try catch para procurar identifica√ß√£o
         try {
-            System.out.println("Procurando mensagem com identifica√ß√£o: 712");
+            System.out.println("Procurando mensagem com identificacao: 712");
             Mensagem mensagemEncontrada = mensageiroArray.procurar(712);
-            System.out.println("A mensagem com identifica√ß√£o igual a 712 √©:");
+            System.out.println("A mensagem com identificacao igual a 712 √©:");
             System.out.println(mensagemEncontrada.getMensagem());
         } catch (IdentificacaoNaoEncontradaException exc3){
             System.out.println(exc3.getMessage());
@@ -240,8 +240,8 @@ public class Programa {
         	 resultadoBusca = mensageiroArray.procurar(perfilArray2, perfilArray1);
         	 System.out.println("A conversa entre " + perfilArray2.getName() + " e " + perfilArray1.getName() + " foi encontrada com sucesso.");
          } catch (ConversaNaoEncontradaException e) {
-        	 // A conversa n„o ser· encontrada pelo sistema porque a operaÁ„o de cadastro n„o È comutativa.
-        	 // A conversa que cadastramos tinha 'sergio' como emissor e 'ricardo' como receptor, e n„o o contr·rio.
+        	 // A conversa nao sera encontrada pelo sistema porque a operacao de cadastro nao e comutativa.
+        	 // A conversa que cadastramos tinha 'sergio' como emissor e 'ricardo' como receptor, e nao o contrario.
         	 System.out.println(e.getMessage());
          }
          
@@ -268,7 +268,7 @@ public class Programa {
         	 mensageiroArray.remover(perfilArray1, perfilArray3);
         	 System.out.println("A conversa entre os perfis " + perfilArray1.getName() + " e " + perfilArray3.getName() + " foi removida com sucesso.");
          } catch (ConversaNaoEncontradaException e) {
-        	 // A conversa n„o poder· ser removida porque n„o est· previamente cadastrada no sistema
+        	 // A conversa nao podera ser removida porque nao esta previamente cadastrada no sistema
         	 System.out.println(e.getMessage());
          }
          
