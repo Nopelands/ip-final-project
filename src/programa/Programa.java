@@ -305,7 +305,7 @@ public class Programa {
             throw new PerfilJaCadastradoException();
         } else {
             perfil.getContacts().inserir(mensageiro.procurarPerfil(numberContato));
-            System.out.println(mensageiro.procurarPerfil(numberAdd).getName() + " agora é contato de " + mensageiro.procurarPerfil(numberContato).getName() + ". \n");
+            System.out.println(mensageiro.procurarPerfil(numberAdd).getName() + " agora é contato de " + mensageiro.procurarPerfil(numberContato).getName() + ".");
         }
         mensageiro.atualizar(perfil);
     }
