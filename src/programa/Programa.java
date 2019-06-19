@@ -15,7 +15,7 @@ public class Programa {
     	//Teste PERFIL em Array
     	
     	System.out.println("---------------------------------- TESTE DA CLASSE PERFIL - REPOSITORIO EM ARRAY -------------------------------------");
-    	
+    	//TODO redo the user thingy
         Perfil perfilArray1 = new Perfil("sergio", "63194", new RepositorioPerfisArray());
         Perfil perfilArray2 = new Perfil("ricardo", "11037", new RepositorioPerfisArray());
         Perfil perfilArray3 = new Perfil("daniel", "217448", new RepositorioPerfisArray());
@@ -126,6 +126,7 @@ public class Programa {
 		   }
         
  	   //Atualizaçao da descricao do grupo 1 (Familia)
+        //TODO handle exception gruponaoencontrado
  	   Grupo grupoArrayAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisArray(), new RepositorioMensagensArray());
  	   System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroArray.procurar("Familia").getDescricao());
  	   
