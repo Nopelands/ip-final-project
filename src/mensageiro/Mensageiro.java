@@ -80,11 +80,11 @@ public class Mensageiro {
     
     //Perfil
 
-    public void cadastrarPerfil(Perfil perfil) throws PerfilJaCadastradoException{
+    public void cadastrar(Perfil perfil) throws PerfilJaCadastradoException{
         perfis.cadastrar(perfil);
     }
 
-    public void removerPerfil(Perfil perfil) throws PerfilNotFoundException {
+    public void remover(Perfil perfil) throws PerfilNotFoundException {
         perfis.remover(perfil);
     }
     public Perfil procurarPerfil(String number) throws PerfilNotFoundException {
