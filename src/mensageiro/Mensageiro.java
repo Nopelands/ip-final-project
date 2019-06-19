@@ -91,10 +91,10 @@ public class Mensageiro {
         return perfis.procurar(number);
     }
 
-    public boolean existePerfil(Perfil perfil) {
+    public boolean existe(Perfil perfil) {
         return perfis.existe(perfil);
     }
-    public void atualizarPerfil(Perfil perfil) throws PerfilNotFoundException {
+    public void atualizar(Perfil perfil) throws PerfilNotFoundException {
         perfis.atualizar(perfil);
     }
     //????
