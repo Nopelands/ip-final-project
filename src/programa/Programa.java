@@ -307,6 +307,6 @@ public class Programa {
             perfil.getContacts().inserir(mensageiro.procurarPerfil(numberContato));
             System.out.println(mensageiro.procurarPerfil(numberAdd).getName() + " agora é contato de " + mensageiro.procurarPerfil(numberContato).getName() + ". \n");
         }
-        mensageiro.atualizarPerfil(perfil);
+        mensageiro.atualizar(perfil);
     }
 }
