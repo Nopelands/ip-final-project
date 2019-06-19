@@ -21,8 +21,11 @@ public class Programa {
         Perfil perfilArray3 = new Perfil("daniel", "217448", new RepositorioPerfisArray());
         try {
             mensageiroArray.cadastrarPerfil(perfilArray1);
+            System.out.println("Usuario " + perfilArray1.getName() + " cadastrado com sucesso.");
             mensageiroArray.cadastrarPerfil(perfilArray2);
+            System.out.println("Usuario " + perfilArray2.getName() + " cadastrado com sucesso.");
             mensageiroArray.cadastrarPerfil(perfilArray3);
+            System.out.println("Usuario " + perfilArray3.getName() + " cadastrado com sucesso.");
         } catch (PerfilJaCadastradoException e) {
             e.printStackTrace();
         }
@@ -295,6 +298,7 @@ public class Programa {
             throw new PerfilJaCadastradoException();
         } else {
             perfil.getContacts().inserir(mensageiro.procurarPerfil(numberContato));
+            System.out.println(mensageiro.procurarPerfil(numberAdd).getName() + " agora é contato de " + mensageiro.procurarPerfil(numberContato).getName() + ". \n");
         }
         mensageiro.atualizarPerfil(perfil);
     }
