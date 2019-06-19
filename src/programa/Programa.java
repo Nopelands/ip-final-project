@@ -39,6 +39,13 @@ public class Programa {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + " e " + mensageiroArray.procurarPerfil("11037").getPhrase());
+            mensageiroArray.procurarPerfil("11037").setPhrase("teste");
+            System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + "foi mudada para" + mensageiroArray.procurarPerfil("11037").getPhrase());
+        } catch (PerfilNotFoundException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY--------------------------------------------------\n");
 
