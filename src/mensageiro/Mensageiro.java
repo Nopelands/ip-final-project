@@ -88,34 +88,7 @@ public class Mensageiro {
     
     //Perfil
 
-    public void criarUser (Perfil novoUsuario) throws PerfilJaCadastradoException {
-    	this.perfis.cadastrar(novoUsuario);
-    }
-    
-    public void changeGreeting(String number, String newGreeting) throws PerfilNotFoundException{
-        Perfil perfil = perfis.procurar(number);
-        perfil.setPhrase(newGreeting);
-        perfis.atualizar(perfil);
-    }
-
-    public String getGreeting(String number) throws PerfilNotFoundException{
-        return perfis.procurar(number).getPhrase();
-    }
-
-    public String getNome(String number) throws PerfilNotFoundException {
-        return perfis.procurar(number).getName();
-    }
-
-    public void adicionarContato(String numberAdd, String numberContato) throws PerfilJaCadastradoException, PerfilNotFoundException{
-        perfis.adicionarContato(numberAdd, numberContato);
-    }
-    public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException{
-        perfis.removerContato(numberRemove, numberContato);
-    }
-
-    public Perfil procurarPerfil(String number) throws PerfilNotFoundException{
-        return perfis.procurar(number);
-    }
+    //????
 
     //Mensagens
 

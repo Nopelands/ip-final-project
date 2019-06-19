@@ -29,19 +29,4 @@ public class CadastroPerfis {
     public void atualizar(Perfil perfil) throws PerfilNotFoundException {
         repositorioPerfis.atualizar(perfil);
     }
-    public void adicionarContato(String numberAdd, String numberContato) throws PerfilNotFoundException, PerfilJaCadastradoException{
-        Perfil perfil = repositorioPerfis.procurar(numberAdd);
-        if (perfil.getContacts().existe(numberContato)) {
-            throw new PerfilJaCadastradoException();
-        } else {
-            perfil.getContacts().inserir(repositorioPerfis.procurar(numberContato));
-        }
-        repositorioPerfis.atualizar(perfil);
-    }
-    public void removerContato(String numberRemove, String numberContato) throws PerfilNotFoundException {
-        Perfil perfil = repositorioPerfis.procurar(numberRemove);
-        Perfil remover = perfil.getContacts().procurar(numberContato);
-        perfil.getContacts().remover(remover.getNumber());
-        repositorioPerfis.atualizar(perfil);
-    }
 }
