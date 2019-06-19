@@ -9,23 +9,19 @@ import mensageiro.*;
 public class Programa {
     public static void main(String[] args){
     	Mensageiro mensageiroArray = new Mensageiro(new RepositorioPerfisArray(), new RepositorioConversasArray(1000), new RepositorioGruposArray(), new RepositorioMensagensArray());
-    	Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
+    	// Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
        
     	//Testes em Array
     	//Teste PERFIL em Array
     	
     	System.out.println("---------------------------------- TESTE DA CLASSE PERFIL - REPOSITORIO EM ARRAY -------------------------------------");
-    	//TODO redo the user thingy
         Perfil perfilArray1 = new Perfil("sergio", "63194", new RepositorioPerfisArray());
         Perfil perfilArray2 = new Perfil("ricardo", "11037", new RepositorioPerfisArray());
         Perfil perfilArray3 = new Perfil("daniel", "217448", new RepositorioPerfisArray());
         try {
             mensageiroArray.cadastrar(perfilArray1);
-            System.out.println("Usuario " + perfilArray1.getName() + " cadastrado com sucesso.");
             mensageiroArray.cadastrar(perfilArray2);
-            System.out.println("Usuario " + perfilArray2.getName() + " cadastrado com sucesso.");
             mensageiroArray.cadastrar(perfilArray3);
-            System.out.println("Usuario " + perfilArray3.getName() + " cadastrado com sucesso.");
         } catch (PerfilJaCadastradoException e) {
             e.printStackTrace();
         }
@@ -42,7 +38,7 @@ public class Programa {
         try {
             System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + " e " + mensageiroArray.procurarPerfil("11037").getPhrase());
             mensageiroArray.procurarPerfil("11037").setPhrase("teste");
-            System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + " foi mudada para " + mensageiroArray.procurarPerfil("11037").getPhrase());
+            System.out.println("A frase de " + mensageiroArray.procurarPerfil("11037").getName() + "foi mudada para " + mensageiroArray.procurarPerfil("11037").getPhrase());
         } catch (PerfilNotFoundException e) {
             e.printStackTrace();
         }
@@ -298,6 +294,293 @@ public class Programa {
          }
          
          System.out.println("-----------------------------------FIM DO TESTE DE CONVERSAS EM ARRAY----------------------------------------------------");
+
+        Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
+
+        //Testes em Lista
+        //Teste PERFIL em Lista
+
+        System.out.println("---------------------------------- TESTE DA CLASSE PERFIL - REPOSITORIO EM LISTA -------------------------------------");
+        Perfil perfilLista1 = new Perfil("sergio", "63194", new RepositorioPerfisLista());
+        Perfil perfilLista2 = new Perfil("ricardo", "11037", new RepositorioPerfisLista());
+        Perfil perfilLista3 = new Perfil("daniel", "217448", new RepositorioPerfisLista());
+        try {
+            mensageiroLista.cadastrar(perfilLista1);
+            mensageiroLista.cadastrar(perfilLista2);
+            mensageiroLista.cadastrar(perfilLista3);
+        } catch (PerfilJaCadastradoException e) {
+            e.printStackTrace();
+        }
+        try {
+            adicionarContato("11037", "63194", mensageiroLista);
+            adicionarContato("63194", "11037", mensageiroLista);
+            adicionarContato("11037", "217448", mensageiroLista);
+            adicionarContato("217448", "11037", mensageiroLista);
+            adicionarContato("63194", "217448", mensageiroLista);
+            adicionarContato("217448", "63194", mensageiroLista);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("A frase de " + mensageiroLista.procurarPerfil("11037").getName() + " e " + mensageiroLista.procurarPerfil("11037").getPhrase());
+            mensageiroLista.procurarPerfil("11037").setPhrase("teste");
+            System.out.println("A frase de " + mensageiroLista.procurarPerfil("11037").getName() + "foi mudada para " + mensageiroLista.procurarPerfil("11037").getPhrase());
+        } catch (PerfilNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM LISTA--------------------------------------------------\n");
+
+        //Teste MENSAGENS Lista
+
+        Mensagem mensagemLista1 = new MensagemCodificada ( perfilLista1, "bom dia", 123);
+        Mensagem mensagemLista2 = new MensagemCodificada ( perfilLista2, "respira: bo dia", 43);
+        Mensagem mensagemLista3 = new MensagemCodificada  (perfilLista1, " tem prova hoje?", 712);
+        Mensagem mensagemLista4 = new MensagemCodificadaReversa (perfilLista3, "mano, tem 2 provas e tu nem estudou?", 76023);
+        Mensagem mensagemLista5 = new MensagemNormal (perfilLista3, "por que voces estão usando mensagem codificada??", 213);
+        Mensagem mensagemLista6 = new MensagemCodificada (perfilLista1, "vai que o professor encontra essa mensagem e me da 0 por nao ter estudado", 000);
+
+        System.out.println("---------------------------------- TESTE DA CLASSE MENSAGENS - REPOSITORIO EM LISTA -----------------------------------");
+
+        mensagemLista6.codificar();
+        mensagemLista1.codificar();
+        mensagemLista2.codificar();
+        mensagemLista4.codificar();
+
+        System.out.println("Inserindo mensagens no repositorio...");
+        mensageiroLista.cadastrar(mensagemLista1);
+        mensageiroLista.cadastrar(mensagemLista2);
+        mensageiroLista.cadastrar(mensagemLista3);
+        mensageiroLista.cadastrar(mensagemLista4);
+        mensageiroArray.cadastrar(mensagemLista5);
+        mensageiroArray.cadastrar(mensagemLista6);
+        System.out.println("Mensagens cadastradas");
+
+        //try catch para remover mensagens
+        try {
+            System.out.println("Removendo mensagens...");
+            mensageiroLista.remover(mensagemLista1);
+            mensageiroLista.remover(mensagemLista2);
+        } catch (MensagemNaoEncontradaException exc1){
+            System.out.println(exc1.getMessage());
+        }
+        System.out.println("Mensagens Removidas");
+
+        //try catch para atualizar mensagens
+        Mensagem mensagemListaTeste = new MensagemCodificada(perfilLista1, "teste", 712);
+        try {
+            System.out.println("Atualizando mensagemLista3");
+            mensageiroLista.atualizar(mensagemListaTeste);
+        } catch (IdentificacaoNaoEncontradaException exc2){
+            System.out.println(exc2.getMessage());
+        }
+        System.out.println("Mensagem Atualizada");
+
+        //try catch para procurar identificação
+        try {
+            System.out.println("Procurando mensagem com identificacao: 712");
+            Mensagem mensagemEncontrada = mensageiroLista.procurar(712);
+            System.out.println("A mensagem com identificacao igual a 712 é:");
+            System.out.println(mensagemEncontrada.getMensagem());
+        } catch (IdentificacaoNaoEncontradaException exc3){
+            System.out.println(exc3.getMessage());
+        }
+        System.out.println("-----------------------------------FIM DO TESTE DE MENSAGENS EM LISTA--------------------------------------------------");
+        System.out.println("");
+
+        //Teste GRUPO Lista
+        Grupo grupoLista1 = new Grupo("Familia", "Galera da farofa", new RepositorioPerfisLista(), new RepositorioMensagensLista());
+        Grupo grupoLista2 = new Grupo("Amigos", "Galera do pagode", new RepositorioPerfisLista(), new RepositorioMensagensLista());
+        Grupo grupoLista3 = new Grupo("Faculdade", "UFPE", new RepositorioPerfisLista(), new RepositorioMensagensLista());
+        System.out.println("---------------------------------- TESTE DA CLASSE GRUPOS - REPOSITORIO EM LISTA -------------------------------------");
+
+        //Try Catch pra inserir grupos no repositorioGrupos
+        try {
+            System.out.println("Inserindo grupos no repositorio: ");
+            mensageiroLista.cadastrar(grupoLista1);
+            mensageiroLista.cadastrar(grupoLista2);
+            mensageiroLista.cadastrar(grupoLista3);
+
+            //Checando se os 3 grupos foram inseridos no repositorio de grupos,
+            //caso sim, 3 mensagens serÃ¢o impressas.
+            if (mensageiroLista.existe(grupoLista1.getNome())
+                    && mensageiroLista.existe(grupoLista2.getNome())
+                    && mensageiroLista.existe(grupoLista3.getNome())) {
+                System.out.println(
+                        "O grupo " + grupoLista1.getNome() + " foi inserido.");
+                System.out.println("O grupo " +grupoLista2.getNome()
+                        + " foi inserido.");
+                System.out.println("O grupo " + grupoLista3.getNome()
+                        + " foi inserido.\n");
+            }
+        }catch (GrupoJaCadastradoException e1) {
+            System.out.println(e1.getMessage());
+        }
+
+        //Atualizaçao da descricao do grupo 1 (Familia)
+
+        Grupo grupoListaAtualizado1 = new Grupo("Familia", "Mulambagem", new RepositorioPerfisLista(), new RepositorioMensagensLista());
+        try {
+            System.out.println("Descricao antiga do Grupo 1(Familia): " + mensageiroLista.procurar("Familia").getDescricao());
+        }catch (GrupoNaoEncontradoException e1) {
+            System.out.println(e1.getMessage());
+        }
+
+        try {
+            mensageiroLista.atualizar(grupoListaAtualizado1);
+            System.out.println("Descricao nova do Grupo 1(Familia): " + mensageiroLista.procurar("Familia").getDescricao());
+            System.out.println("");
+        }catch (GrupoNaoEncontradoException e1) {
+            System.out.println(e1.getMessage());
+        }
+
+        //Try Catch pra remover grupos no repositorioGrupos
+        try {
+            mensageiroLista.remover(grupoLista2);
+
+            //Checar se o grupo removido realmente foi retirado do repositorio de grupos
+            //Caso sim, sera impresso " O grupo x foi removido".
+            if (!mensageiroLista.existe(grupoLista2.getNome())) {
+                System.out.println("O grupo "+ grupoLista2.getNome()  + " foi removido!\n");
+            } else {
+                System.out.println("O grupo nao foi removido!\n");
+            }
+        }catch (GrupoNaoEncontradoException e2) {
+            System.out.println(e2.getMessage());
+        }
+
+
+        System.out.println("Inserindo perfis no grupo 1: ");
+        //Try Catch pra inserir perfis no Repositorio de Perfis do grupo.
+        try {
+            grupoLista1.inserirPerfil(perfilLista1);
+            grupoLista1.inserirPerfil(perfilLista2);
+
+            //Checar se os 2 perfis foram inseridos no grupo
+            if(grupoLista1.getListaNomes().existe(perfilLista1.getNumber()) && grupoLista1.getListaNomes().existe(perfilLista2.getNumber())) {
+                System.out.println(		"O perfil " + perfilLista1.getName() + " foi inserido no grupo.");
+                System.out.println("O perfil " + perfilLista2.getName()+ " foi inserido no grupo.\n");
+            }
+        } catch (PerfilJaCadastradoException p) {
+            System.out.println(p.getMessage());
+        }
+
+        //Try Catch pra remover perfis no Repositorio de Perfis do grupo.
+        try {
+            grupoLista1.removerPerfil(perfilLista2.getNumber());
+            //Checar se o perfil foi removido do grupo
+            if (!grupoLista1.getListaNomes().existe(perfilLista2.getNumber())) {
+                System.out.println("O perfil "+ perfilLista2.getName()  + " foi removido do grupo!\n");
+            } else {
+                System.out.println("O perfil nao foi removido do grupo!\n");
+            }
+        } catch (PerfilNotFoundException p) {
+            System.out.println(p.getMessage());
+        }
+
+        //Nao precisa de try catch pra Inserir Mensagens. Nao ha exception
+        grupoLista1.inserirMensagem(mensagemLista1);
+        grupoLista1.inserirMensagem(mensagemLista2);
+        grupoLista1.inserirMensagem(mensagemLista5);
+
+        //Checar se as 2 mensagens foram inseridas no grupo 1
+        System.out.println("Inserindo mensagens no grupo 1: ");
+        if(grupoLista1.getListaMensagens().existe(mensagemLista1.getMensagem()) && grupoLista1.getListaMensagens().existe(mensagemLista2.getMensagem()) && grupoArray1.getListaMensagens().existe(mensagemLista5.getMensagem())) {
+            System.out.println(		"A mensagem " + mensagemLista1.getMensagem() + " foi inserida no grupo.");
+            System.out.println("A mensagem " + mensagemLista2.getMensagem()+ " foi inserida no grupo.\n");
+            System.out.println("A mensagem " + mensagemLista5.getMensagem()+ " foi inserida no grupo.\n");
+        }
+
+        try{
+            grupoLista1.removerMensagem(mensagemLista2);
+
+            //Checar se a mensagem foi removida do grupo 1
+            if (!grupoLista1.getListaMensagens().existe(mensagemLista2.getMensagem())) {
+                System.out.println("A mensagem "+ mensagemLista2.getMensagem()  + " foi removida do grupo!\n");
+            } else {
+                System.out.println("A mensagem nao foi removida do grupo!\n");
+            }
+        } catch (MensagemNaoEncontradaException m){
+            System.out.println(m.getMessage());
+        }
+
+        //Visualizacao do grupo
+        System.out.println("Grupo lista1 - " + grupoLista1.getNome());
+        System.out.println(mensagemLista1.getRemetente().getName() + ": " + mensagemLista1.getMensagem());
+        System.out.println(mensagemLista5.getRemetente().getName() + ": " + mensagemLista5.getMensagem());
+        System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM LISTA----------------------------------------------------");
+        System.out.println();
+
+        System.out.println("---------------------------------- TESTE DA CLASSE CONVERSAS - REPOSITORIO EM LISTA -------------------------------------");
+
+        Conversa conversaLista1 = new Conversa (perfilLista1, perfilLista2, new RepositorioMensagensArray());
+        Conversa conversaLista2 = new Conversa (perfilLista2, perfilLista3, new RepositorioMensagensArray());
+
+        // Cadastrando as conversas no sistema
+        try {
+            mensageiroLista.cadastrar(conversaLista1);
+            System.out.println("A conversa entre os perfis " + conversaLista1.getEmissor().getName() + " e " + conversaLista1.getReceptor().getName() + " foi cadastrada com sucesso.");
+            mensageiroLista.cadastrar(conversaLista2);
+            System.out.println("A conversa entre os perfis " + conversaLista2.getEmissor().getName() + " e " + conversaLista2.getReceptor().getName() + " foi cadastrada com sucesso.");
+        } catch (RepositorioException e1) {
+            System.out.println(e1.getMessage());
+        } catch (ConversaReiniciadaException e2) {
+            System.out.println(e2.getMessage());
+        } catch (NaoSaoContatosException e3) {
+            System.out.println(e3.getMessage());
+        } catch (PerfilNotFoundException e4) {
+            System.out.println(e4.getMessage());
+        } catch (MensagemNaoEncontradaException e5) {
+            System.out.println(e5.getMessage());
+        }
+
+        // Alimentando a conversa com mensagens
+        resultadoBusca = conversaLista2;
+        try {
+            resultadoBusca = mensageiroLista.procurar(perfilLista2, perfilLista1);
+            System.out.println("A conversa entre " + perfilLista2.getName() + " e " + perfilLista1.getName() + " foi encontrada com sucesso.");
+        } catch (ConversaNaoEncontradaException e) {
+            // A conversa nao sera encontrada pelo sistema porque a operacao de cadastro nao e comutativa.
+            // A conversa que cadastramos tinha 'sergio' como emissor e 'ricardo' como receptor, e nao o contrario.
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            resultadoBusca = mensageiroLista.procurar(perfilLista1, perfilLista2);
+            System.out.println("A conversa entre " + perfilLista1.getName() + " e " + perfilLista2.getName() + " foi encontrada com sucesso.");
+        } catch (ConversaNaoEncontradaException e) {
+            System.out.println(e.getMessage());
+        }
+
+        resultadoBusca.inserir(mensagemLista1);
+        resultadoBusca.inserir(mensagemLista2);
+        resultadoBusca.inserir(mensagemLista3);
+
+        try {
+            mensageiroLista.atualizar(resultadoBusca);
+            System.out.println("A conversa entre os perfis " + resultadoBusca.getEmissor().getName() + " e " + resultadoBusca.getReceptor().getName() + " foi atualizada com sucesso.");
+        } catch (ConversaNaoEncontradaException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Removendo uma conversa
+        try {
+            mensageiroLista.remover(perfilLista1, perfilLista3);
+            System.out.println("A conversa entre os perfis " + perfilLista1.getName() + " e " + perfilLista3.getName() + " foi removida com sucesso.");
+        } catch (ConversaNaoEncontradaException e) {
+            // A conversa nao podera ser removida porque nao esta previamente cadastrada no sistema
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            mensageiroLista.remover(perfilLista2, perfilLista3);
+            System.out.println("A conversa entre os perfis " + perfilLista2.getName() + " e " + perfilLista3.getName() + " foi removida com sucesso.");
+        } catch (ConversaNaoEncontradaException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("-----------------------------------FIM DO TESTE DE CONVERSAS EM LISTA----------------------------------------------------");
+
     }
     public static void adicionarContato(String numberAdd, String numberContato, Mensageiro mensageiro) throws PerfilNotFoundException, PerfilJaCadastradoException{
         Perfil perfil = mensageiro.procurarPerfil(numberAdd);
@@ -305,8 +588,7 @@ public class Programa {
             throw new PerfilJaCadastradoException();
         } else {
             perfil.getContacts().inserir(mensageiro.procurarPerfil(numberContato));
-            System.out.println(mensageiro.procurarPerfil(numberAdd).getName() + " agora é contato de " + mensageiro.procurarPerfil(numberContato).getName() + ".");
         }
-        mensageiro.atualizar(perfil);
+        mensageiro.atualizarPerfil(perfil);
     }
 }
