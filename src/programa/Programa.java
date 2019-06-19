@@ -7,7 +7,7 @@ import mensagens.*;
 import mensageiro.*;
 
 public class Programa {
-    public static void main(String[] args) throws GrupoJaCadastradoException, GrupoNaoEncontradoException, PerfilJaCadastradoException, PerfilNotFoundException{
+    public static void main(String[] args){
     	Mensageiro mensageiroArray = new Mensageiro(new RepositorioPerfisArray(), new RepositorioConversasArray(1000), new RepositorioGruposArray(), new RepositorioMensagensArray());
     	Mensageiro mensageiroLista = new Mensageiro(new RepositorioPerfisLista(), new RepositorioConversasLista(), new RepositorioGruposLista(), new RepositorioMensagensLista());
        
@@ -35,11 +35,10 @@ public class Programa {
             mensageiroArray.adicionarContato("217448", "63194");
         } catch (Exception e) {
             e.printStackTrace();
-        }       
-        
-        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY--------------------------------------------------");
-        System.out.println("");
-        
+        }
+
+        System.out.println("-----------------------------------FIM DO TESTE DE PERFIL EM ARRAY--------------------------------------------------\n");
+
         //Teste MENSAGENS Array
 
         Mensagem mensagemArray1 = new MensagemCodificada ( perfilArray1, "bom dia", 123);
