@@ -50,11 +50,12 @@ public class Programa {
         Mensagem mensagemArray6 = new MensagemCodificada (perfilArray1, "vai que o professor encontra essa mensagem e me d√° 0 por n√£o ter estudado", 000);
 
         System.out.println("---------------------------------- TESTE DA CLASSE MENSAGENS - REPOSITORIO EM ARRAY -----------------------------------");
+        
         mensagemArray6.codificar();
         mensagemArray1.codificar();
         mensagemArray2.codificar();
         mensagemArray4.codificar();
-
+		
         System.out.println("Inserindo mensagens no repositorio...");
         mensageiroArray.cadastrar(mensagemArray1);
         mensageiroArray.cadastrar(mensagemArray2);
@@ -209,9 +210,76 @@ public class Programa {
          System.out.println(mensagemArray5.getRemetente().getName() + ": " + mensagemArray5.getMensagem());
          System.out.println("-----------------------------------FIM DO TESTE DE GRUPOS EM ARRAY----------------------------------------------------");
          System.out.println("");
-
-        //TODO main
-
+         
+         System.out.println("---------------------------------- TESTE DA CLASSE CONVERSAS - REPOSITORIO EM ARRAY -------------------------------------");
+         
+         Conversa conversaArray1 = new Conversa (perfilArray1, perfilArray2, new RepositorioMensagensArray());
+         Conversa conversaArray2 = new Conversa (perfilArray2, perfilArray3, new RepositorioMensagensArray());
+         
+         // Cadastrando as conversas no sistema
+         try {
+        	 mensageiroArray.cadastrar(conversaArray1);
+        	 System.out.println("A conversa entre os perfis " + conversaArray1.getEmissor().getName() + " e " + conversaArray1.getReceptor().getName() + " foi cadastrada com sucesso.");
+        	 mensageiroArray.cadastrar(conversaArray2);
+        	 System.out.println("A conversa entre os perfis " + conversaArray2.getEmissor().getName() + " e " + conversaArray2.getReceptor().getName() + " foi cadastrada com sucesso.");
+         } catch (RepositorioException e1) {
+        	 System.out.println(e1.getMessage());
+         } catch (ConversaReiniciadaException e2) {
+        	 System.out.println(e2.getMessage());
+         } catch (NaoSaoContatosException e3) {
+        	 System.out.println(e3.getMessage());
+         } catch (PerfilNotFoundException e4) {
+        	 System.out.println(e4.getMessage());
+         } catch (MensagemNaoEncontradaException e5) {
+        	 System.out.println(e5.getMessage());
+         }
+         
+         // Alimentando a conversa com mensagens
+         Conversa resultadoBusca = conversaArray2;
+         try {
+        	 resultadoBusca = mensageiroArray.procurar(perfilArray2, perfilArray1);
+        	 System.out.println("A conversa entre " + perfilArray2.getName() + " e " + perfilArray1.getName() + " foi encontrada com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 // A conversa n„o ser· encontrada pelo sistema porque a operaÁ„o de cadastro n„o È comutativa.
+        	 // A conversa que cadastramos tinha 'sergio' como emissor e 'ricardo' como receptor, e n„o o contr·rio.
+        	 System.out.println(e.getMessage());
+         }
+         
+         try {
+        	 resultadoBusca = mensageiroArray.procurar(perfilArray1, perfilArray2);
+        	 System.out.println("A conversa entre " + perfilArray1.getName() + " e " + perfilArray2.getName() + " foi encontrada com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 System.out.println(e.getMessage());
+         }
+         
+         resultadoBusca.inserir(mensagemArray1);
+         resultadoBusca.inserir(mensagemArray2);
+         resultadoBusca.inserir(mensagemArray3);
+         
+         try {
+        	 mensageiroArray.atualizar(resultadoBusca);
+        	 System.out.println("A conversa entre os perfis " + resultadoBusca.getEmissor().getName() + " e " + resultadoBusca.getReceptor().getName() + " foi atualizada com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 System.out.println(e.getMessage());
+         }
+         
+         // Removendo uma conversa
+         try {
+        	 mensageiroArray.remover(perfilArray1, perfilArray3);
+        	 System.out.println("A conversa entre os perfis " + perfilArray1.getName() + " e " + perfilArray3.getName() + " foi removida com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 // A conversa n„o poder· ser removida porque n„o est· previamente cadastrada no sistema
+        	 System.out.println(e.getMessage());
+         }
+         
+         try {
+        	 mensageiroArray.remover(perfilArray2, perfilArray3);
+        	 System.out.println("A conversa entre os perfis " + perfilArray2.getName() + " e " + perfilArray3.getName() + " foi removida com sucesso.");
+         } catch (ConversaNaoEncontradaException e) {
+        	 System.out.println(e.getMessage());
+         }
+         
+         System.out.println("-----------------------------------FIM DO TESTE DE CONVERSAS EM ARRAY----------------------------------------------------");
     }
 }
 

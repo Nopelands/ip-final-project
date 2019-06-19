@@ -1,6 +1,7 @@
 package conversas;
 
 import perfis.*;
+import mensagens.*;
 
 public class CadastroConversas {
 	RepositorioConversas conversas;
@@ -30,10 +31,10 @@ public class CadastroConversas {
 	public void cadastrar (Conversa novaConversa) throws ConversaReiniciadaException, RepositorioException, NaoSaoContatosException {
 		if (this.conversas.existe(novaConversa.getEmissor(), novaConversa.getReceptor())) {
 			throw new ConversaReiniciadaException(novaConversa.getEmissor(), novaConversa.getReceptor());
-		} else if (novaConversa.getEmissor().getContacts().existe(novaConversa.getReceptor().getNumber()) && novaConversa.getReceptor().getContacts().existe(novaConversa.getEmissor().getNumber())) {
-			this.conversas.inserir(novaConversa);
-		} else {
+		} else if (!novaConversa.getEmissor().getContacts().existe(novaConversa.getReceptor().getNumber()) || !novaConversa.getReceptor().getContacts().existe(novaConversa.getEmissor().getNumber())) {
 			throw new NaoSaoContatosException(novaConversa.getEmissor(), novaConversa.getReceptor());
+		} else {
+			this.conversas.inserir(novaConversa);
 		}
 	}
 	
